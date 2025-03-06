@@ -1,16 +1,73 @@
+:root {
+    /* Mode Clair */
+    --bg-gradient: linear-gradient(180deg, #F8F9FA 0%, #FFFFFF 100%);
+    --header-bg-gradient: linear-gradient(90deg, #FFFFFF, #F8F9FA);
+    --section-bg-gradient: linear-gradient(180deg, #FFFFFF, #F1F1F1);
+    --sidebar-bg-gradient: linear-gradient(180deg, #FFFFFF, #F1F1F1);
+    --footer-bg-gradient: linear-gradient(90deg, #FFFFFF, #F8F9FA);
+
+    --btn-bg-theme-toggle : rgb(235, 235, 235);
+
+    --btn-bg-color: #4b73f6;
+    --btn-bg-color-hover : #3356c5;
+    --btn-ft-color: #ffffff;
+
+    --link-hover: #0072ff;
+
+    --primary-text: #212529;
+    --accent-color: #0A6FB5;
+    --soft-color: #666;
+    
+    --h1-color: #4b73f6;
+    --paragraph-color: #555;
+
+    --border: #ccc;
+}
+
+body.dark-mode {
+    /* Mode Sombre */
+    --bg-gradient: linear-gradient(180deg, #121212 0%, #1E1E1E 100%);
+    --header-bg-gradient: linear-gradient(90deg, #212121, #1E1E1E);
+    --section-bg-gradient: linear-gradient(180deg, #1E1E1E, #2C2C2C);
+    --sidebar-bg-gradient: linear-gradient(180deg, #212121, #2A2A2A);
+    --footer-bg-gradient: linear-gradient(90deg, #212121, #1E1E1E);
+
+    --btn-bg-theme-toggle: rgb(56, 56, 56);
+
+    --btn-bg-color: #0A84FF;
+    --btn-bg-color-hover: #006edc;
+    --btn-ft-color: #ffffff;
+
+    --link-hover: #0A84FF;
+
+    --primary-text: #E0E0E0;
+    --accent-color: #0A84FF;
+    --soft-color: #B0B0B0;
+    
+    --h1-color: #0A84FF;
+    --paragraph-color: #B0B0B0;
+
+    --border: #333333;
+}
+
+
 /* 1. Reset de base */
 * {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+
+    max-width: 1024px;
+    justify-content: center; 
+
 }
 
 /* 2. Styles généraux du body */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(180deg, #f8f9fb 0%, #e6ecf5 100%);
-    color: #333;
+    background: var(--bg-gradient);
+    color: var(--primary-text);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,10 +76,11 @@ body {
 /* 3. Header et navigation */
 header {
     width: 100%;
-    background: rgba(255, 255, 255, 0.9); /* Blanc avec 40% d'opacité */
+    background: var(--header-bg-gradient); /*rgba(255, 255, 255, 0.9); Blanc avec 40% d'opacité */
     position: fixed;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 999;
 }
 
@@ -52,8 +110,15 @@ header nav button {
     border: none;
     cursor: pointer;
     margin-left: 1rem;
-    color: #333;
+    color: var(--primary-text);
     transition: transform 0.2s ease;
+}
+
+header button.btn-theme-toggle {
+    background: var(--btn-bg-theme-toggle);
+    border-radius: 40%;
+    padding: 0.5rem;
+    margin: 0 1rem;
 }
 
 header nav button:hover {
@@ -64,23 +129,46 @@ header nav button:hover {
 header nav a {
     margin: 0 1rem;
     text-decoration: none;
-    color: #333;
+    color: var(--primary-text);
     font-weight: 500;
     transition: color 0.2s ease;
 }
 
 header nav a:hover {
-    color: #0072ff;
+    color: var(--link-hover);
 }
 
 /* 4. Section d'accueil (hero) */
 main {
+    width: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: var(--section-bg-gradient);
 }
 
+/* 6. Sections internes */
+section {
+    padding: 4rem 2rem;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+section h2 {
+    font-size: 2rem;
+    color: var(--primary-text);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+section p,
+section li {
+    color: var(--paragraph-color);
+    line-height: 1.6;
+}
+
+/* Section accueil */
 /* Pour laisser de l'espace sous le header fixe */
 #accueil {
     display: flex;
@@ -96,7 +184,7 @@ main {
 #accueil h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #4b73f6;
+    color: var(--h1-color);
     margin-bottom: 0.5rem;
 }
 
@@ -135,12 +223,12 @@ main {
 /* Sous-titre (Data Analyst) */
 #accueil p {
     font-size: 1.2rem;
-    color: #666;
+    color: var(--paragraph-color);
     margin-bottom: 2rem;
 }
 
 /* 5. Boutons & icônes dans le hero */
-#accueil > div {
+#accueil div {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -148,8 +236,8 @@ main {
 
 /* Bouton "Me contacter" */
 #accueil button {
-    background-color: #4b73f6;
-    color: #fff;
+    background-color: var(--btn-bg-color);
+    color: var(--btn-ft-color);
     border: none;
     border-radius: 4px;
     padding: 0.75rem 1.5rem;
@@ -158,40 +246,70 @@ main {
     transition: background 0.3s ease;
 }
 
+#accueil button a {
+    color:var(--btn-ft-color);
+    text-decoration: none;
+}
+
 #accueil button:hover {
-    background-color: #3356c5;
+    background-color: var(--btn-bg-color-hover);
 }
 
 /* Icônes (GitHub, LinkedIn, etc.) */
 #accueil a svg {
     width: 24px;
     height: 24px;
-    stroke: #333;
+    stroke: var(--primary-text);
     transition: stroke 0.2s ease;
+
 }
 
 #accueil a:hover svg {
-    stroke: #4b73f6;
+    stroke: var(--accent-color);
 }
 
-/* 6. Sections internes */
-section {
-    padding: 4rem 2rem;
-    max-width: 960px;
-    margin: 0 auto;
-}
-
-section h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 1rem;
+/* section a propos */
+#a-propos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 6rem; /* pour éviter que le contenu passe sous le header */
+    min-height: 100vh;
     text-align: center;
 }
 
-section p,
-section li {
-    color: #555;
-    line-height: 1.6;
+/* section projets */
+#projets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 6rem; /* pour éviter que le contenu passe sous le header */
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* section competences */
+#competences {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 6rem; /* pour éviter que le contenu passe sous le header */
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* section contact */
+#contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 6rem; /* pour éviter que le contenu passe sous le header */
+    min-height: 100vh;
+    text-align: center;
 }
 
 /* 7. Formulaire de contact */
@@ -207,13 +325,13 @@ section li {
 #contact textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     border-radius: 4px;
 }
 
 #contact button[type="submit"] {
-    background-color: #4b73f6;
-    color: #fff;
+    background-color: var(--btn-bg-color);
+    color: var(--btn-ft-color);
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
@@ -221,30 +339,271 @@ section li {
 }
 
 #contact button[type="submit"]:hover {
-    background-color: #3356c5;
+    background-color: var(--btn-bg-color-hover);
 }
+
 
 /* 8. Footer */
 footer {
     text-align: center;
     padding: 2rem 1rem;
-    background: #f3f5f9;
+    background: var(--footer-bg-gradient);
+    width: 100%;
+}
+
+footer div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer span {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 footer p {
-    margin-bottom: 1rem;
-    color: #777;
+    
+    color: var(--paragraph-color);
 }
 
 footer a {
     margin: 0 0.5rem;
-    color: #333;
+    color: var(--primary-text);
     transition: color 0.2s ease;
 }
 
-footer a:hover svg {
-    stroke: #4b73f6;
+
+/* Icônes (GitHub, LinkedIn, etc.) */
+footer a svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary-text);
+    transition: stroke 0.2s ease;
 }
+
+footer a:hover svg {
+    stroke: var(--accent-color);
+}
+
+
+
+/* --- SIDEBAR (panneau latéral) --- */
+/* Classe pour appliquer un effet de flou qaund la side bare est ouverte*/
+.blur {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px; /* Masquée par défaut */
+    width: 280px;
+    height: 100vh;
+    /* background: #1f22e7; */
+    background: var(--sidebar-bg-gradient);
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    transition: left 0.3s ease;
+    z-index: 9999;
+}
+
+    /* Classe pour ouvrir la sidebar */
+    .sidebar--open {
+        left: 0;
+    }
+
+/* Bouton pour fermer la sidebar */
+.btn-close-sidebar {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    position: absolute;  /* Fixe la position */
+    top: 10px;          /* Distance depuis le haut */
+    right: 15px;        /* Distance depuis la droite */
+    color: var(--primary-text);
+    transition: color 0.3s ease;
+}
+.btn-close-sidebar:hover {
+    color: red;  /* Changer de couleur au survol pour plus de visibilité */
+}
+
+/* Sidebar Profile */
+.sidebar-profile {
+    width: 100%; /* Assure que le profil prend toute la largeur */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre le contenu à l'intérieur */
+    padding-bottom: 1rem; /* Ajoute un petit espacement en bas */
+    margin-top: 30px;
+}
+
+    .profile-picture {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 0.5rem;
+    }
+
+    .profile-name {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 0.25rem;
+    }
+
+    .profile-title {
+        font-size: 0.95rem;
+        color: var(--soft-color);
+        margin-bottom: 0.25rem;
+    }
+
+    .profile-email {
+        font-size: 0.75rem;
+        color: var(--primary-text);
+        text-decoration: none;
+        display: flex;
+        align-items: center; 
+    }
+
+
+/* Sidebar Menu */
+.sidebar-menu {
+    display : flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 0 1rem;
+}
+
+.sidebar-menu > * {
+    width: 100%; /* Prend toute la largeur */
+    text-align: left; /* Assure un alignement à gauche du texte */
+}
+
+.sidebar-link {
+    display: block;
+    padding: 0.75rem 0;
+    color: var(--primary-text);
+    text-decoration: none;
+    transition: background 0.2s ease;
+    padding-left: 0.35rem;
+}
+
+.sidebar-link:hover {
+    color: var(--soft-color);
+}
+
+
+.sidebar-actions {
+    display : flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 0 1rem;
+}
+
+    .btn-view-cv {
+        display: inline-block;
+        background-color: var(--btn-bg-color);
+        color: var(--btn-ft-color);
+        border-radius: 4px;
+        padding: 0.75rem;
+        text-decoration: none;
+        text-align: center;
+        display : flex;
+        flex-direction: row;
+    }
+
+    .btn-view-cv:hover {
+        background-color: var(--btn-bg-color-hover);
+    }
+
+.sidebar-social {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Alignement vertical */
+    justify-content: flex-start; /* Évite que les éléments soient trop espacés */
+    margin-top: 40px;
+    padding: 0 1rem;
+    gap: 1rem; /* Espacement fixe entre chaque élément */
+}
+    
+    /* Icônes (GitHub, LinkedIn, etc.) */
+    .sidebar-social a svg {
+        width: 24px;
+        height: 24px;
+        stroke: var(--primary-text);
+        transition: stroke 0.2s ease;
+    }
+
+    .sidebar-social a:hover svg {
+        stroke: var(--accent-color);
+    }
+
+    .social-links {
+        width: 65%;
+        display: flex;
+        flex-direction: row;
+        align-items: center; /* Alignement vertical */
+        justify-content: flex-start; /* Évite que les éléments soient trop espacés */
+        padding: 0 1rem;
+        gap: 1rem; /* Espacement fixe entre chaque élément */
+    }
+
+    /* Animation pour faire glisser les éléments depuis la gauche */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    }
+    
+    /* Position initiale cachée pour les éléments animés */
+    .sidebar-menu a,
+    .sidebar-actions,
+    .sidebar-social {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    
+    /* Quand la sidebar est ouverte, on lance l'animation avec des délais progressifs */
+    
+    /* Pour les liens du menu */
+    .sidebar--open .sidebar-menu a:nth-child(1) {
+        animation: slideInFromLeft 0.5s forwards;
+        animation-delay: 0.2s;
+    }
+    .sidebar--open .sidebar-menu a:nth-child(2) {
+        animation: slideInFromLeft 0.5s forwards;
+        animation-delay: 0.4s;
+    }
+    .sidebar--open .sidebar-menu a:nth-child(3) {
+        animation: slideInFromLeft 0.5s forwards;
+        animation-delay: 0.6s;
+    }
+    .sidebar--open .sidebar-menu a:nth-child(4) {
+        animation: slideInFromLeft 0.5s forwards;
+        animation-delay: 0.8s;
+    }
+    
+    /* Pour les actions (bouton CV) */
+    .sidebar--open .sidebar-actions {
+        animation: slideInFromLeft 0.5s forwards;
+        animation-delay: 1s;
+    }
+    
+    /* Pour les liens des réseaux sociaux */
+    .sidebar--open .sidebar-social {
+        animation: slideInFromLeft 0.5s forwards;
+        animation-delay: 1.2s;
+    }
+    
+    
 
 /* 9. Responsivité */
 @media (max-width: 768px) {
@@ -291,299 +650,73 @@ footer a:hover svg {
     }
 }
 
-
-
-
-/* --- MODE SOMBRE --- */
-.dark-mode {
-    background: linear-gradient(180deg, #212121 0%, #424242 100%);
-    color: #eee;
-}
-
-.dark-mode header nav a {
-    color: #eee;
-}
-
-.dark-mode .btn {
-    color: #eee;
-}
-
-.dark-mode .btn svg,
-.dark-mode .icon-moon,
-.dark-mode .icon-sun {
-    stroke: #eee;
-}
-
-.dark-mode .btn-contact {
-    background-color: #555;
-    color: #eee;
-}
-
-.dark-mode .btn-contact:hover {
-    background-color: #333;
-}
-
-.dark-mode #accueil button {
-    background-color: #555;
-}
-
-.dark-mode #accueil button:hover {
-    background-color: #333;
-}
-
-.dark-mode #accueil a svg {
-    stroke: #eee;
-}
-
-.dark-mode header {
-    background: #1a1a1a;
-}
-
-.dark-mode footer {
-    background: #1a1a1a;
-}
-
-/* --- SIDEBAR (panneau latéral) --- */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -280px; /* Masquée par défaut */
-    width: 280px;
-    height: 100vh;
-    background-color: #fff;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    transition: left 0.3s ease;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-}
-
-/* Classe pour ouvrir la sidebar */
-.sidebar--open {
-    left: 0;
-}
-
-/* Sidebar Profile */
-.sidebar-profile {
-    text-align: center;
-    margin: 1rem 0;
-}
-
-.profile-picture {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 0.5rem;
-}
-
-.profile-name {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 0.25rem;
-}
-
-.profile-title {
-    font-size: 0.95rem;
-    color: #666;
-    margin-bottom: 0.25rem;
-}
-
-.profile-email {
-    font-size: 0.9rem;
-    color: #333;
-    text-decoration: none;
-}
-
-/* Sidebar Menu */
-.sidebar-menu {
-    list-style: none;
-    margin: 1rem 0;
-    padding: 0;
-}
-
-.sidebar-menu li {
-    margin-bottom: 0.5rem;
-}
-
-.sidebar-link {
-    display: block;
-    padding: 0.5rem 0;
-    color: #333;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.sidebar-link:hover {
-    color: #0072ff;
-}
-
-/* Bouton pour fermer la sidebar */
-.btn-close-sidebar {
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    cursor: pointer;
-    align-self: flex-end;
-}
-
-/* Actions du sidebar */
-.sidebar-actions {
-    margin-top: auto; /* Pousse le contenu vers le bas */
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.btn-add-project {
-    background-color: #4b73f6;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 0.75rem;
-    cursor: pointer;
-    text-align: left;
-}
-
-.btn-add-project:hover {
-    background-color: #3356c5;
-}
-
-.btn-view-cv {
-    display: inline-block;
-    background-color: #f1f1f1;
-    color: #333;
-    border-radius: 4px;
-    padding: 0.75rem;
-    text-decoration: none;
-    text-align: center;
-    transition: background 0.2s ease;
-}
-
-.btn-view-cv:hover {
-    background-color: #e2e2e2;
-}
-
-/* Adaptation de la sidebar en mode sombre */
-.dark-mode .sidebar {
-    background-color: #333;
-    color: #eee;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.4);
-}
-
-.dark-mode .sidebar-link {
-    color: #ccc;
-}
-
-.dark-mode .sidebar-link:hover {
-    color: #fff;
-}
-
-.dark-mode .btn-add-project {
-    background-color: #555;
-}
-
-.dark-mode .btn-view-cv {
-    background-color: #444;
-    color: #eee;
-}
-
-.dark-mode .btn-view-cv:hover {
-    background-color: #555;
-}
-
-
-/* Classe pour appliquer un effet de flou qaund la side bare est ouverte*/
-.blur {
-    filter: blur(5px);
-    transition: filter 0.3s ease;
-}
-
-
-
-/* Animation d'apparition depuis la gauche */
-@keyframes slideIn {
-    from {
-        transform: translateX(-50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-    
-    /* Appliquer l'animation aux éléments du menu de la sidebar */
-    .sidebar-menu li {
-        opacity: 0;
-        transform: translateX(-50px);
-        animation: slideIn 0.5s forwards;
-    }
-    
-    .sidebar-menu li:nth-child(1) {
-        animation-delay: 0.2s;
-    }
-    
-    .sidebar-menu li:nth-child(2) {
-        animation-delay: 0.4s;
-    }
-    
-    .sidebar-menu li:nth-child(3) {
-        animation-delay: 0.6s;
-    }
-    
-    .sidebar-menu li:nth-child(4) {
-        animation-delay: 0.8s;
-    }
-    
-    /* Appliquer l'animation au bloc des actions (ex. Voir mon CV) */
-    .sidebar-actions {
-        opacity: 0;
-        transform: translateX(-50px);
-        animation: slideIn 0.5s forwards;
-        animation-delay: 1s;
-    }
-    
-    /* Appliquer l'animation au bloc des icônes sociales */
-    .sidebar-social {
-        opacity: 0;
-        transform: translateX(-50px);
-        animation: slideIn 0.5s forwards;
-        animation-delay: 1.2s;
-    }
-
-
-
-
 /* --- BOUTON DE SCROLL --- */
 
-    .scroll-arrow-top {
-        position: fixed;
-        top: 60px;
-        left: 50%;
-        transform: translateX(-50%);
-        opacity: 0.7;
-        cursor: pointer;
-        z-index: 1000;
-        transition: opacity 0.3s ease;
-    }
+.scroll-arrow {
+    position: fixed;
+    right: 5%;
+    transform: translateX(-50%);
+    opacity: 0.55;
+    cursor: pointer;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.15); /* Fond noir à 40% d'opacité */
+    padding: 6px;
+    border-radius: 50%; /* Cercle parfait */
+    transition: opacity 0.3s ease, background 0.3s ease;
 
-    .scroll-arrow-top:hover {
-        opacity: 1;
-    }
+}
 
-    .scroll-arrow-bottom {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        opacity: 0.7;
-        cursor: pointer;
-        z-index: 1000;
-        transition: opacity 0.3s ease;
+.scroll-arrow svg {
+    stroke: var(--primary-text);
+}
+
+.scroll-arrow-top{
+    top: 85px;
+    will-change: transform;
+    animation: floatStopTop 2s ease-in-out infinite;
+}
+
+.scroll-arrow-bottom{
+    bottom : 20px;
+    will-change: transform;
+    animation: floatStopBottom 2s ease-in-out infinite;
+}
+
+@keyframes floatStopTop {
+    /* Au départ, position normale */
+    0% {
+        transform: translateX(-50%) translateY(0);
     }
-    
-    .scroll-arrow-bottom:hover {
-        opacity: 1;
+    /* Durant la première 20% (environ 0.6 s sur 3 s), on déplace la flèche vers le haut */
+    20% {
+        transform: translateX(-50%) translateY(7px);
     }
+    /* À 33% (environ 1 s), la flèche revient à sa position initiale */
+    33% {
+        transform: translateX(-50%) translateY(0);
+    }
+    /* Puis, elle reste immobile jusqu'à la fin du cycle (2 s de pause) */
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes floatStopBottom {
+    /* Au départ, position normale */
+    0% {
+        transform: translateX(-50%) translateY(0);
+    }
+    /* Durant la première 20% (environ 0.6 s sur 3 s), on déplace la flèche vers le haut */
+    20% {
+        transform: translateX(-50%) translateY(-7px);
+    }
+    /* À 33% (environ 1 s), la flèche revient à sa position initiale */
+    33% {
+        transform: translateX(-50%) translateY(0);
+    }
+    /* Puis, elle reste immobile jusqu'à la fin du cycle (2 s de pause) */
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+

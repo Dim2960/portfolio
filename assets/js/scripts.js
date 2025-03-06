@@ -14,10 +14,10 @@ const footer = document.querySelector('footer');
 
 // Fonction pour réinitialiser les animations des éléments de la sidebar
 function resetSidebarAnimations() {
-    const animatedElements = sidebar.querySelectorAll('.sidebar-menu li, .sidebar-actions, .sidebar-social');
+    const animatedElements = sidebar.querySelectorAll('.sidebar-menu a, .sidebar-actions, .sidebar-social');
     animatedElements.forEach(el => {
         el.style.animation = 'none';
-        // Forcer le reflow
+        // Forcer le reflow pour que l'animation puisse se relancer
         void el.offsetWidth;
         el.style.animation = '';
     });

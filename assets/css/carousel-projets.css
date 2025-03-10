@@ -1,0 +1,281 @@
+/**************************************************/
+/* 1) Le conteneur du carrousel                   */
+/**************************************************/
+.carousel-container {
+  position: relative;      /* pour positionner les boutons si besoin */
+  overflow: hidden;        /* masque ce qui déborde à gauche/droite */
+  width: 100%;             /* prend toute la largeur possible */
+  max-width: 1600px;       /* tu peux fixer une largeur max si tu veux */
+  margin: 0 auto;          /* centre le carrousel */
+  
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* pour un scroll fluide sur mobile */
+
+  scrollbar-width: none; /* Pour Firefox */
+  -ms-overflow-style: none; /* Pour Internet Explorer et Edge */
+}
+
+.carousel-container:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none; /* Pour Chrome, Safari et Opera */
+}
+
+/**************************************************/
+/* 2) La piste qui contient toutes les cartes     */
+/**************************************************/
+.carousel-track {
+  display: flex;
+  /* L’animation dure 32s :
+    - 8 positions (100%, 75%, 50%, 25%, 0%, -25%, -50%, -75%)
+    - Chaque position est maintenue 3s, puis transition 1s
+    - Au total : 8*(3+1) = 32s
+  */
+  
+  transform: translateX(75%); 
+}
+
+/**************************************************/
+/* 3) Chaque carte (plein écran)                  */
+/**************************************************/
+  /* Style des cartes de projets */
+  .projet-card {
+    flex: 0 0 23% ;  /* Sur PC, 4 cartes visibles (chaque carte occupe 25% de la largeur) */
+    box-sizing: border-box;
+    background: var(--sidebar-bg-gradient); /* Exemple d’utilisation de vos variables */
+    border-radius: 15px;
+    margin: 1%;
+    padding: 0;
+    text-align: center;
+
+    box-shadow: 4px 4px 8px var(--box-shadow);
+    overflow: hidden;            /* Masque tout ce qui dépasse (utile si l’image déborde)*/
+
+    position: relative;
+    scroll-snap-align: start; /* ou 'center' si vous préférez centrer */
+  }
+
+  .projet-card:hover {
+    box-shadow: 0 8px 20px var(--box-shadow-accent);
+  }
+
+/**************************************************/
+/* 4) Animation keyframes                         */
+/**************************************************/
+
+
+
+/**************************************************/
+/* 5) Ex. de style pour l'image et le contenu     */
+/**************************************************/
+
+.card-image {
+  position: relative;
+}
+
+/* Zone d'image */
+.card-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;            /* Recadre l’image pour qu’elle remplisse la zone */
+  display: block;               /* Supprime l’espace blanc en bas des images inline */
+  transition: transform 0.3s ease;
+}
+
+.projet-card:hover .card-image img {
+  transform: scale(1.1);
+}
+
+  .card-pwrBi-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 55px;
+    width: 40px; /* Taille ajustable */
+    height: 40px;
+    background-color: rgb(255, 255, 255, 0.6);
+    border-radius: 25%;
+    border: 2px solid #000;
+    animation: zoomEffect 3.5s ease-in-out infinite;
+  }
+
+  .card-github-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 40px; /* Taille ajustable */
+    height: 40px;
+    background-color: rgb(255, 255, 255, 0.6);
+    border-radius: 25%;
+    border: 2px solid #000;
+    animation: zoomEffect 3.5s ease-in-out infinite;
+  }
+
+  .card-streamlit-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 55px;
+    width: 40px; /* Taille ajustable */
+    height: 40px;
+    background-color: rgb(255, 255, 255, 0.6);
+    border-radius: 25%;
+    border: 2px solid #000;
+    animation: zoomEffect 3.5s ease-in-out infinite;
+  }
+
+  .card-video-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 55px;
+    width: 40px; /* Taille ajustable */
+    height: 40px;
+    background-color: rgb(255, 255, 255, 0.6);
+    border-radius: 25%;
+    border: 2px solid #000;
+    animation: zoomEffect 3.5s ease-in-out infinite;
+  }
+  
+  @keyframes zoomEffect {
+    0% {
+      transform: scale(1);
+    }
+    10% {
+      transform: scale(1.1);
+    }
+    20% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .card-github-icon:hover, .card-pwrBi-icon:hover, .card-video-icon:hover, .card-streamlit-icon:hover {
+    background-color: rgb(255, 255, 255, 0.85);
+    transform: scale(1.1);
+  }
+
+  .card-pwrBi-icon img, .card-github-icon img, .card-video-icon img  {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-streamlit-icon img {
+    width: 80%;
+    height: 80%;
+  }
+  
+
+/* Contenu texte */
+.card-content {
+  padding: 1rem 1.5rem;
+  color: var(--primary-text);               /* Couleur du texte (placeholder) */
+}
+
+.card-content h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.projet-card:hover .card-content h3 {
+  color: var(--accent-color);
+}
+
+
+.card-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  text-align: justify;
+  color: var(--primary-text); 
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  gap: 0.5rem;                  /* Espace entre les tags */
+  flex-wrap: wrap;              /* Permet le retour à la ligne si trop de tags */
+}
+
+.tags span {
+  background-color: var(--btn-bg-color);       /* Fond du tag (placeholder) */
+  color: var(--btn-ft-color);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+
+/**************************************************/
+/* 6) Boutons (facultatifs si pas de JS)          */
+/**************************************************/
+/* Boutons de défilement fixes sur l'écran */
+.carousel-btn {
+  position: fixed;
+  background: var(--btn-bg-theme-toggle);
+  border: none;
+  color: var(--primary-text-oposite);
+  opacity: 0.65;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+  z-index: 1000;
+}
+
+/* Bouton gauche et bouton droit */
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+/* Positionnement vertical initial (sera ajusté en JS si nécessaire) */
+.carousel-btn {
+  top: 50%;
+  transform: translateY(-130%);
+}
+
+
+
+
+@media (max-width: 768px) {
+  /**************************************************/
+  /* 1) Le conteneur du carrousel                   */
+  /**************************************************/
+  .projet-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .carousel-container {
+    
+    max-width: 95vw;     
+    width: 95vw;       
+  }
+
+
+
+  .carousel-track {
+    transform: translateX(498%);
+    width: 95vw;
+
+  }
+  /**************************************************/
+  /* 3) Chaque carte (plein écran)                  */
+  /**************************************************/
+    /* Style des cartes de projets */
+    .projet-card {
+      flex: 0 0 95vw;
+      margin: 5vw;
+    }
+
+} 

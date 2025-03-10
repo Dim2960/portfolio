@@ -72,14 +72,14 @@ document.addEventListener('click', (e) => {
 
 // Bascule du mode sombre
 themeToggleButton.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
+    body.classList.toggle('clear-mode');
 
-    if (body.classList.contains('dark-mode')) {
-        iconMoon.style.display = 'none';
-        iconSun.style.display = 'block';
-    } else {
+    if (body.classList.contains('clear-mode')) {
         iconMoon.style.display = 'block';
         iconSun.style.display = 'none';
+    } else {
+        iconMoon.style.display = 'none';
+        iconSun.style.display = 'block';
     }
 });
 
@@ -135,4 +135,36 @@ scrollArrowTop.addEventListener('click', (e) => {
         // Si aucune section précédente n'est trouvée, on peut défiler vers le haut de la page
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
+});
+
+
+
+// Sélection du conteneur du carrousel et des boutons
+const carouselContainer = document.querySelector('.carousel-container');
+const prevButton = document.querySelector('.carousel-btn.prev');
+const nextButton = document.querySelector('.carousel-btn.next');
+
+function updateButtonPosition() {
+  // Récupère la position et la hauteur du conteneur par rapport à la fenêtre
+  const rect = carouselContainer.getBoundingClientRect();
+  // Calcule le centre vertical du conteneur
+  const containerCenter = rect.top + rect.height / 2;
+  // Place les boutons à cette position
+  prevButton.style.top = `${containerCenter}px`;
+  nextButton.style.top = `${containerCenter}px`;
+}
+
+// Met à jour la position au chargement, au défilement et au redimensionnement
+window.addEventListener('scroll', updateButtonPosition);
+window.addEventListener('resize', updateButtonPosition);
+updateButtonPosition();
+
+
+
+nextButton.addEventListener('click', () => {
+  carouselContainer.scrollBy({ left: carouselContainer.offsetWidth, behavior: 'smooth' });
+});
+
+prevButton.addEventListener('click', () => {
+  carouselContainer.scrollBy({ left: -carouselContainer.offsetWidth, behavior: 'smooth' });
 });

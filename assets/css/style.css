@@ -1,55 +1,60 @@
 :root {
-    /* Mode Clair */
-    --bg-gradient: linear-gradient(180deg, #F8F9FA 0%, #FFFFFF 100%);
-    --header-bg-gradient: linear-gradient(90deg, #FFFFFF, #F8F9FA);
-    --section-bg-gradient: linear-gradient(180deg, #FFFFFF, #F1F1F1);
-    --sidebar-bg-gradient: linear-gradient(180deg, #FFFFFF, #F1F1F1);
-    --footer-bg-gradient: linear-gradient(90deg, #FFFFFF, #F8F9FA);
+    --bg-gradient: linear-gradient(180deg, #042433 0%, #003366 100%);
+    --header-bg-gradient: linear-gradient(90deg, #003366, #042433);
+    --section-bg-gradient: linear-gradient(180deg, #003366, #042433);
+    --sidebar-bg-gradient: linear-gradient(180deg, #003366, #042433);
+    --footer-bg-gradient: linear-gradient(90deg, #003366, #042433);
 
-    --btn-bg-theme-toggle : rgb(235, 235, 235);
+    --btn-bg-theme-toggle: rgb(236, 236, 236);
 
-    --btn-bg-color: #4b73f6;
-    --btn-bg-color-hover : #3356c5;
-    --btn-ft-color: #ffffff;
+    --btn-bg-color: #BD7203;
+    --btn-bg-color-hover: #FBAA01;
+    --btn-ft-color: #F2F2F2;
 
-    --link-hover: #0072ff;
+    --link: #FFC000;
+    --link-hover: #FFCC33;
 
-    --primary-text: #212529;
-    --accent-color: #0A6FB5;
-    --soft-color: #666;
+    --primary-text: #F2F2F2;
+    --primary-text-oposite: #042433;
+    --accent-color: #FFC000;
+    --soft-color: #CCCCCC;
     
-    --h1-color: #4b73f6;
-    --paragraph-color: #555;
+    --h1-color: #FFCC33;
+    --paragraph-color: #E8E8E8;
 
-    --border: #ccc;
+    --border: #6C7277;
+    --box-shadow: rgba(255, 255, 255, 0.2);
+    --box-shadow-accent: rgba(255, 255, 255, 0.8);
+
 }
 
-body.dark-mode {
-    /* Mode Sombre */
-    --bg-gradient: linear-gradient(180deg, #121212 0%, #1E1E1E 100%);
-    --header-bg-gradient: linear-gradient(90deg, #212121, #1E1E1E);
-    --section-bg-gradient: linear-gradient(180deg, #1E1E1E, #2C2C2C);
-    --sidebar-bg-gradient: linear-gradient(180deg, #212121, #2A2A2A);
-    --footer-bg-gradient: linear-gradient(90deg, #212121, #1E1E1E);
+body.clear-mode  {
+    --bg-gradient: linear-gradient(180deg, #F2F2F2 0%, #E8E8E8 100%);
+    --header-bg-gradient: linear-gradient(90deg, #FFFFFF, #CCCCCC);
+    --section-bg-gradient: linear-gradient(180deg, #FFFFFF, #E8E8E8);
+    --sidebar-bg-gradient: linear-gradient(180deg, #FFFFFF, #CCCCCC);
+    --footer-bg-gradient: linear-gradient(90deg, #FFFFFF, #CCCCCC);
 
     --btn-bg-theme-toggle: rgb(56, 56, 56);
 
-    --btn-bg-color: #0A84FF;
-    --btn-bg-color-hover: #006edc;
-    --btn-ft-color: #ffffff;
+    --btn-bg-color: #003366;
+    --btn-bg-color-hover: #042433;
+    --btn-ft-color: #FFFFFF;
 
-    --link-hover: #0A84FF;
+    --link: #4178AF;
+    --link-hover: #003366;
 
-    --primary-text: #E0E0E0;
-    --accent-color: #0A84FF;
-    --soft-color: #B0B0B0;
+    --primary-text: #042433;
+    --primary-text-oposite: #F2F2F2;
+    --accent-color: #4178AF;
+    --soft-color: #6C7277;
     
-    --h1-color: #0A84FF;
-    --paragraph-color: #B0B0B0;
+    --h1-color: #003366;
+    --paragraph-color: #6C7277;
 
-    --border: #333333;
+    --border: #CCCCCC;
+    --box-shadow: rgba(0, 0, 0, 0.2);
 }
-
 
 /* 1. Reset de base */
 * {
@@ -58,7 +63,7 @@ body.dark-mode {
     box-sizing: border-box;
     scroll-behavior: smooth;
 
-    max-width: 1024px;
+
     justify-content: center; 
 
 }
@@ -75,6 +80,7 @@ body {
 
 /* 3. Header et navigation */
 header {
+    max-width: 1024px;
     width: 100%;
     background: var(--header-bg-gradient); /*rgba(255, 255, 255, 0.9); Blanc avec 40% d'opacité */
     position: fixed;
@@ -121,6 +127,10 @@ header button.btn-theme-toggle {
     margin: 0 1rem;
 }
 
+header button.btn-theme-toggle svg {
+    stroke: var(--primary-text-oposite);
+}
+
 header nav button:hover {
     transform: scale(1.1);
 }
@@ -146,12 +156,17 @@ main {
     flex-direction: column;
     justify-content: flex-start;
     background-color: var(--section-bg-gradient);
+    align-items: center;
+}
+
+main a {
+    color: var(--link);
+    text-decoration: none;
 }
 
 /* 6. Sections internes */
 section {
     padding: 4rem 2rem;
-    max-width: 960px;
     margin: 0 auto;
     
 }
@@ -170,15 +185,23 @@ section p {
 }
 
 /* Section accueil */
+
+.wrapper-accueil {
+    max-width: 1024px; /* largeur de référence */
+    margin: 0 auto; /* pour centrer */
+    justify-content: center;
+}
+
 /* Pour laisser de l'espace sous le header fixe */
 #accueil {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 6rem; /* pour éviter que le contenu passe sous le header */
+    padding-top: 0rem; /* pour éviter que le contenu passe sous le header */
     min-height: 100vh;
     text-align: center;
+    width : 80%;
 }
 
 /* Nom principal (animation lettre par lettre) */
@@ -226,6 +249,7 @@ section p {
     font-size: 1.2rem;
     color: var(--paragraph-color);
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 /* 5. Boutons & icônes dans le hero */
@@ -269,18 +293,28 @@ section p {
     stroke: var(--accent-color);
 }
 
+.wrapper-a-propos {
+    max-width: 1024px; /* largeur de référence */
+    margin: 0 auto; /* pour centrer */
+}
+
 /* section a propos */
 #a-propos {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    padding-top: 8rem; /* pour éviter que le contenu passe sous le header */
+    padding-top: 6rem; /* pour éviter que le contenu passe sous le header */
     min-height: 100vh;
     text-align: center;
     width: 75%;
+    margin: 0 auto;
 }
 
+.wrapper-projets {
+    max-width: 1600px; /* largeur de référence */
+    margin: 0 auto; /* pour centrer */
+}
 
 /* section projets */
 #projets {
@@ -294,6 +328,11 @@ section p {
 }
 
 /* section competences */
+.wrapper-competences {
+    max-width: 1024px; /* largeur de référence */
+    margin: 0 auto; /* pour centrer */
+}
+
 #competences {
     display: flex;
     flex-direction: column;
@@ -302,9 +341,15 @@ section p {
     padding-top: 6rem; /* pour éviter que le contenu passe sous le header */
     min-height: 100vh;
     text-align: center;
+    width: 75%;
 }
 
 /* section contact */
+.wrapper-contact {
+    max-width: 1024px; /* largeur de référence */
+    margin: 0 auto; /* pour centrer */
+}
+
 #contact {
     display: flex;
     flex-direction: column;
@@ -313,6 +358,7 @@ section p {
     padding-top: 6rem; /* pour éviter que le contenu passe sous le header */
     min-height: 100vh;
     text-align: center;
+    width: 75%;
 }
 
 /* 7. Formulaire de contact */
@@ -348,6 +394,7 @@ section p {
 
 /* 8. Footer */
 footer {
+    max-width: 1024px;
     text-align: center;
     padding: 2rem 1rem;
     background: var(--footer-bg-gradient);
@@ -608,92 +655,6 @@ footer a:hover svg {
     
     
 
-/* 9. Responsivité */
-@media (max-width: 768px) {
-    header nav a {
-        display: none; /* On pourrait masquer les liens et les afficher via le menu hamburger */
-    }
-
-    h1 {
-        font-size: 2rem;
-
-    }
-
-    p {
-        font-size: 1rem;
-    }
-
-    #accueil h1 {
-        font-size: 2rem;
-    }
-
-    #accueil p {
-        font-size: 1rem;
-    }
-
-    #a-propos, #projets, #competences, #contact {
-        padding-top: 5.5rem; /* pour éviter que le contenu passe sous le header */
-        width: 98%;
-    }
-}
-
-
-@media (max-width: 480px) {
-    header nav a {
-        display: none; /* On pourrait masquer les liens et les afficher via le menu hamburger */
-    }
-
-    h1 {
-        font-size: 1.5rem;
-
-    }
-
-    p {
-        font-size: 1rem;
-    }
-
-    #accueil h1 {
-        font-size: 1.5rem;
-    }
-
-    #accueil p {
-        font-size: 1rem;
-    }
-
-    #a-propos, #projets, #competences, #contact {
-        padding-top: 5.5rem; /* pour éviter que le contenu passe sous le header */
-        width: 98%;
-    }
-}
-
-
-@media (max-width: 350px) {
-    header nav a {
-        display: none; /* On pourrait masquer les liens et les afficher via le menu hamburger */
-    }
-
-    h1 {
-        font-size: 1.2rem;
-
-    }
-
-    p {
-        font-size: 0.9rem;
-    }
-
-    #accueil h1 {
-        font-size: 1.2rem;
-    }
-
-    #accueil p {
-        font-size: 0.9rem;
-    }
-
-    #a-propos, #projets, #competences, #contact {
-        padding-top: 5.5rem; /* pour éviter que le contenu passe sous le header */
-        width: 100%;
-    }
-}
 
 /* --- BOUTON DE SCROLL --- */
 
@@ -701,10 +662,10 @@ footer a:hover svg {
     position: fixed;
     right: 5%;
     transform: translateX(-50%);
-    opacity: 0.55;
     cursor: pointer;
     z-index: 1000;
-    background: rgba(0, 0, 0, 0.15); /* Fond noir à 40% d'opacité */
+    opacity: 0.5;
+    background: var(--btn-bg-theme-toggle);
     padding: 6px;
     border-radius: 50%; /* Cercle parfait */
     transition: opacity 0.3s ease, background 0.3s ease;
@@ -712,7 +673,7 @@ footer a:hover svg {
 }
 
 .scroll-arrow svg {
-    stroke: var(--primary-text);
+    stroke: var(--primary-text-oposite);
 }
 
 .scroll-arrow-top{
@@ -722,7 +683,7 @@ footer a:hover svg {
 }
 
 .scroll-arrow-bottom{
-    bottom : 20px;
+    top : 145px;
     will-change: transform;
     animation: floatStopBottom 2s ease-in-out infinite;
 }

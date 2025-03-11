@@ -180,3 +180,30 @@ prevButton.addEventListener('click', () => {
             }
         });
     });
+
+
+// Sélection des éléments
+const openVideoModal = document.getElementById('openVideoModal');
+const videoModal = document.getElementById('videoModal');
+const closeModal = document.querySelector('.modal .close');
+
+// Ouvrir la modal lors du clic
+openVideoModal.addEventListener('click', function(e) {
+  e.preventDefault();
+  videoModal.style.display = 'block';
+});
+
+// Fermer la modal en cliquant sur le bouton de fermeture
+closeModal.addEventListener('click', function() {
+  videoModal.style.display = 'none';
+  // Mettre la vidéo en pause lorsque la modal se ferme
+  videoModal.querySelector('video').pause();
+});
+
+// Fermer la modal en cliquant en dehors du contenu
+window.addEventListener('click', function(e) {
+  if (e.target === videoModal) {
+    videoModal.style.display = 'none';
+    videoModal.querySelector('video').pause();
+  }
+});

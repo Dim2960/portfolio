@@ -495,13 +495,13 @@ if (isset($_SESSION['notification'])) {
 
                                         <!-- Icône en bas à droite -->
                                         <div class="card-github-icon">
-                                            <a href="" target="_blank">
+                                            <a href="https://github.com/Dim2960/market-analysis-wine" target="_blank">
                                                 <img src="assets/images/icons/icons8-github-48.png" alt="github">
                                             </a>
                                         </div>
 
                                         <div class="card-pwrBi-icon">
-                                            <a href="" target="_blank">
+                                            <a href="https://app.powerbi.com/view?r=eyJrIjoiOTk3NGU5MTYtZjE5Ny00ZmYxLWIzYzUtNTRiZmQ1NGU0ZDliIiwidCI6IjQ0OTFmMGVlLWY1MDMtNDcyNi1hNWViLTFmMGM0ZGFjODJhOSJ9" target="_blank">
                                                 <img src="assets/images/icons/icons8-power-bi-2021-48.png" alt="pwrBi">
                                             </a>
                                         </div>
@@ -536,7 +536,7 @@ if (isset($_SESSION['notification'])) {
 
                                         <!-- Icône en bas à droite -->
                                         <div class="card-github-icon">
-                                            <a href="" target="_blank">
+                                            <a href="https://github.com/Dim2960/filling_process-influence-analysis" target="_blank">
                                                 <img src="assets/images/icons/icons8-github-48.png" alt="github">
                                             </a>
                                         </div>
@@ -576,7 +576,7 @@ if (isset($_SESSION['notification'])) {
 
                                         <!-- Icône en bas à droite -->
                                         <div class="card-github-icon">
-                                            <a href="" target="_blank">
+                                            <a href="https://github.com/Dim2960/production-monitoring" target="_blank">
                                                 <img src="assets/images/icons/icons8-github-48.png" alt="github">
                                             </a>
                                         </div>
@@ -616,10 +616,23 @@ if (isset($_SESSION['notification'])) {
 
                                         <!-- Icône en bas à droite -->
                                         <div class="card-video-icon">
-                                            <a href="" target="_blank">
+                                            <a href="#" id="openVideoModal">
                                                 <img src="assets/images/icons/icons8-video-48.png" alt="video">
                                             </a>
                                         </div>
+
+                                        <!-- Fenêtre modale pour la vidéo -->
+                                        <div id="videoModal" class="modal">
+                                            <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <video width="100%" controls autoplay muted>
+                                                <source src="assets/videos/judo_tracking.mp4" type="video/mp4">
+                                                <!-- <source src="assets/videos/ma_video.webm" type="video/webm"> -->
+                                                Votre navigateur ne supporte pas la lecture de cette vidéo.
+                                            </video>
+                                            </div>
+                                        </div>
+
                                         <div class="card-github-icon">
                                             <a href="https://github.com/Dim2960/mvt_analyses" target="_blank">
                                                 <img src="assets/images/icons/icons8-github-48.png" alt="github">
@@ -656,11 +669,7 @@ if (isset($_SESSION['notification'])) {
                                         <img src="assets/images/projets/image_classification.webp" alt="Image classification" />
 
                                         <!-- Icône en bas à droite -->
-                                        <div class="card-streamlit-icon">
-                                            <a href="" target="_blank">
-                                                <img src="assets/images/icons/icons8-streamlit-48.png" alt="streamlit">
-                                            </a>
-                                        </div>
+
                                         <div class="card-github-icon">
                                             <a href="https://github.com/Dim2960/lego_classification" target="_blank">
                                                 <img src="assets/images/icons/icons8-github-48.png" alt="github">
@@ -741,6 +750,7 @@ if (isset($_SESSION['notification'])) {
                                     <div class="card-image">
                                         <img src="assets/images/projets/Taxi_NYCf.png" alt="WebApp présence" />
 
+                                        
                                         <!-- Icône en bas à droite -->
                                         <div class="card-github-icon">
                                             <a href="https://github.com/Dim2960/Presence_Judo" target="_blank">

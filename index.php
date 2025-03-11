@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+// Génération d'un token CSRF unique s'il n'existe pas déjà
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+// Vérifier si une notification a été définie et la récupérer
+$notification = '';
+if (isset($_SESSION['notification'])) {
+    $notification = $_SESSION['notification'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -61,6 +76,16 @@
 </head>
 
 <body>
+
+    <?php
+    // Affichage du message flash s'il existe
+    if (isset($_SESSION['notification'])) {
+        $class = (strpos($_SESSION['notification'], 'succès') !== false) ? 'success' : 'error';
+        echo '<div id="notification" class="' . $class . '">' . htmlspecialchars($_SESSION['notification']) . '</div>';
+        unset($_SESSION['notification']); // Supprimer le message pour ne pas l'afficher à nouveau
+    }
+    ?>
+
     <!-- Header avec logo, navigation et appel à l'action -->
     <header class="header">
         <nav class="navigation">
@@ -779,10 +804,15 @@
                     <input type="text" name="nom" placeholder="Votre nom" required>
                     <input type="email" name="email" placeholder="Votre email" required>
                     <textarea name="message" placeholder="Votre message" required></textarea>
-                    <button type="submit">Envoyer</button>
+                    <button type="submit">Envoyer</button> <!-- Inclusion du token CSRF dans le formulaire -->
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 </form>
-                
-                <div id="notification"></div>
+
+                <?php  if (!empty($notification)): ?>
+                    <div class="notification <?php echo (strpos($notification, 'succès') !== false) ? 'success' : 'error'; ?>">
+                    <?php echo htmlspecialchars($notification); ?>
+                    </div>
+                <?php endif; ?>
 
             </section>
         </div>

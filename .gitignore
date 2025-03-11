@@ -1,0 +1,27 @@
+# Ignorer les fichiers système et les caches
+.DS_Store
+Thumbs.db
+.sass-cache/
+
+# Ignorer les logs et fichiers temporaires
+*.log
+*.tmp
+*.swp
+
+# Ignorer les dossiers de dépendances
+node_modules/
+vendor/
+
+# Ignorer les configurations d'IDE
+.vscode/
+.idea/
+
+# Dossiers de build ou de distribution (si utilisés)
+dist/
+build/
+
+
+# personal
+assets/videos/*
+assets/images/projets/*
+assets/images/portarits/*

@@ -42,12 +42,18 @@
 /* 3) Chaque carte (plein écran)                  */
 /**************************************************/
   /* Style des cartes de projets */
+  .projet-card-frame {
+    flex: 0 0 25% ;  /* Sur PC, 4 cartes visibles (chaque carte occupe 25% de la largeur) */
+    margin-top:2%;
+    height : 75vh;
+  }
+  
   .projet-card {
-    flex: 0 0 23% ;  /* Sur PC, 4 cartes visibles (chaque carte occupe 25% de la largeur) */
+
     box-sizing: border-box;
     background: var(--sidebar-bg-gradient); /* Exemple d’utilisation de vos variables */
     border-radius: 15px;
-    margin: 1%;
+    margin: 2%;
     padding: 0;
     text-align: center;
 
@@ -56,6 +62,7 @@
 
     position: relative;
     scroll-snap-align: start; /* ou 'center' si vous préférez centrer */
+    height: 90%;
   }
 
   .projet-card:hover {
@@ -79,6 +86,7 @@
 /* Zone d'image */
 .card-image img {
   width: 100%;
+  max-height: 25vh;
   height: 180px;
   object-fit: cover;            /* Recadre l’image pour qu’elle remplisse la zone */
   display: block;               /* Supprime l’espace blanc en bas des images inline */
@@ -240,7 +248,7 @@
 /* Positionnement vertical initial (sera ajusté en JS si nécessaire) */
 .carousel-btn {
   top: 50%;
-  transform: translateY(-130%);
+  transform: translateY(-50%);
 }
 
 
@@ -266,16 +274,16 @@
 
   .carousel-track {
     transform: translateX(498%);
-    width: 95vw;
+    width: 100vw;
 
   }
   /**************************************************/
   /* 3) Chaque carte (plein écran)                  */
   /**************************************************/
     /* Style des cartes de projets */
-    .projet-card {
-      flex: 0 0 95vw;
-      margin: 5vw;
+    .projet-card-frame {
+      flex: 0 0 100%;
+      /* margin: 5vw; */
     }
 
 } 

@@ -168,3 +168,28 @@ nextButton.addEventListener('click', () => {
 prevButton.addEventListener('click', () => {
   carouselContainer.scrollBy({ left: -carouselContainer.offsetWidth, behavior: 'smooth' });
 });
+
+
+    // Fonction pour récupérer les paramètres de l'URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+      
+      // Récupérer le message depuis l'URL
+      const message = getQueryParam('message');
+      
+      if (message) {
+        const notificationDiv = document.getElementById('notification');
+        // Afficher le message
+        notificationDiv.innerText = message;
+        notificationDiv.style.display = 'block';
+        
+        // Appliquer un style en fonction du contenu du message
+        // Ici on vérifie s'il contient le mot "succès" (vous pouvez adapter la condition)
+        if (message.toLowerCase().includes('succès')) {
+          notificationDiv.classList.add('success');
+        } else {
+          notificationDiv.classList.add('error');
+        }
+      }

@@ -76,16 +76,6 @@ if (isset($_SESSION['notification'])) {
 </head>
 
 <body>
-
-    <?php
-    // Affichage du message flash s'il existe
-    if (isset($_SESSION['notification'])) {
-        $class = (strpos($_SESSION['notification'], 'succès') !== false) ? 'success' : 'error';
-        echo '<div id="notification" class="' . $class . '">' . htmlspecialchars($_SESSION['notification']) . '</div>';
-        unset($_SESSION['notification']); // Supprimer le message pour ne pas l'afficher à nouveau
-    }
-    ?>
-
     <!-- Header avec logo, navigation et appel à l'action -->
     <header class="header">
         <nav class="navigation">
@@ -334,22 +324,22 @@ if (isset($_SESSION['notification'])) {
             <section id="accueil">
 
                 <h1>
-                    <span>D</span>
-                    <span>i</span>
-                    <span>m</span>
-                    <span>i</span>
-                    <span>t</span>
-                    <span>r</span>
-                    <span>i</span>
-                    <span>&nbsp;</span>
-                    <span>L</span>
-                    <span>e</span>
-                    <span>f</span>
-                    <span>e</span>
-                    <span>b</span>
-                    <span>v</span>
-                    <span>r</span>
-                    <span>e</span>
+                    <span class="animate-once">D</span>
+                    <span class="animate-once">i</span>
+                    <span class="animate-once">m</span>
+                    <span class="animate-once">i</span>
+                    <span class="animate-once">t</span>
+                    <span class="animate-once">r</span>
+                    <span class="animate-once">i</span>
+                    <span class="animate-once">&nbsp;</span>
+                    <span class="animate-once">L</span>
+                    <span class="animate-once">e</span>
+                    <span class="animate-once">f</span>
+                    <span class="animate-once">e</span>
+                    <span class="animate-once">b</span>
+                    <span class="animate-once">v</span>
+                    <span class="animate-once">r</span>
+                    <span class="animate-once">e</span>
                 </h1>
 
                 <h3>Data Analyst</h3>
@@ -450,7 +440,6 @@ if (isset($_SESSION['notification'])) {
         <div class="wrapper-projets">
             <section id="projets">
                 <h2>Mes Projets</h2>
-                <p>Une sélection de mes projets</p>
                 <div class="projet-list">
                     <div class="carousel-container">
                         <div class="carousel-track">
@@ -492,6 +481,46 @@ if (isset($_SESSION['notification'])) {
                                             <span>Python</span>
                                             <span>geocoding</span>
                                             <span>PostGre SQL</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>    
+                            
+                            <div class="projet-card-frame">
+
+                                <div class="projet-card">
+                                    <!-- Zone d'image -->
+                                    <div class="card-image">
+                                        <img src="assets/images/projets/etude_marche_vin.webp" alt="Étude du Marché US des Vins" />
+
+                                        <!-- Icône en bas à droite -->
+                                        <div class="card-github-icon">
+                                            <a href="" target="_blank">
+                                                <img src="assets/images/icons/icons8-github-48.png" alt="github">
+                                            </a>
+                                        </div>
+
+                                        <div class="card-pwrBi-icon">
+                                            <a href="" target="_blank">
+                                                <img src="assets/images/icons/icons8-power-bi-2021-48.png" alt="pwrBi">
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Zone de contenu texte -->
+                                    <div class="card-content">
+                                        <h3>Étude du Marché US des Vins</h3>
+                                        <p>
+                                            Étude de marché Etatusiniens et analyse comparative des vins pour recommander un prix optimal avec des visualisations percutantes et accessibles.
+                                        </p>
+
+                                        <!-- Zone des tags -->
+                                        <div class="tags">
+                                            <span>Power BI</span>
+                                            <span>DAX</span>
+                                            <span>Data Analysis</span>
+                                            <span>Python</span>
                                         </div>
                                     </div>
                                 </div>
@@ -576,47 +605,7 @@ if (isset($_SESSION['notification'])) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>  
-                            
-                            <div class="projet-card-frame">
-
-                                <div class="projet-card">
-                                    <!-- Zone d'image -->
-                                    <div class="card-image">
-                                        <img src="assets/images/projets/etude_marche_vin.webp" alt="Étude du Marché US des Vins" />
-
-                                        <!-- Icône en bas à droite -->
-                                        <div class="card-github-icon">
-                                            <a href="" target="_blank">
-                                                <img src="assets/images/icons/icons8-github-48.png" alt="github">
-                                            </a>
-                                        </div>
-
-                                        <div class="card-pwrBi-icon">
-                                            <a href="" target="_blank">
-                                                <img src="assets/images/icons/icons8-power-bi-2021-48.png" alt="pwrBi">
-                                            </a>
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Zone de contenu texte -->
-                                    <div class="card-content">
-                                        <h3>Étude du Marché US des Vins</h3>
-                                        <p>
-                                            Étude de marché Etatusiniens et analyse comparative des vins pour recommander un prix optimal avec des visualisations percutantes et accessibles.
-                                        </p>
-
-                                        <!-- Zone des tags -->
-                                        <div class="tags">
-                                            <span>Power BI</span>
-                                            <span>DAX</span>
-                                            <span>Data Analysis</span>
-                                            <span>Python</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  
+                            </div>
                             
                             <div class="projet-card-frame">
 

@@ -146,12 +146,12 @@ const nextButton = document.querySelector('.carousel-btn.next');
 
 function updateButtonPosition() {
   // Récupère la position et la hauteur du conteneur par rapport à la fenêtre
-  const rect = carouselContainer.getBoundingClientRect();
+    const rect = carouselContainer.getBoundingClientRect();
   // Calcule le centre vertical du conteneur
-  const containerCenter = rect.top + rect.height / 2;
+    const containerCenter = rect.top + rect.height / 2;
   // Place les boutons à cette position
-  prevButton.style.top = `${containerCenter}px`;
-  nextButton.style.top = `${containerCenter}px`;
+    prevButton.style.top = `${containerCenter}px`;
+    nextButton.style.top = `${containerCenter}px`;
 }
 
 // Met à jour la position au chargement, au défilement et au redimensionnement
@@ -162,10 +162,21 @@ updateButtonPosition();
 
 
 nextButton.addEventListener('click', () => {
-  carouselContainer.scrollBy({ left: carouselContainer.offsetWidth, behavior: 'smooth' });
+    carouselContainer.scrollBy({ left: carouselContainer.offsetWidth, behavior: 'smooth' });
 });
 
 prevButton.addEventListener('click', () => {
-  carouselContainer.scrollBy({ left: -carouselContainer.offsetWidth, behavior: 'smooth' });
+    carouselContainer.scrollBy({ left: -carouselContainer.offsetWidth, behavior: 'smooth' });
 });
 
+
+// Animation du titre de la page d'accueil
+    // Pour chaque lettre, dès la fin de l'animation "waveOnce", on passe à l'animation en boucle
+    document.querySelectorAll('.wrapper-accueil h1 span').forEach(function(span) {
+        span.addEventListener('animationend', function(event) {
+            if (event.animationName === 'waveOnce') {
+            span.classList.remove('animate-once');
+            span.classList.add('animate-loop');
+            }
+        });
+    });

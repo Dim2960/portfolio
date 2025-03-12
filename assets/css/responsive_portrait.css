@@ -1,6 +1,6 @@
 
 /* 9. Responsivité */
-@media (max-width: 768px) {
+@media (orientation: portrait) and (max-width: 768px) {
     header nav a {
         display: none; /* On pourrait masquer les liens et les afficher via le menu hamburger */
     }
@@ -50,7 +50,7 @@
 }
 
 
-@media (max-width: 480px) {
+@media (orientation: portrait) and (max-width: 480px) {
     header nav a {
         display: none; /* On pourrait masquer les liens et les afficher via le menu hamburger */
         max-width: 100vw;
@@ -106,7 +106,7 @@
 }
 
 
-@media (max-width: 380px) {
+@media (orientation: portrait) and (max-width: 380px) {
     header nav a {
         display: none; /* On pourrait masquer les liens et les afficher via le menu hamburger */
         max-width: 100vw;

@@ -29,11 +29,6 @@
 /**************************************************/
 .carousel-track {
   display: flex;
-  /* L’animation dure 32s :
-    - 8 positions (100%, 75%, 50%, 25%, 0%, -25%, -50%, -75%)
-    - Chaque position est maintenue 3s, puis transition 1s
-    - Au total : 8*(3+1) = 32s
-  */
   
   transform: translateX(75%); 
 }
@@ -46,10 +41,11 @@
     flex: 0 0 25% ;  /* Sur PC, 4 cartes visibles (chaque carte occupe 25% de la largeur) */
     margin-top:2%;
     height : 75vh;
+    min-height: 530px;
+    max-height: 600px;
   }
   
   .projet-card {
-
     box-sizing: border-box;
     background: var(--sidebar-bg-gradient); /* Exemple d’utilisation de vos variables */
     border-radius: 15px;
@@ -70,12 +66,6 @@
   }
 
 /**************************************************/
-/* 4) Animation keyframes                         */
-/**************************************************/
-
-
-
-/**************************************************/
 /* 5) Ex. de style pour l'image et le contenu     */
 /**************************************************/
 
@@ -86,7 +76,7 @@
 /* Zone d'image */
 .card-image img {
   width: 100%;
-  max-height: 25vh;
+  /* max-height: 25vh; */
   height: 180px;
   object-fit: cover;            /* Recadre l’image pour qu’elle remplisse la zone */
   display: block;               /* Supprime l’espace blanc en bas des images inline */
@@ -96,54 +86,6 @@
 .projet-card:hover .card-image img {
   transform: scale(1.1);
 }
-
-  .card-pwrBi-icon {
-    position: absolute;
-    bottom: 10px;
-    right: 55px;
-    width: 40px; /* Taille ajustable */
-    height: 40px;
-    background-color: rgb(255, 255, 255, 0.6);
-    border-radius: 25%;
-    border: 2px solid #000;
-    animation: zoomEffect 3.5s ease-in-out infinite;
-  }
-
-  .card-github-icon {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 40px; /* Taille ajustable */
-    height: 40px;
-    background-color: rgb(255, 255, 255, 0.6);
-    border-radius: 25%;
-    border: 2px solid #000;
-    animation: zoomEffect 3.5s ease-in-out infinite;
-  }
-
-  .card-streamlit-icon {
-    position: absolute;
-    bottom: 10px;
-    right: 55px;
-    width: 40px; /* Taille ajustable */
-    height: 40px;
-    background-color: rgb(255, 255, 255, 0.6);
-    border-radius: 25%;
-    border: 2px solid #000;
-    animation: zoomEffect 3.5s ease-in-out infinite;
-  }
-
-  .card-video-icon {
-    position: absolute;
-    bottom: 10px;
-    right: 55px;
-    width: 40px; /* Taille ajustable */
-    height: 40px;
-    background-color: rgb(255, 255, 255, 0.6);
-    border-radius: 25%;
-    border: 2px solid #000;
-    animation: zoomEffect 3.5s ease-in-out infinite;
-  }
   
   @keyframes zoomEffect {
     0% {
@@ -180,9 +122,9 @@
 /* Overlay de la modal, occupe tout l'écran */
 .modal {
   display: none; /* cachée par défaut */
-  position: fixed;
+  position: absolute;
   top: 0;
-  left: 50%;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(11, 13, 39, 0.8); /* fond semi-transparent */
@@ -191,10 +133,10 @@
 
 /* Contenu de la modal centré */
 .modal-content {
-  position: fixed; /* positionné par rapport à la fenêtre */
+  position: absolute;
   top: 50%;
-  left: 100%;
-  transform: translate(-50%, -50%); /* centre le contenu */
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: #fff;
   padding: 1rem;
   width: 90%;
@@ -212,21 +154,79 @@
 }
 
 
+
 /* Contenu texte */
 .card-content {
   padding: 1rem 1.5rem;
-  color: var(--primary-text);               /* Couleur du texte (placeholder) */
+  color: var(--primary-text);
+  text-align: left;
+  min-height: auto;
 }
 
+.title-frame {
+  margin: 0;
+  width:75%;
+}
+
+  .card-pwrBi-icon {
+    position: absolute;
+    top: 190px;
+    right: 55px;
+    width: 40px; /* Taille ajustable */
+    height: 40px;
+    background-color: rgb(255, 255, 255, 0.6);
+    border-radius: 25%;
+    border: 2px solid #000;
+    animation: zoomEffect 3.5s ease-in-out infinite;
+  }
+
+  .card-github-icon {
+    position: absolute;
+    top: 190px;
+    right: 10px;
+    width: 40px; 
+    height: 40px;
+    background-color: rgb(255, 255, 255, 0.6);
+    border-radius: 25%;
+    border: 2px solid #000;
+    animation: zoomEffect 3.5s ease-in-out infinite;
+  }
+
+  .card-streamlit-icon {
+    position: absolute;
+    top: 190px;
+    right: 55px;
+    width: 40px; /* Taille ajustable */
+    height: 40px;
+    background-color: rgb(255, 255, 255, 0.6);
+    border-radius: 25%;
+    border: 2px solid #000;
+    animation: zoomEffect 3.5s ease-in-out infinite;
+  }
+
+  .card-video-icon {
+    position: absolute;
+    top: 190px;
+    right: 55px;
+    width: 40px; /* Taille ajustable */
+    height: 40px;
+    background-color: rgb(255, 255, 255, 0.6);
+    border-radius: 25%;
+    border: 2px solid #000;
+    animation: zoomEffect 3.5s ease-in-out infinite;
+  }
+
 .card-content h3 {
+  color: var(--accent-color);
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
   font-weight: 600;
   transition: color 0.3s ease;
+  text-align: left;
 }
 
 .projet-card:hover .card-content h3 {
-  color: var(--accent-color);
+  color: var(--accent-color-hover);
 }
 
 

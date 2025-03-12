@@ -189,21 +189,46 @@ const closeModal = document.querySelector('.modal .close');
 
 // Ouvrir la modal lors du clic
 openVideoModal.addEventListener('click', function(e) {
-  e.preventDefault();
-  videoModal.style.display = 'block';
+    e.preventDefault();
+    videoModal.style.display = 'block';
 });
 
 // Fermer la modal en cliquant sur le bouton de fermeture
 closeModal.addEventListener('click', function() {
-  videoModal.style.display = 'none';
+    videoModal.style.display = 'none';
   // Mettre la vidéo en pause lorsque la modal se ferme
-  videoModal.querySelector('video').pause();
+    videoModal.querySelector('video').pause();
 });
 
 // Fermer la modal en cliquant en dehors du contenu
 window.addEventListener('click', function(e) {
-  if (e.target === videoModal) {
+    if (e.target === videoModal) {
     videoModal.style.display = 'none';
     videoModal.querySelector('video').pause();
-  }
+    }
 });
+
+
+// Vérifier si on est en mode landscape
+if (window.matchMedia("(orientation: landscape)").matches) {
+    const sectionTitleElement = document.getElementById('sectionTitle');
+    const sections = document.querySelectorAll("section");
+    
+    const options = {
+        threshold: 0.4  // La section doit être à 40% visible pour être considérée "active"
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Récupérer le h2 de la section observée
+                const h2 = entry.target.querySelector("h2");
+                if (h2) {
+                    sectionTitleElement.textContent = h2.textContent;
+                }
+            }
+        });
+    }, options);
+    
+    sections.forEach(section => observer.observe(section));
+}

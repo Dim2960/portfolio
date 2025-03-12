@@ -22,6 +22,6 @@ build/
 
 
 # personal
-assets/videos/*
-assets/images/projets/*
-assets/images/portarits/*
+/assets/videos/*
+/assets/images/projets/
+/assets/images/portraits/

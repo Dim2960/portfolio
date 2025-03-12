@@ -215,7 +215,7 @@ if (window.matchMedia("(orientation: landscape)").matches) {
     const sections = document.querySelectorAll("section");
     
     const options = {
-        threshold: 0.4  // La section doit être à 40% visible pour être considérée "active"
+        threshold: 0.1  // La section doit être à 40% visible pour être considérée "active"
     };
     
     const observer = new IntersectionObserver((entries) => {

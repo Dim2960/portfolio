@@ -108,6 +108,10 @@ header nav {
     justify-content: center;
 }
 
+.nav-left {
+    display: none;
+}
+
 header nav #sectionTitle {
     display: none;
 }
@@ -331,6 +335,7 @@ section p {
 .wrapper-projets {
     max-width: 1600px; /* largeur de référence */
     margin: 0 auto; /* pour centrer */
+    width : 99vw;
 }
 
 /* section projets */
@@ -359,32 +364,76 @@ section p {
     padding-top: 6rem; /* pour éviter que le contenu passe sous le header */
     min-height: 85vh ;
     text-align: center;
-    width: 75%;
+    width: 100%;
 }
 
-/* 7. Formulaire de contact */
-#contact form {
+/* Conteneur principal avec flexbox pour disposer l'image et le formulaire côte à côte */
+.container-contact {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 1024px;
-    margin: 0 auto;
-    width: 100%;
+    padding: 0;
+    max-width: 800px;
+    margin: 20px auto;
+
+    box-sizing: border-box;
+    background: var(--sidebar-bg-gradient); /* Exemple d’utilisation de vos variables */
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 4px 4px 8px var(--box-shadow);
+    overflow: hidden;            /* Masque tout ce qui dépasse (utile si l’image déborde)*/
+    height: auto;
 }
 
-#contact input,
-#contact textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border);
-    border-radius: 4px;
+  /* Conteneur pour l'image à gauche */
+.image-container {
+    width: 30%;
+    position: relative;
+    padding: 0;
+    margin: 0;
 }
 
-#contact textarea {
+.image-contact img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+  /* Conteneur pour le formulaire à droite */
+.form-container {
+    width: 70%;
+    padding: 25px;
+}
+
+  /* Disposition en ligne pour les champs prénom et nom */
+.input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.input-row input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid var(--soft-color);
+    border-radius: 3px;
+}
+
+  /* Style général des inputs, select et textarea */
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid var(--soft-color);
+    border-radius: 3px;
+}
+
+textarea {
     max-height: 50vh;
-    height: 150px;
+    height: 70px;
     resize: vertical;
-}
+} 
 
 #contact button[type="submit"] {
     background-color: var(--btn-bg-color);

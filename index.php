@@ -99,8 +99,9 @@ if (isset($_SESSION['notification'])) {
             </div>
 
             <div class="nav-center">
-                <a href="#a-propos">À propos</a>
+                <a href="#accueil">Accueil</a>
                 <a href="#projets">Projets</a>
+                <a href="#a-propos">À propos</a>
                 <a href="#contact">Contact</a>
             </div>
 
@@ -162,21 +163,6 @@ if (isset($_SESSION['notification'])) {
             <!-- Informations de profil -->
             <h2 class="profile-name">Dimitri Lefebvre</h2>
             <p class="profile-title">Data Analyst</p>
-            <a href="mailto:dimitri.lefebvre@datadriven-dynamix.fr" class="profile-email">
-                    <svg    xmlns="http://www.w3.org/2000/svg" 
-                            width="24" 
-                            height="24" 
-                            viewBox="0 0 24 24" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            stroke-width="2" 
-                            stroke-linecap="round" 
-                            stroke-linejoin="round">
-                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                    </svg>
-                    dimitri.lefebvre@datadriven-dynamix.fr
-            </a>
         </div>
         
         <!-- Menu du sidebar -->
@@ -196,21 +182,6 @@ if (isset($_SESSION['notification'])) {
                 </svg>
                 Accueil
             </a>
-            <a href="#a-propos" class="sidebar-link">
-                <svg    xmlns="http://www.w3.org/2000/svg" 
-                        width="24" 
-                        height="24" 
-                        viewBox="0 0 24 24" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        stroke-width="2" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round">
-                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                À propos
-            </a>
             <a href="#projets" class="sidebar-link">
                 <svg    xmlns="http://www.w3.org/2000/svg" 
                         width="24" 
@@ -225,6 +196,21 @@ if (isset($_SESSION['notification'])) {
                     <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                 </svg>
                 Projets
+            </a>
+            <a href="#a-propos" class="sidebar-link">
+                <svg    xmlns="http://www.w3.org/2000/svg" 
+                        width="24" 
+                        height="24" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                À propos
             </a>
             <a href="#contact" class="sidebar-link">
                 <svg    xmlns="http://www.w3.org/2000/svg" 
@@ -241,28 +227,6 @@ if (isset($_SESSION['notification'])) {
                 </svg>
                 Contact
             </a>
-        </div>
-
-        <!-- Actions supplémentaires -->
-        
-        <div class="sidebar-actions">
-            <a href="docs/CV_Dimitri_Lefebvre.pdf" class="btn btn-view-cv" target="_blank">
-                <svg    xmlns="http://www.w3.org/2000/svg" 
-                        width="24" 
-                        height="24" 
-                        viewBox="0 0 24 24" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        stroke-width="2" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round">
-                    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
-                    <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
-                    <path d="M10 9H8"></path>
-                    <path d="M16 13H8"></path>
-                    <path d="M16 17H8"></path>
-                </svg>
-                Voir mon CV</a>
         </div>
 
         <div class="sidebar-social">
@@ -298,7 +262,7 @@ if (isset($_SESSION['notification'])) {
                     </svg>
                 </a>
                 
-                <a href="mailto:dimitri.lefebvre@datadriven-dynamix.fr" target="_blank">
+                    <a href="#contact" class="sidebar-link">
                     <svg xmlns="http://www.w3.org/2000/svg" 
                             width="24" 
                             height="24" 
@@ -383,7 +347,7 @@ if (isset($_SESSION['notification'])) {
                         </svg>
                     </a>
                     
-                    <a href="mailto:dimitri.lefebvre@datadriven-dynamix.fr" target="_blank">
+                    <a href="#contact" class="sidebar-link">
                         <svg xmlns="http://www.w3.org/2000/svg" 
                                 width="24" 
                                 height="24" 
@@ -401,56 +365,30 @@ if (isset($_SESSION['notification'])) {
             </section>
         </div>
         
-        <!-- Section À propos -->
-        <div class="wrapper-a-propos">
-            <section id="a-propos">
-                <h2>À mon propos</h2>
-                <p>
-                    En tant que Data Analyst certifié, j'incarne la convergence entre expertise 
-                    technique, vision stratégique et un attrait fort pour l'innovation. 
-                    <br/>
-                    Grâce à mes récentes certifications (Data Analyst RNCP n°37429, 
-                    <a href="https://learn.microsoft.com/api/credentials/share/fr-fr/DimitriLefebvre-3676/83B77277C8C2C256?sharingId=D0EBFEA893B7DB06" target="_blank">
-                        Power BI Data Analyst</a> et 
-                    <a href="https://learn.microsoft.com/api/credentials/share/fr-fr/DimitriLefebvre-3676/2E989F00F493B5A2?sharingId=D0EBFEA893B7DB06" target="_blank">
-                        AZ-900</a>) et à mon engagement dans le développement continu de mes compétences, j'ai acquis une solide expertise.
-                    <br/>
-                    Actuellement, je travaille sur mes compétences en computer vision, un domaine que je découvre avec 
-                    enthousiasme. Ainsi, je transforme la donnée en un levier puissant pour propulser la performance et 
-                    l'innovation dans divers secteurs.
-                    <br/>
-                    <br/>
-                    Mon parcours s'est construit sur 17 ans d'expérience au sein de l'industrie chimique, où
-                    j'ai évolué de Technicien Méthodes et Procédés à Responsable d'Atelier, en passant par des
-                    postes de Chargé de Projets et de Responsable QHSE. Ces rôles m'ont permis de développer un
-                    sens aigu de l'optimisation, de l'analyse et du leadership, tout en m'offrant une perspective 
-                    globale qui intègre à la fois la dimension industrielle et les défis organisationnels et humains.
-                    <br/>
-                    <br/>
-                    Aujourd'hui, je mets cette riche expérience au service d'une approche alliant data analytics,
-                    automatisation des processus et innovation technologique. 
-                    <br/>
-                    <br/>
-                    Convaincu que la synergie entre compétences techniques et vécu professionnel est la clé pour relever des défis complexes, je 
-                    m'engage à créer des solutions novatrices et pérennes, au-delà des seules applications industrielles.
-                </p>
-            </section>
-        </div>
-        
         <!-- Section Projets -->
         <div class="wrapper-projets">
             <section id="projets">
                 <h2>Mes Projets</h2>
                 <div class="projet-list">
+
+
                     <div class="carousel-container">
+                    
                         <div class="carousel-track">  
-                            
+
+                            <div class="carousel-controls">
+                                <button class="carousel-btn prev">‹</button>
+                                <button class="carousel-btn next">›</button>
+                            </div>
+
                             <div class="projet-card-frame">
                                 <div class="projet-card">
                                     
                                     <!-- Zone d'image -->
                                     <div class="card-image">
-                                        <img src="assets/images/projets/pilotage_atelier.webp" alt="Pilotage d'un atelier" />
+                                        <a href="https://app.powerbi.com/view?r=eyJrIjoiMjZiNmQ5YWQtNTQxNS00OWY1LWE2ZmItODQyYmJlODg4OGE4IiwidCI6IjQ0OTFmMGVlLWY1MDMtNDcyNi1hNWViLTFmMGM0ZGFjODJhOSJ9" target="_blank">
+                                            <img src="assets/images/projets/pilotage_atelier.webp" alt="Pilotage d'un atelier" />   
+                                        </a>
                                     </div>
 
                                     <!-- Zone de contenu texte -->
@@ -486,7 +424,9 @@ if (isset($_SESSION['notification'])) {
 
                                     <!-- Zone d'image -->
                                     <div class="card-image">
-                                        <img src="assets/images/projets/analyse_facteurs_influence.webp" alt="Facteurs d'influence de conditionnement" />
+                                        <a href="https://app.powerbi.com/view?r=eyJrIjoiMGFlZjQ3N2EtYjI1ZC00N2Y3LWI1ZmYtMzg4M2FhZmIzMTJiIiwidCI6IjQ0OTFmMGVlLWY1MDMtNDcyNi1hNWViLTFmMGM0ZGFjODJhOSJ9" target="_blank">
+                                            <img src="assets/images/projets/analyse_facteurs_influence.webp" alt="Facteurs d'influence de conditionnement" />
+                                        </a>
                                     </div>
 
                                     <!-- Zone de contenu texte -->
@@ -820,34 +760,90 @@ if (isset($_SESSION['notification'])) {
                             </div>  
 
                         </div>
-
-                        <div class="carousel-controls">
-                            <button class="carousel-btn prev">‹</button>
-                            <button class="carousel-btn next">›</button>
-                        </div>
                         
                     </div>
                 </div>
             </section>
         </div>
+        
+        <!-- Section À propos -->
+        <div class="wrapper-a-propos">
+            <section id="a-propos">
+                <h2>À mon propos</h2>
+                <p>
+                    En tant que Data Analyst certifié, j'incarne la convergence entre expertise 
+                    technique, vision stratégique et un attrait fort pour l'innovation. 
+                    <br/>
+                    Grâce à mes récentes certifications (Data Analyst RNCP n°37429, 
+                    <a href="https://learn.microsoft.com/api/credentials/share/fr-fr/DimitriLefebvre-3676/83B77277C8C2C256?sharingId=D0EBFEA893B7DB06" target="_blank">
+                        Power BI Data Analyst</a> et 
+                    <a href="https://learn.microsoft.com/api/credentials/share/fr-fr/DimitriLefebvre-3676/2E989F00F493B5A2?sharingId=D0EBFEA893B7DB06" target="_blank">
+                        AZ-900</a>) et à mon engagement dans le développement continu de mes compétences, j'ai acquis une solide expertise.
+                    <br/>
+                    Actuellement, je travaille sur mes compétences en computer vision, un domaine que je découvre avec 
+                    enthousiasme. Ainsi, je transforme la donnée en un levier puissant pour propulser la performance et 
+                    l'innovation dans divers secteurs.
+                    <br/>
+                    <br/>
+                    Mon parcours s'est construit sur 17 ans d'expérience au sein de l'industrie chimique, où
+                    j'ai évolué de Technicien Méthodes et Procédés à Responsable d'Atelier, en passant par des
+                    postes de Chargé de Projets et de Responsable QHSE. Ces rôles m'ont permis de développer un
+                    sens aigu de l'optimisation, de l'analyse et du leadership, tout en m'offrant une perspective 
+                    globale qui intègre à la fois la dimension industrielle et les défis organisationnels et humains.
+                    <br/>
+                    <br/>
+                    Aujourd'hui, je mets cette riche expérience au service d'une approche alliant data analytics,
+                    automatisation des processus et innovation technologique. 
+                    <br/>
+                    <br/>
+                    Convaincu que la synergie entre compétences techniques et vécu professionnel est la clé pour relever des défis complexes, je 
+                    m'engage à créer des solutions novatrices et pérennes, au-delà des seules applications industrielles.
+                </p>
+            </section>
+        </div>
                 
         <!-- Section Contact -->
         <div class="wrapper-contact">
-            <section id="contact">
-                <h2>Contactez-moi</h2>
-                <form action="contact.php" method="post">
-                    <input type="text" name="nom" placeholder="Votre nom" required>
-                    <input type="email" name="email" placeholder="Votre email" required>
-                    <textarea name="message" placeholder="Votre message" required></textarea>
-                    <button type="submit">Envoyer</button> <!-- Inclusion du token CSRF dans le formulaire -->
-                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-                </form>
-
-                <?php  if (!empty($notification)): ?>
-                    <div class="notification <?php echo (strpos($notification, 'succès') !== false) ? 'success' : 'error'; ?>">
-                    <?php echo htmlspecialchars($notification); ?>
+            <section id="contact">  
+                <div class="container-contact">
+                    
+                    <div class="image-contact">
+                        <img src="assets/images/illustrations/contact.webp" alt="image d'illustration contact">
                     </div>
-                <?php endif; ?>
+
+                    <div class="form-container">
+                        <h2>Contactez-moi</h2>
+                        <form action="contact.php" method="post">
+                            <select id="titre" name="titre" required>
+                                <option value="">Sélectionnez votre titre *</option>
+                                <option value="monsieur">Monsieur</option>
+                                <option value="madame">Madame</option>
+                                <option value="non précisé">Ne souhaite pas préciser</option>
+                            </select>
+                            
+                            <!-- Champs prénom et nom sur la même ligne, avec astérisque dans les placeholder -->
+                            <div class="input-row">
+                            <input type="text" id="prenom" name="prenom" placeholder="Votre prénom *" required>
+                            <input type="text" id="nom" name="nom" placeholder="Votre nom *" required>
+                            </div>
+                            
+                            <input type="email" id="email" name="email" placeholder="Votre email *" required>
+                            <textarea id="message" name="message" placeholder="Votre message *" required></textarea>
+                            
+                            <div style ="text-align: left;">* champs obligatoires</div>
+                            <br/>
+
+                            <button type="submit">Envoyer</button>
+                            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                        </form>
+
+                        <?php  if (!empty($notification)): ?>
+                            <div class="notification <?php echo (strpos($notification, 'succès') !== false) ? 'success' : 'error'; ?>">
+                            <?php echo htmlspecialchars($notification); ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
 
             </section>
         </div>
@@ -876,7 +872,7 @@ if (isset($_SESSION['notification'])) {
                     stroke-width="2" 
                     stroke-linecap="round" 
                     stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
+                    <polyline points="6 11 12 17 18 11"></polyline>
             </svg>
         </a>
 

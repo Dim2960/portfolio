@@ -10,8 +10,11 @@
         font-size: 2rem;
         color: var(--primary-text);
         margin-left: 1rem;
+    }
 
-
+    .nav-left {
+        display: flex;
+        align-items: center;
     }
     
 
@@ -134,6 +137,10 @@
     .card-video-icon {
         top: 55px;
         right: 55px;
+    }
+
+    #contact {
+        padding-top: 4rem;
     }
 
     #contact textarea {

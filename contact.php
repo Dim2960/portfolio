@@ -10,12 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Récupération et nettoyage des données du formulaire
+    $titre     = trim($_POST['titre']);
     $nom     = trim($_POST['nom']);
+    $prenom     = trim($_POST['prenom']);
     $email   = trim($_POST['email']);
     $message = trim($_POST['message']);
 
     // Vérifier que les champs ne sont pas vides
-    if (empty($nom) || empty($email) || empty($message)) {
+    if (empty($titre) || empty($nom) || empty($prenom) || empty($email) || empty($message)) {
         $_SESSION['notification'] = "Tous les champs sont requis.";
         header("Location: index.php#contact");
         exit;
@@ -40,7 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = str_replace(["\r", "\n", "%0a", "%0d"], '', $email);
 
     // Optionnel : assainir davantage les autres champs
+    $titre = filter_var($titre, FILTER_SANITIZE_STRING);
     $nom = filter_var($nom, FILTER_SANITIZE_STRING);
+    $prenom = filter_var($prenom, FILTER_SANITIZE_STRING);
     $message = filter_var($message, FILTER_SANITIZE_STRING);
 
     // Adresse email destinataire
@@ -48,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Préparation de l'email
     $sujet   = "Contact portfolio - Nouveau message";
-    $contenu = "Nom : $nom\nEmail : $email\nMessage :\n$message";
+    $contenu = "Titre : $titre\nNom : $nom\nPrenom : $prenom\nEmail : $email\nMessage :\n$message";
     $headers = "From: " . $email . "\r\n";
     $headers .= "Reply-To: " . $email . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";

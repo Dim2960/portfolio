@@ -6,7 +6,7 @@
     }
 
     header nav #sectionTitle {
-        display: block;
+        display: block !important;
         font-size: 2rem;
         color: var(--primary-text);
         margin-left: 1rem;

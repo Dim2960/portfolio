@@ -215,69 +215,45 @@ prevButton.addEventListener('click', () => {
     });
 
 
-// Sélection des éléments
-const openVideoModal = document.getElementById('openVideoModal');
-const videoModal = document.getElementById('videoModal');
-const closeModal = document.querySelector('.modal .close');
-
-// Ouvrir la modal lors du clic
-openVideoModal.addEventListener('click', function(e) {
-    e.preventDefault();
-    videoModal.style.display = 'block';
-});
-
-// Fermer la modal en cliquant sur le bouton de fermeture
-closeModal.addEventListener('click', function() {
-    videoModal.style.display = 'none';
-  // Mettre la vidéo en pause lorsque la modal se ferme
-    videoModal.querySelector('video').pause();
-});
-
-// Fermer la modal en cliquant en dehors du contenu
-window.addEventListener('click', function(e) {
-    if (e.target === videoModal) {
-    videoModal.style.display = 'none';
-    videoModal.querySelector('video').pause();
-    }
-});
-
-
-
 // ***************************************************//
 // ************                       ****************//
 // ***************************************************//
 const mediaQuery = window.matchMedia("(orientation: landscape)");
 
+let observer = null;
+
 function initIntersectionObserver() {
+    if (observer) observer.disconnect();
+
     const sectionTitleElement = document.getElementById('sectionTitle');
     const sections = document.querySelectorAll("section");
-    
-    const options = {
-        threshold: 0.2  // La section doit être à 20% visible 
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
+    const options = { threshold: 0.4 }; // Réduis le seuil à 10% pour être sûr
+
+    observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const h2 = entry.target.querySelector("h2");
-                if (h2) {
+                if (h2 && sectionTitleElement) {
                     sectionTitleElement.textContent = h2.textContent;
                 }
             }
         });
     }, options);
-    
+
     sections.forEach(section => observer.observe(section));
 }
 
-// Vérifier l'orientation au chargement
-if (mediaQuery.matches) {
-    initIntersectionObserver();
-}
+// Active l'observer dès que la page est prête (même en cas de redimensionnement)
+window.addEventListener('load', () => {
+    if (mediaQuery.matches) initIntersectionObserver();
+});
 
-// Ajouter un écouteur pour détecter les changements d'orientation
+// Gère dynamiquement les changements d’orientation
 mediaQuery.addEventListener('change', (e) => {
     if (e.matches) {
         initIntersectionObserver();
+    } else if (observer) {
+        observer.disconnect();
     }
 });
+

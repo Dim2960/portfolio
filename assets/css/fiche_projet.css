@@ -1,0 +1,341 @@
+.wrapper-fiche-projet {
+    max-width: 1024px; /* largeur de référence */
+    margin: 0 auto; /* pour centrer */
+    width: 100%;
+}
+
+#fiche-projet {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 6rem; /* pour éviter que le contenu passe sous le header */
+    min-height: 85vh ;
+
+    width: 100%;
+}
+
+#fiche-projet h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--h1-color);
+    margin-bottom: 0.5rem;
+    padding-top:0rem;
+    text-align: center;
+}
+
+#fiche-projet h2 {
+    text-align: left;
+}
+
+#fiche-projet h4 {
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+
+}
+
+/****************************************************
+ *  Tableau des données
+ ****************************************************/
+#fiche-projet table {
+    width: 95%;
+    border-collapse: collapse; /* Supprime les espaces entre les bordures */
+    margin: 20px 0;
+    font-size: 0.8rem;
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden; /* Assure que le border-radius s’applique */
+    box-shadow: 0 8px 20px var(--box-shadow-accent);
+}
+
+#fiche-projet table:hover {
+    scale: 1.02;
+    box-shadow: 4px 4px 8px var(--box-shadow);
+}
+
+#fiche-projet thead {
+    background-color: var(--table-thead-bg);
+    color: var(--table-thead-color);
+}
+
+#fiche-projet th, #fiche-projet td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--soft-color); /* Séparation des lignes */
+}
+
+#fiche-projet tbody tr {
+    background-color: var(--table-tbody-bg); 
+}
+
+#fiche-projet table:hover tbody tr {
+    background-color: var(--table-tbody-hover-bg); /* Changement de couleur au survol */
+}
+
+#fiche-projet th {
+    font-weight: bold;
+}
+
+#fiche-projet td {
+    color: var(--table-td-color); /* Couleur du texte */
+}
+
+#fiche-projet td:hover {
+    color: var(--table-td-hover-color); /* Couleur du texte */
+}
+
+.fiche-projet-frame {
+    width: 100%;
+}
+
+
+.list-box ul {
+    list-style: none; /* Supprime les puces par défaut */
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.list-box li {
+    background: var(--sidebar-bg-gradient);
+    border-left: 4px solid var(--btn-bg-color);
+    padding: 10px 15px;
+    margin: 8px 0;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--soft-color);
+    border-radius: 5px;
+    transition: all 0.1s ease-in-out;
+}
+
+.list-box li:hover {
+    border-left: 6px solid var(--btn-bg-color-hover);
+}
+
+
+.list-steps ol {
+    counter-reset: list-counter; /* Initialise un compteur pour personnaliser la numérotation */
+    list-style: none; /* Supprime les numéros par défaut */
+    padding: 0;
+    margin: 1rem 0;
+    padding-left: 15px;
+}
+
+.list-steps ol li {
+    counter-increment: list-counter; /* Incrémente le compteur */ 
+    padding: 8px 0;
+    margin: 6px 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--soft-color);
+    position: relative;
+}
+
+/* Ajout des numéros stylisés */
+.list-steps ol li::before {
+    content: counter(list-counter) "."; /* Affiche le compteur */
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-right: 8px; /* Espacement entre le numéro et le texte */
+}
+
+.list-puce ul {
+    list-style: none; /* Supprime les puces par défaut */
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.list-puce ul li {
+    display: flex; /* Aligne la puce et le texte */
+    align-items: flex-start; /* Aligne la puce avec la première ligne */
+    gap: 8px; /* Espacement entre la puce et le texte */
+    padding: 8px 0;
+    margin: 6px 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--soft-color);
+    width: 100%; /* Prend toute la largeur disponible */
+}
+
+/* Style des puces */
+.list-puce ul li::before {
+    content: "•"; /* Ajoute une puce */
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    flex-shrink: 0; /* Empêche la puce de bouger */
+    line-height: 1.2;
+}
+
+/* Ajustement du texte */
+.list-puce ul li p {
+    flex: 1; /* Permet au texte de s'étendre */
+    text-align: left; /* Aligne le texte à droite */
+    text-justify: inter-word; /* Ajuste les mots pour une meilleure lisibilité */
+}
+
+
+
+
+.fiche-projet-frame-title  {
+    width: 100%;
+    height: auto;
+}
+
+.fiche-projet-frame-context  {
+    display: flex;
+    flex-wrap: wrap; /* Permet une bonne adaptation sur mobile */
+    flex-direction: row; /* Aligne le texte à gauche et l'image à droite */
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem; /* Ajoute un espacement entre le texte et l’image */
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.fiche-projet-frame-context-content  {
+    width: 50%;
+    min-width: 300px;
+    flex: 1; /* Permet une adaptation fluide */
+}
+
+.fiche-projet-frame-context-image {
+    width: 50%;
+    min-width: 300px;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* Aligne l’image à droite */
+}
+
+.fiche-projet-frame-context-image  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Ajoute un léger arrondi pour un design plus doux */
+}
+
+.fiche-projet-frame-issueTarget {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.fiche-projet-frame-issue,
+.fiche-projet-frame-target,
+.fiche-projet-frame-results-header-links,
+.fiche-projet-frame-difficulties-learns,
+.fiche-projet-frame-improvements{
+    background: var(--sidebar-bg-gradient);
+    border-left: 4px solid var(--btn-bg-color);
+    padding: 10px 15px;
+    margin: 8px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--soft-color);
+    border-radius: 5px;
+    transition: all 0.1s ease-in-out;
+    width: 85%;
+}
+
+.fiche-projet-frame-issue:hover,
+.fiche-projet-frame-target:hover {
+    border-left: 6px solid var(--btn-bg-color-hover);
+    scale: 1.02;
+    box-shadow: 4px 4px 8px var(--box-shadow);
+}
+
+
+.fiche-projet-frame-data-methodo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+
+.fiche-projet-frame-data-methodo-data {
+    width: 100%;
+    min-width: 400px;
+    flex: 1.4;
+    text-align: flex-start;
+}
+
+.fiche-projet-frame-data-methodo-methodo {
+    width: 100%;
+    min-width: 300px;
+    flex: 1;
+}
+
+.fiche-projet-frame-group-dif-improv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    
+}
+
+
+.fiche-projet-frame-difficulties-learns {
+    width: 100%;
+    min-width: 300px;
+    flex: 1;
+}
+
+.fiche-projet-frame-improvements {
+    width: 100%;
+    min-width: 300px;
+    flex: 1;
+}
+
+.fiche-projet-frame-results {
+    width: 100%;
+    min-width: 300px;
+    flex: 1;
+    margin-top: 2rem;
+    justify-content: flex-start; 
+}
+
+.fiche-projet-frame-results-header {
+    display: flex !important;              /* On force l'utilisation de flex */
+    flex-direction: row;
+    flex-wrap: nowrap;                     /* Pas de retour à la ligne */
+    justify-content: flex-start !important;/* Alignement à gauche */
+    align-items: center;                   /* Même hauteur pour tous */
+    gap: 1rem;
+    border: 1px solid orange;              /* Pour visualiser le conteneur */
+    margin: 0;                             /* Annule le margin auto global */
+    padding: 0;
+}
+
+/* Pour que chaque bloc prenne juste la place nécessaire et reste sur une ligne */
+.fiche-projet-frame-results-header-title,
+.fiche-projet-frame-results-header-links {
+    display: inline-flex !important;       /* Inline pour prendre la largeur de contenu */
+    flex: 0 0 auto !important;             /* Ni agrandi ni rétréci */
+    white-space: nowrap;                   /* Pas de retour à la ligne */
+    margin: 0;                             /* Annule le margin auto du reset */
+    padding: 0.5rem;                       /* Optionnel : pour un peu d'espace intérieur */
+    border: 1px dashed var(--btn-bg-color); /* Pour visualiser chaque cadre */
+}
+
+
+.ctn-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ctn-icon:hover {
+    scale: 1.1;
+}

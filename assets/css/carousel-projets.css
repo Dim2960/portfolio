@@ -76,7 +76,7 @@
 }
 
 /* Zone d'image */
-.card-image img {
+.card-image input[type="image"] {
   width: 100%;
   /* max-height: 25vh; */
   height: 180px;
@@ -85,7 +85,7 @@
   transition: transform 0.3s ease;
 }
 
-.projet-card:hover .card-image img {
+.projet-card:hover .card-image input[type="image"] {
   transform: scale(1.1);
 }
   

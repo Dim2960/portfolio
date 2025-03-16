@@ -11,6 +11,25 @@ $notification = '';
 if (isset($_SESSION['notification'])) {
     $notification = $_SESSION['notification'];
 }
+
+// Inclusion de l'autoloader de Composer pour charger PhpSpreadsheet
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
+// Définir le chemin vers le fichier Excel
+$inputFileName = 'assets/data/data.xlsx';
+
+try {
+    // Charger le fichier Excel
+    $spreadsheet = IOFactory::load($inputFileName);
+    $worksheet = $spreadsheet->getActiveSheet();
+    // Conversion de la feuille en tableau PHP
+    $rows = $worksheet->toArray();
+} catch(Exception $e) {
+    die('Erreur lors de la lecture du fichier Excel : ' . $e->getMessage());
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -25,16 +44,16 @@ if (isset($_SESSION['notification'])) {
     <meta name="keywords" content="Data Analyst, dataviz, Power BI, PL300, Computer Vision, Python, HTML, CSS, SQL, Industrie Chimique, Agroalimentaire, Pharma">
     
     <!-- URL canonique -->
-    <link rel="canonical" href="https://www.portfolio-dimitri-lefebvre.com/">
+    <link rel="canonical" href="https://www.portfolio-dimitri-lefebvre.fr/">
     
     <!-- Favicon -->
-    <link rel="icon" href="assets/images/favicon.ico">
+    <link rel="icon" href="assets/images/icones/favicon.ico">
     
     <!-- Open Graph / Réseaux Sociaux -->
     <meta property="og:title" content="Portfolio – Dimitri Lefebvre">
     <meta property="og:description" content="Data Analyst certifié RNCP, certifié PL300, spécialisé en dataviz, computer vision et SQL. Découvrez mes projets et mon parcours professionnel.">
-    <meta property="og:image" content="https://www.portfolio-dimitri-lefebvre.com/assets/images/og-image.jpg">
-    <meta property="og:url" content="https://www.portfolio-dimitri-lefebvre.com/">
+    <meta property="og:image" content="https://www.portfolio-dimitri-lefebvre.fr/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://www.portfolio-dimitri-lefebvre.fr/">
     <meta property="og:type" content="website">
     
     
@@ -53,7 +72,7 @@ if (isset($_SESSION['notification'])) {
         "@type": "Person",
         "name": "Lefebvre Dimitri",
         "jobTitle": "Data Analyst",
-        "url": "https://www.portfolio-dimitri-lefebvre.com",
+        "url": "https://www.portfolio-dimitri-lefebvre.fr",
         "description": "Data Analyst certifié PL300, spécialisé en dataviz, computer vision, Python, SQL, HTML et CSS avec 17 ans d'expérience dans l'industrie chimique appliquée aux industries de process.",
         "knowsAbout": [
             "Data Visualisation",
@@ -70,7 +89,7 @@ if (isset($_SESSION['notification'])) {
         ],
         "certifications": "PL300",
         "sameAs": [
-            "https://www.linkedin.com/in/votreprofil"
+            "https://www.linkedin.com/in/dim-lefebvre60"
         ]
     }
     </script>
@@ -365,12 +384,12 @@ if (isset($_SESSION['notification'])) {
             </section>
         </div>
         
+
         <!-- Section Projets -->
         <div class="wrapper-projets">
             <section id="projets">
                 <h2>Mes Projets</h2>
                 <div class="projet-list">
-
 
                     <div class="carousel-container">
                     
@@ -381,388 +400,77 @@ if (isset($_SESSION['notification'])) {
                                 <button class="carousel-btn next">›</button>
                             </div>
 
-                            <div class="projet-card-frame">
-                                <div class="projet-card">
-                                    
-                                    <!-- Zone d'image -->
-                                    <div class="card-image">
-                                        <a href="https://app.powerbi.com/view?r=eyJrIjoiMjZiNmQ5YWQtNTQxNS00OWY1LWE2ZmItODQyYmJlODg4OGE4IiwidCI6IjQ0OTFmMGVlLWY1MDMtNDcyNi1hNWViLTFmMGM0ZGFjODJhOSJ9" target="_blank">
-                                            <img src="assets/images/projets/pilotage_atelier.webp" alt="Pilotage d'un atelier" />   
-                                        </a>
-                                    </div>
+                            <?php
+                            // On considère que la première ligne contient les en-têtes, on la saute
+                            $firstRow = true;
+                            foreach ($rows as $row) {
+                                if ($firstRow) {
+                                    $firstRow = false;
+                                    continue;
+                                }
 
-                                    <!-- Zone de contenu texte -->
-                                    <div class="card-content">
-                                        <div class="title-frame">
-                                            <h3>Pilotage d'Un Atelier</h3>
+                                if (!isset($row[0])) {
+                                    break;
+                                }
+                                
+                                // Adapter les indices en fonction de votre fichier Excel
+                                $id       = isset($row[0]) ? $row[0] : 0;
+                                $titre       = isset($row[1]) ? $row[1] : 'Titre non défini';
+                                $description = isset($row[2]) ? $row[2] : 'Description non disponible';
+                                $image_url = isset($row[3]) ? $row[3] : 'url image non disponible';
+                                $image_alt = isset($row[4]) ? $row[4] : 'alt image non disponible';
+                                $tags = isset($row[5]) ? $row[5] : 'tags image non disponible';
+
+                                ?>
+                                <div class="projet-card-frame">
+                                    <div class="projet-card">
+
+                            
+                                    <!-- <img src="assets/images/projets/<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($image_alt); ?>" />    -->
+
+                                        <!-- Zone d'image -->
+                                        <div class="card-image">
+                                            <form action="fiche_projet.php" method="POST" style="display:inline;">
+                                                <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+                                                <input type="image" src="assets/images/projets/<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($image_alt); ?>" />
+                                            </form>
+                                        </div>
+
+                                        <!-- Zone de contenu texte -->
+                                        <div class="card-content">
+                                            <div class="title-frame">
+                                                <h3><?php echo htmlspecialchars($titre); ?></h3>
+                                                
+                                            </div>
+                                            <p>
+                                                <?php echo nl2br(htmlspecialchars($description)); ?>
+                                            </p>
+
+                                            <!-- Zone des tags -->
+                                            <div class="tags">
+                                            <?php 
+                                            // Convertir la chaîne de tags en tableau, en séparant par la virgule
+                                            $tagsArray = explode(',', $tags); 
                                             
-                                            <div class="card-github-icon">
-                                                <a href="https://app.powerbi.com/view?r=eyJrIjoiMjZiNmQ5YWQtNTQxNS00OWY1LWE2ZmItODQyYmJlODg4OGE4IiwidCI6IjQ0OTFmMGVlLWY1MDMtNDcyNi1hNWViLTFmMGM0ZGFjODJhOSJ9" target="_blank">
-                                                    <img src="assets/images/icons/icons8-power-bi-2021-48.png" alt="pwrBi">
-                                                </a>
+                                            // Parcourir chaque tag et l'afficher dans une balise <span>
+                                            foreach($tagsArray as $tag) {
+                                                echo '<span>' . trim(htmlspecialchars($tag)) . '</span>';
+                                            }
+                                            ?>
                                             </div>
                                         </div>
-                                        <p>
-                                            Création de rapports analytiques pour suivre TRS, cadences, arrêts, volumes et performances d’un atelier de conditionnement.
-                                        </p>
 
-                                        <!-- Zone des tags -->
-                                        <div class="tags">
-                                            <span>Power BI</span>
-                                            <span>DAX</span>
-                                            <span>Data Analysis</span>
-                                            <span>Python</span>
-                                            <span>Time Series</span>
-                                        </div>
+
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="projet-card-frame">
-
-                                <div class="projet-card">
-
-                                    <!-- Zone d'image -->
-                                    <div class="card-image">
-                                        <a href="https://app.powerbi.com/view?r=eyJrIjoiMGFlZjQ3N2EtYjI1ZC00N2Y3LWI1ZmYtMzg4M2FhZmIzMTJiIiwidCI6IjQ0OTFmMGVlLWY1MDMtNDcyNi1hNWViLTFmMGM0ZGFjODJhOSJ9" target="_blank">
-                                            <img src="assets/images/projets/analyse_facteurs_influence.webp" alt="Facteurs d'influence de conditionnement" />
-                                        </a>
-                                    </div>
-
-                                    <!-- Zone de contenu texte -->
-                                    <div class="card-content">
-                                        <div class="title-frame">
-                                            <h3>Recherche de Facteurs d'Influence</h3>
-
-                                            <div class="card-github-icon">
-                                                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGFlZjQ3N2EtYjI1ZC00N2Y3LWI1ZmYtMzg4M2FhZmIzMTJiIiwidCI6IjQ0OTFmMGVlLWY1MDMtNDcyNi1hNWViLTFmMGM0ZGFjODJhOSJ9" target="_blank">
-                                                    <img src="assets/images/icons/icons8-power-bi-2021-48.png" alt="pwrBi">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <p>
-                                            Étude des facteurs d'influence de la performance d’une ligne de conditionnement pour optimiser son efficacité.
-                                        </p>
-
-                                        <!-- Zone des tags -->
-                                        <div class="tags">
-                                            <span>Power BI</span>
-                                            <span>DAX</span>
-                                            <span>Data Analysis</span>
-                                            <span>Python</span>
-                                            <span>Time Series</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="projet-card-frame">
-
-                                <div class="projet-card">
-                                    <!-- Zone d'image -->
-                                    <div class="card-image">
-                                        <img src="assets/images/projets/Taxi_NYC.webp" alt="Analyse de NYC Taxi" />
-                                    </div>
-
-                                    <!-- Zone de contenu texte -->
-                                    <div class="card-content">
-                                        <div class="title-frame">
-                                            <h3>Analyse de NYC Taxi</h3>
-
-                                            <div class="card-github-icon">
-                                                <a href="https://github.com/Dim2960/nyc-taxi-data-analysis" target="github">
-                                                    <img src="assets/images/icons/icons8-github-48.png" alt="pwrBi">
-                                                </a>
-                                            </div>
-
-                                            <div class="card-pwrBi-icon">
-                                                <a href="https://app.powerbi.com/view?r=eyJrIjoiY2MxNjcxZjItMDJiMC00OTJiLWIxNDEtMDE3MjI3ZjZmOWU2IiwidCI6IjQ0OTFmMGVlLWY1MDMtNDcyNi1hNWViLTFmMGM0ZGFjODJhOSJ9" target="_blank">
-                                                    <img src="assets/images/icons/icons8-power-bi-2021-48.png" alt="pwrBi">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        
-                                        <p>
-                                            Analyse des données des courses NYC Taxi Services pour optimiser la répartition des taxis, la rentabilité et l'efficacité opérationnelle.
-                                        </p>
-
-                                        <!-- Zone des tags -->
-                                        <div class="tags">
-                                            <span>Power BI</span>
-                                            <span>DAX</span>
-                                            <span>Data Analysis</span>
-                                            <span>Python</span>
-                                            <span>geocoding</span>
-                                            <span>PostGre SQL</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>    
-                            
-                            <div class="projet-card-frame">
-
-                                <div class="projet-card">
-                                    <!-- Zone d'image -->
-                                    <div class="card-image">
-                                        <img src="assets/images/projets/etude_marche_vin.webp" alt="Étude du Marché US des Vins" />
-                                    </div>
-
-                                    <!-- Zone de contenu texte -->
-                                    <div class="card-content">
-
-                                        <div class="title-frame">
-                                                <h3>Étude du Marché US des Vins</h3>
-
-                                            <div class="card-github-icon">
-                                                <a href="https://github.com/Dim2960/market-analysis-wine" target="_blank">
-                                                    <img src="assets/images/icons/icons8-github-48.png" alt="github">
-                                                </a>
-                                            </div>
-
-                                            <div class="card-pwrBi-icon">
-                                                <a href="https://app.powerbi.com/view?r=eyJrIjoiOTk3NGU5MTYtZjE5Ny00ZmYxLWIzYzUtNTRiZmQ1NGU0ZDliIiwidCI6IjQ0OTFmMGVlLWY1MDMtNDcyNi1hNWViLTFmMGM0ZGFjODJhOSJ9" target="_blank">
-                                                    <img src="assets/images/icons/icons8-power-bi-2021-48.png" alt="pwrBi">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <p>
-                                            Étude du marché US et analyse comparative des vins pour recommander un prix optimal avec une visualisation simple et complète.
-                                        </p>
-
-                                        <!-- Zone des tags -->
-                                        <div class="tags">
-                                            <span>Power BI</span>
-                                            <span>DAX</span>
-                                            <span>Data Analysis</span>
-                                            <span>Python</span>
-                                            <span>Panda</span>
-                                            <span>seaborn</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  
-                            
-                            <div class="projet-card-frame">
-
-                                <div class="projet-card">
-                                    <!-- Zone d'image -->
-                                    <div class="card-image">
-                                        <img src="assets/images/projets/AI_Judo.webp" alt="Analyse IA Judo" />
-
-                                        <!-- Fenêtre modale pour la vidéo -->
-                                        <div id="videoModal" class="modal">
-                                            <div class="modal-content">
-                                            <span class="close">&times;</span>
-                                            <video width="100%" controls autoplay muted>
-                                                <source src="assets/videos/judo_tracking.webm" type="video/webm">
-                                                <!-- <source src="assets/videos/ma_video.webm" type="video/webm"> -->
-                                                Votre navigateur ne supporte pas la lecture de cette vidéo.
-                                            </video>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Zone de contenu texte -->
-                                    <div class="card-content">
-                                        <div class="title-frame">
-                                            <h3>Analyse IA Judo</h3>
-
-                                            <div class="card-video-icon">
-                                                <a href="#" id="openVideoModal">
-                                                    <img src="assets/images/icons/icons8-video-48.png" alt="video">
-                                                </a>
-                                            </div>
-    
-                                            <div class="card-github-icon">
-                                                <a href="https://github.com/Dim2960/mvt_analyses" target="_blank">
-                                                    <img src="assets/images/icons/icons8-github-48.png" alt="github">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <p>
-                                            Détection et analyse des mouvements en judo via Computer Vision avec YOLO, DeepSORT et MediaPipe pour optimiser le suivi.
-                                        </p>
-
-                                        <!-- Zone des tags -->
-                                        <div class="tags">
-                                            <span>Computer vision</span>
-                                            <span>Python</span>
-                                            <span>Ultralytics YOLO</span>
-                                            <span>MediaPipe</span>
-                                            <span>DeepSort</span>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  
-                            
-                            <div class="projet-card-frame">
-
-                                <div class="projet-card">
-                                    <!-- Zone d'image -->
-                                    <div class="card-image">
-                                        <img src="assets/images/projets/image_classification.webp" alt="Image classification" />
-                                    </div>
-
-                                    <!-- Zone de contenu texte -->
-                                    <div class="card-content">
-                                        <div class="title-frame">
-                                            <h3>Classification d'Images</h3>
-
-                                            <div class="card-github-icon">
-                                                <a href="https://github.com/Dim2960/lego_classification" target="_blank">
-                                                    <img src="assets/images/icons/icons8-github-48.png" alt="github">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <p>
-                                            Entraînement d’un modèle de deep learning avec Keras pour classifier des images de LEGO en différentes catégories.
-                                        </p>
-
-                                        <!-- Zone des tags -->
-                                        <div class="tags">
-                                            <span>Python</span>
-                                            <span>Computer vision</span>
-                                            <span>Image Classification</span>
-                                            <span>Deep Learning</span>
-                                            <span>Data Augmentation</span>
-                                            <span>Scikit-learn</span>
-                                            <span>TensorFlow</span>
-                                            <span>Keras</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  
-                            
-                            <div class="projet-card-frame">
-
-                                <div class="projet-card">
-                                    <!-- Zone d'image -->
-                                    <div class="card-image">
-                                        <img src="assets/images/projets/ML_recommandation.webp" alt="Recommendation de film" />
-                                    </div>
-
-                                    <!-- Zone de contenu texte -->
-                                    <div class="card-content">
-                                        <div class="title-frame">
-                                            <h3>Recommandation de film par ML</h3>
-
-                                            <div class="card-streamlit-icon">
-                                                <a href="https://flixoucreuse.streamlit.app/" target="_blank">
-                                                    <img src="assets/images/icons/icons8-streamlit-48.png" alt="streamlit">
-                                                </a>
-                                            </div>
-    
-                                            <div class="card-github-icon">
-                                                <a href="https://github.com/Dim2960/flixoucreuse" target="_blank">
-                                                    <img src="assets/images/icons/icons8-github-48.png" alt="github">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <p>
-                                            Création d’un système de recommandation de films basé sur le machine learning et l’analyse de données IMDB/TMDB.
-                                        </p>
-
-                                        <!-- Zone des tags -->
-                                        <div class="tags">
-                                            <span>Data Analysis</span>
-                                            <span>API</span>
-                                            <span>Python</span>
-                                            <span>Machine Learning</span>
-                                            <span>Scikit-learn</span>
-                                            <span>Pandas</span>
-                                            <span>Streamlit</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>   
-                            
-                            <div class="projet-card-frame">
-
-                                <div class="projet-card">
-                                    <!-- Zone d'image -->
-                                    <div class="card-image">
-                                        <img src="assets/images/projets/process_industry_data_simulation.webp" alt="Génération de données artificielles" />
-                                    </div>
-
-                                    <!-- Zone de contenu texte -->
-                                    <div class="card-content">
-                                        <div class="title-frame">
-                                            <h3>Simulation de données</h3>
-                                        
-                                            <div class="card-github-icon">
-                                                <a href="https://github.com/Dim2960/filling_simulation" target="_blank">
-                                                    <img src="assets/images/icons/icons8-github-48.png" alt="github">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <p>
-                                            Script de génération de données pour simuler le fonctionnement d'une ligne de conditionnement automatisée.
-                                        </p>
-
-                                        <!-- Zone des tags -->
-                                        <div class="tags">
-                                            <span>Process Optimization</span>
-                                            <span>Industrial Analytics</span>
-                                            <span>Data Simulation</span>
-                                            <span>Python</span>
-                                            <span>Pandas</span>
-                                            <span>Numpy</span>
-                                            <span>Time Series</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  
-                            
-                            <div class="projet-card-frame">
-
-                                <div class="projet-card">
-                                    <!-- Zone d'image -->
-                                    <div class="card-image">
-                                        <img src="assets/images/projets/judo_app_projet.webp" alt="WebApp présence" />
-                                    </div>
-
-                                    <!-- Zone de contenu texte -->
-                                    <div class="card-content">
-                                        <div class="title-frame">
-                                            <h3>WebApp présence</h3>
-                                        
-                                            <div class="card-github-icon">
-                                                <a href="https://github.com/Dim2960/Presence_Judo" target="_blank">
-                                                    <img src="assets/images/icons/icons8-github-48.png" alt="github">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <p>
-                                            Application web pour suivre la présence des judokas, gérer les cours et analyser les fréquentations avec Flask et MySQL.
-                                        </p>
-
-                                        <!-- Zone des tags -->
-                                        <div class="tags">
-                                            <span>Python</span>
-                                            <span>Flask API</span>
-                                            <span>MySQL</span>
-                                            <span>SQLAlchemy</span>
-                                            <span>Docker</span>
-                                            <span>Web App</span>
-                                            <span>HTML</span>
-                                            <span>CSS</span>
-                                            <span>JavaScript</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  
+                                <?php
+                            }
+                            ?>
 
                         </div>
-                        
                     </div>
                 </div>
+                
             </section>
         </div>
         
@@ -916,7 +624,7 @@ if (isset($_SESSION['notification'])) {
                     <circle cx="4" cy="4" r="2"></circle>
                 </svg>
             </a>
-            <a href="mailto:dimitri.lefebvre@datadriven-dynamix.fr" target="_blank">
+            <a href="index.php#contact" >
                 <svg xmlns="http://www.w3.org/2000/svg" 
                         width="24" 
                         height="24" 

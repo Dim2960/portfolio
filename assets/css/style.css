@@ -25,6 +25,15 @@
     --border: #6C7277;
     --box-shadow: rgba(255, 255, 255, 0.2);
     --box-shadow-accent: rgba(0, 0, 0, 0.1);
+
+    --table-thead-bg: #003366;
+    --table-thead-color: #F2F2F2;
+    --table-tbody-bg: #E8E8E8;
+    --table-td-color: #003366;
+    --table-thead-hover-bg: #123e69;
+    --table-tbody-hover-bg: #CCCCCC;
+    --table-td-hover-color: #003366; 
+
 }
 
 body.clear-mode  {
@@ -54,6 +63,14 @@ body.clear-mode  {
     --border: #CCCCCC;
     --box-shadow: rgba(0, 0, 0, 0.2);
     --box-shadow-accent: rgba(255, 255, 255, 0.1);
+
+    --table-thead-bg: #003366;
+    --table-thead-color: #F2F2F2;
+    --table-tbody-bg: #E8E8E8;
+    --table-td-color: #003366;
+    --table-thead-hover-bg: #123e69;
+    --table-tbody-hover-bg: #CCCCCC;
+    --table-td-hover-color: #003366; 
 }
 
 /* 1. Reset de base */
@@ -447,6 +464,8 @@ textarea {
 #contact button[type="submit"]:hover {
     background-color: var(--btn-bg-color-hover);
 }
+
+
 
 /* Style pour la notification */
 .notification {

@@ -171,6 +171,10 @@ scrollArrowTop.addEventListener('click', (e) => {
 });
 
 
+//*************************************************//
+//* Carrousel de la page d'accueil  ***************//
+//*************************************************//
+
 
 // Sélection du conteneur du carrousel et des boutons
 const carouselContainer = document.querySelector('.carousel-track');
@@ -241,6 +245,9 @@ prevButton.addEventListener('click', () => {
 
 
 
+//*************************************************************//
+// Animation des éléments de la page d'accueil  ***************//
+//*************************************************************//
 
 // Animation du titre de la page d'accueil
     // Pour chaque lettre, dès la fin de l'animation "waveOnce", on passe à l'animation en boucle
@@ -255,7 +262,7 @@ prevButton.addEventListener('click', () => {
 
 
 // ***************************************************//
-// ************                       ****************//
+// ************* Intersection Observer ***************//
 // ***************************************************//
 const mediaQuery = window.matchMedia("(orientation: landscape)");
 

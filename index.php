@@ -226,44 +226,43 @@ try {
 
                                 ?>
                                 <div class="projet-card-frame">
-                                    <div class="projet-card">
+                                    <form action="fiche_projet.php" method="POST" style="display:inline;">
+                                        <div class="projet-card" onclick="this.closest('form').submit();" style="cursor: pointer;">
 
-                        
-                                        <!-- Zone d'image -->
-                                        <div class="card-image">
-                                            <form action="fiche_projet.php" method="POST" style="display:inline;">
-                                                <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
-                                                <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">
-                                                <input type="image" src="assets/images/projets/global/<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($image_alt); ?>" />
-                                            </form>
-                                        </div>
+                                            <!-- Zone d'image -->
+                                            <div class="card-image">
+                                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+                                                    <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">
+                                                    <input type="image" src="assets/images/projets/global/<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($image_alt); ?>" />
+                                            </div>
 
-                                        <!-- Zone de contenu texte -->
-                                        <div class="card-content">
-                                            <div class="title-frame">
-                                                <h3><?php echo htmlspecialchars($titre); ?></h3>
+                                            <!-- Zone de contenu texte -->
+                                            <div class="card-content">
+                                                <div class="title-frame">
+                                                    <h3><?php echo htmlspecialchars($titre); ?></h3>
+                                                    
+                                                </div>
+                                                <p>
+                                                    <?php echo nl2br(htmlspecialchars($description)); ?>
+                                                </p>
+
+                                                <!-- Zone des tags -->
+                                                <div class="tags">
+                                                <?php 
+                                                // Convertir la chaîne de tags en tableau, en séparant par la virgule
+                                                $tagsArray = explode(',', $tags); 
                                                 
+                                                // Parcourir chaque tag et l'afficher dans une balise <span>
+                                                foreach($tagsArray as $tag) {
+                                                    echo '<span>' . trim(htmlspecialchars($tag)) . '</span>';
+                                                }
+                                                ?>
+                                                </div>
                                             </div>
-                                            <p>
-                                                <?php echo nl2br(htmlspecialchars($description)); ?>
-                                            </p>
 
-                                            <!-- Zone des tags -->
-                                            <div class="tags">
-                                            <?php 
-                                            // Convertir la chaîne de tags en tableau, en séparant par la virgule
-                                            $tagsArray = explode(',', $tags); 
-                                            
-                                            // Parcourir chaque tag et l'afficher dans une balise <span>
-                                            foreach($tagsArray as $tag) {
-                                                echo '<span>' . trim(htmlspecialchars($tag)) . '</span>';
-                                            }
-                                            ?>
-                                            </div>
+
                                         </div>
-
-
-                                    </div>
+                                    </form>
                                 </div>
                                 <?php
                             }

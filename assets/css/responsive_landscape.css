@@ -25,7 +25,6 @@
 
     h2 {
         display: none;
-
     }
     
     h3 {
@@ -105,9 +104,7 @@
 
     .projet-card-frame {
         margin-top:0;
-        /* height : 75vh; */
-        /* min-height: 250px; */
-        /* max-height: 290px; */
+
         height : auto;
         min-height: 75vh;
         max-height: 500px; 
@@ -261,9 +258,6 @@
 
     .projet-card-frame {
         margin-top:0;
-        /* height : 75vh; */
-        /* min-height: 250px; */
-        /* max-height: 290px; */
         height : auto;
         min-height: 75vh;
         max-height: 500px; 

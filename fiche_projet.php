@@ -118,6 +118,7 @@ foreach ($rows as $row) {
     <!-- Feuille de style pour l'adaptation responsive -->
     <link rel="stylesheet" href="assets/css/responsive_portrait.css">
     <link rel="stylesheet" href="assets/css/responsive_landscape.css">
+    <link rel="stylesheet" href="assets/css/fiche_projets.css">
     
     <!-- Données structurées (JSON-LD) -->
     <script type="application/ld+json">
@@ -198,7 +199,8 @@ foreach ($rows as $row) {
                     <hr>
 
                     <div class="fiche-projet-frame-data-methodo">
-                        <div class="fiche-projet-frame-data-methodo-data">
+                        
+                    <div class="fiche-projet-frame-data-methodo-data">
                             <div class="fiche-projet-frame-data-methodo-data-content">
                                 <div class="fiche-projet-frame-data-methodo-data-title">
                                     <h2>Données</h2>
@@ -392,6 +394,7 @@ foreach ($rows as $row) {
                     <hr>
 
                     <div class="fiche-projet-frame-group-dif-improv">
+
                         <div class="fiche-projet-frame-difficulties-learns">
                             <h2>Difficultés</h2>
                             <div class="list-puce">
@@ -408,7 +411,7 @@ foreach ($rows as $row) {
                                 </ul>
                             </div>
                         </div>
-                        
+
                         <div class="fiche-projet-frame-improvements">
                             <h2>Perspectives d'amélioration</h2>
                             <div class="list-puce">
@@ -426,6 +429,7 @@ foreach ($rows as $row) {
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </section>

@@ -16,7 +16,7 @@
     
     <!-- Menu du sidebar -->
     <div class="sidebar-menu">
-        <a href="#accueil" class="sidebar-link">
+        <a href="index.php#accueil" class="sidebar-link">
             <svg    xmlns="http://www.w3.org/2000/svg" 
                     width="24" 
                     height="24" 
@@ -31,7 +31,7 @@
             </svg>
             Accueil
         </a>
-        <a href="#projets" class="sidebar-link">
+        <a href="index.php#projets" class="sidebar-link">
             <svg    xmlns="http://www.w3.org/2000/svg" 
                     width="24" 
                     height="24" 
@@ -46,7 +46,7 @@
             </svg>
             Projets
         </a>
-        <a href="#a-propos" class="sidebar-link">
+        <a href="index.php#a-propos" class="sidebar-link">
             <svg    xmlns="http://www.w3.org/2000/svg" 
                     width="24" 
                     height="24" 
@@ -61,7 +61,7 @@
             </svg>
             À propos
         </a>
-        <a href="#contact" class="sidebar-link">
+        <a href="index.php#contact" class="sidebar-link">
             <svg    xmlns="http://www.w3.org/2000/svg" 
                     width="24" 
                     height="24" 

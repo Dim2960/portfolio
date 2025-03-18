@@ -191,9 +191,15 @@ function updateButtonPosition() {
     
     // Récupère la largeur de l'écran
     const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
     
     // Adapte la position horizontale selon la taille de l'écran
-    if (screenWidth <= 768) {
+    if (screenHeight <= 480 & screenWidth > 768) {
+        // Pour les écrans de 768px et moins : positionner les boutons plus à l'intérieur
+        prevButton.style.left = `7vw`;
+        nextButton.style.left = `${rect.width + 65}px`;
+        nbFrames  = 2;
+    } else if (screenWidth <= 768) {
         // Pour les écrans de 768px et moins : positionner les boutons plus à l'intérieur
         prevButton.style.left = `5vw`;
         nextButton.style.left = `${rect.width - 45}px`;

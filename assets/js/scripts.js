@@ -6,6 +6,7 @@ const sidebar = document.getElementById('sidebar');
 const themeToggleButton = document.getElementById('themeToggleBtn');
 const iconMoon = document.querySelector('.icon-moon');
 const iconSun = document.querySelector('.icon-sun');
+const hiddenTheme = document.querySelector('.hidden-theme');
 
 const body = document.body;
 const header = document.querySelector('header');
@@ -70,6 +71,34 @@ document.addEventListener('click', (e) => {
     }
 });
 
+
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+    return null;
+}
+
+
+// Appliquer la classe au body dès que le DOM est chargé
+document.addEventListener("DOMContentLoaded", function() {
+    var theme = getCookie("theme");
+    // On suppose que pour le thème clair, le cookie a la valeur "light"
+    if (theme === "light") {
+        document.body.classList.add("clear-mode");
+    }
+});
+
 // Bascule du mode sombre
 themeToggleButton.addEventListener('click', () => {
     body.classList.toggle('clear-mode');
@@ -77,9 +106,13 @@ themeToggleButton.addEventListener('click', () => {
     if (body.classList.contains('clear-mode')) {
         iconMoon.style.display = 'block';
         iconSun.style.display = 'none';
+        hiddenTheme.value = 'light';
+        setCookie("theme", "light", 30);
     } else {
         iconMoon.style.display = 'none';
         iconSun.style.display = 'block';
+        hiddenTheme.value = 'dark';
+        setCookie("theme", "dark", 30);
     }
 });
 

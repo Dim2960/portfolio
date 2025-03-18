@@ -148,8 +148,29 @@
         height: 120px;
         resize: vertical;
     } 
+
+    .fiche-projet-frame-issue,
+    .fiche-projet-frame-target {
+        width: 95%;
+    }
+
 }
 
+
+@media (orientation: portrait) and (max-width: 695px) {
+    .fiche-projet-frame-difficulties-learns, .fiche-projet-frame-improvements {
+        background: none;
+        border-left: none;
+        padding: 10px 15px;
+        margin: 8px 0;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--primary-text);
+        transition: all 0.1s ease-in-out;
+        width: 85%;
+    }
+    
+}
 
 @media (orientation: portrait) and (max-width: 480px) {
     header nav a {
@@ -160,6 +181,10 @@
     .nav-left {
         display: flex;
         align-items: center;
+    }
+
+    hr {
+        display: none;
     }
 
     h1 {
@@ -209,6 +234,11 @@
         width: 98vw;
     }/* Conteneur principal avec flexbox pour disposer l'image et le formulaire côte à côte */
 
+    .fiche-projet-frame-issue,
+    .fiche-projet-frame-target {
+        width: 100%;
+    }
+
     .container-contact {
         max-width: 100%;
     }
@@ -240,6 +270,41 @@
         height: 120px;
         resize: vertical;
     } 
+    
+
+    .fiche-projet-frame-data-methodo-data-table {
+        display: none;
+    }
+
+    .fiche-projet-frame-data-methodo-data-table-list {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .fiche-projet-frame-data-methodo-data-table-list .list-puce ul  {
+        padding: 0;
+        margin: 0;
+    }
+
+    .fiche-projet-frame-data-methodo-data-table-list .list-puce ul li {
+        justify-content: flex-start !important;
+        text-align: left !important;
+
+    }
+
+    .fiche-projet-frame-data-methodo-data {
+        display: flex;
+        flex-direction: column;
+        min-width: 300px;
+        flex: 1;
+    }
+
+    .fiche-projet-frame-data-methodo-data-img img{
+        width: 100%;               
+
+    }
+
 
 }
 
@@ -254,6 +319,7 @@
         display: flex;
         align-items: center;
     }
+
 
     h1 {
         font-size: 1.2rem;

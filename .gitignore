@@ -25,3 +25,7 @@ build/
 /assets/videos/*
 /assets/images/projets/
 /assets/images/portraits/
+/vendor/
+composer.json
+composer.lock
+.env

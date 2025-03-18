@@ -55,23 +55,29 @@ foreach ($rows as $row) {
         $description = isset($row[2]) ? $row[2] : 'Description non disponible';
         $image_url = isset($row[3]) ? $row[3] : 'url image non disponible';
         $image_alt = isset($row[4]) ? $row[4] : 'alt image non disponible';
-        $tags = isset($row[5]) ? $row[5] : 'tags image non disponible';
-        $description_detail = isset($row[6]) ? $row[6] : ' non disponible';
-        $objectif = isset($row[7]) ? $row[7] : ' non disponible';
-        $Probleme_resolu = isset($row[8]) ? $row[8] : ' non disponible';
-        $data_source = isset($row[9]) ? $row[9] : ' non disponible';
-        $data_size = isset($row[10]) ? $row[10] : ' non disponible';
-        $data_type = isset($row[11]) ? $row[11] : ' non disponible';
-        $data_remark = isset($row[12]) ? $row[12] : ' non disponible';
-        $project_steps = isset($row[13]) ? $row[13] : ' non disponible';
-        $technos = isset($row[14]) ? $row[14] : ' non disponible';
-        $results = isset($row[15]) ? $row[15] : ' non disponible';
-        $difficulties_learns = isset($row[16]) ? $row[16] : ' non disponible';
-        $potential_improvements = isset($row[17]) ? $row[17] : ' non disponible';
-        $powerbi_link = isset($row[18]) ? $row[18] : ' non disponible';
-        $github_link = isset($row[19]) ? $row[19] : ' non disponible';
-        $streamlit_link = isset($row[20]) ? $row[20] : ' non disponible';
-        $video_link = isset($row[21]) ? $row[21] : ' non disponible';
+        $tags = isset($row[5]) ? $row[5] : 'tags non disponible';
+        $description_detail = isset($row[6]) ? $row[6] : 'Information non disponible';
+        $objectif = isset($row[7]) ? $row[7] : 'Information non disponible';
+        $Probleme_resolu = isset($row[8]) ? $row[8] : 'Information non disponible';
+        $data_source = isset($row[9]) ? $row[9] : 'Information non disponible';
+        $data_size = isset($row[10]) ? $row[10] : 'Information non disponible';
+        $data_type = isset($row[11]) ? $row[11] : 'Information non disponible';
+        $data_remark = isset($row[12]) ? $row[12] : 'Information non disponible';
+        $url_img_data = isset($row[13]) ? $row[13] : 'url image non disponible';
+        $alt_img_data = isset($row[14]) ? $row[14] : 'url image non disponible';
+        $project_steps = isset($row[15]) ? $row[15] : 'Information non disponible';
+        $technos = isset($row[16]) ? $row[16] : 'Information non disponible';
+        $results = isset($row[17]) ? $row[17] : 'Information non disponible';
+        $img_url_results = isset($row[18]) ? $row[18] : 'url image non disponible';
+        $alt_img_results = isset($row[19]) ? $row[19] : 'alt image non disponible';
+        $powerbi_link = isset($row[20]) ? $row[20] : 'lien non disponible';
+        $github_link = isset($row[21]) ? $row[21] : 'lien non disponible';
+        $streamlit_link = isset($row[22]) ? $row[22] : 'lien non disponible';
+        $video_link = isset($row[23]) ? $row[23] : 'lien non disponible';
+        $difficulties_learns = isset($row[24]) ? $row[24] : 'Information non disponible';
+        $potential_improvements = isset($row[25]) ? $row[25] : 'Information non disponible';
+
+
 
         break;
     }
@@ -142,6 +148,7 @@ foreach ($rows as $row) {
     }
     </script>
 </head>
+
 <body>
 
     <!-- Header avec logo, navigation et appel à l'action -->
@@ -176,7 +183,7 @@ foreach ($rows as $row) {
             
             <div class="nav-right">
                 <button id="themeToggleBtn" class="btn btn-theme-toggle">
-                    <!-- Icône de lune (mode clair par défaut) -->
+                    <!-- Icône de lune (mode clair ) -->
                     <svg    class="icon icon-moon" 
                             xmlns="http://www.w3.org/2000/svg" 
                             width="24" height="24" 
@@ -185,11 +192,12 @@ foreach ($rows as $row) {
                             stroke="currentColor" 
                             stroke-width="2" 
                             stroke-linecap="round" 
-                            stroke-linejoin="round">
+                            stroke-linejoin="round"
+                            <?php if ($_COOKIE['theme'] === 'dark') { ?>style="display: none;" <?php } ?>>
                         <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                     </svg>
 
-                    <!-- Icône de soleil (affichée en mode sombre) -->
+                    <!-- Icône de soleil (mode sombre) -->
                     <svg    class="icon icon-sun" 
                             xmlns="http://www.w3.org/2000/svg" 
                             width="24" 
@@ -199,7 +207,7 @@ foreach ($rows as $row) {
                             stroke-width="2" 
                             stroke-linecap="round" 
                             stroke-linejoin="round" 
-                            style="display: none;">
+                            <?php if ($_COOKIE['theme'] === 'light') { ?>style="display: none;" <?php } ?>>
                         <circle cx="12" cy="12" r="4"></circle>
                         <path d="M12 2v2"></path>
                         <path d="M12 20v2"></path>
@@ -372,7 +380,7 @@ foreach ($rows as $row) {
                         </div>
                         
                         <div class="fiche-projet-frame-context-image">
-                            <img src="assets/images/projets/<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($image_alt); ?>" />
+                            <img src="assets/images/projets/global/<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($image_alt); ?>" />
                         </div>
 
                     </div>
@@ -391,29 +399,79 @@ foreach ($rows as $row) {
 
                     <div class="fiche-projet-frame-data-methodo">
                         <div class="fiche-projet-frame-data-methodo-data">
-                            <h2>Données</h2>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Source</th>
-                                        <th>Taille</th>
-                                        <th>Type de données</th>
-                                        <th>Particularités</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><?php echo htmlspecialchars($data_source); ?></td>
-                                        <td><?php echo htmlspecialchars($data_size); ?></td>
-                                        <td><?php echo htmlspecialchars($data_type); ?></td>
-                                        <td><?php echo htmlspecialchars($data_remark); ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="fiche-projet-frame-data-methodo-data-content">
+                                <div class="fiche-projet-frame-data-methodo-data-title">
+                                    <h2>Données</h2>
+                                </div>
+
+                                <div class="fiche-projet-frame-data-methodo-data-table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Source</th>
+                                                <th>Taille</th>
+                                                <th>Type de données</th>
+                                                <th>Particularités</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><?php echo htmlspecialchars($data_source); ?></td>
+                                                <td><?php echo htmlspecialchars($data_size); ?></td>
+                                                <td><?php echo htmlspecialchars($data_type); ?></td>
+                                                <td><?php echo htmlspecialchars($data_remark); ?></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="fiche-projet-frame-data-methodo-data-table-list">
+                                    
+                                    <div class="list-puce">
+                                            <ul>
+                                                <li>Source : <?php echo htmlspecialchars($data_source); ?></li>
+                                                <li>Taille : <?php echo htmlspecialchars($data_size); ?></li>
+                                                <li>Type de données : <?php echo htmlspecialchars($data_type); ?></li>
+                                                <li>Particularités : <?php echo htmlspecialchars($data_remark); ?></li>
+                                            </ul>
+                                    </div>
+                                </div>
+                                
+                                <?php
+                                if ($url_img_data != 'url image non disponible') {
+                                ?>
+                                <div class="fiche-projet-frame-data-methodo-data-img">
+                                    <img src="assets/images/projets/data/<?php echo htmlspecialchars($url_img_data); ?>" alt="<?php echo htmlspecialchars($alt_img_data); ?>" />
+                                </div>
+                                <?php
+                                }
+                                ?>
+                            </div>
                         </div>
 
                         <div class="fiche-projet-frame-data-methodo-methodo">
-                            <h2>Méthodologie & Outils</h2>
+                            <h2>
+                                <?php 
+                                if (($project_steps !== 'Information non disponible') & ($technos !== 'Information non disponible')) {
+                                    echo 'Méthodologie et Outils';
+                                    $jeton_project_steps = 1;
+                                    $jeton_technos = 1;
+                                    } 
+                                elseif (($project_steps != 'Information non disponible') & ($technos === 'Information non disponible')) {
+                                    echo 'Méthodologie';
+                                    $jeton_project_steps = 1;
+                                    $jeton_technos = 0;
+                                    }
+                                elseif (($project_steps === 'Information non disponible') & ($technos !== 'Information non disponible')) {
+                                    echo 'Outils et technologies';
+                                    $jeton_project_steps = 0;
+                                    $jeton_technos = 1;
+                                    }
+                                ?>
+                            </h2>
+                            <?php
+                            if ($jeton_project_steps == 1) {
+                            ?>
                             <h3>Étapes de réalisation :</h3>
                             <div class="list-steps">
                                 <ol>
@@ -430,8 +488,15 @@ foreach ($rows as $row) {
                             </div>
                             
                             </br>
-
-                            <h3>Outils & technologies utilisés :</h3>
+                            <?php
+                            }
+                            if ($jeton_technos == 1) {
+                                if ($jeton_project_steps == 1) {
+                                ?>
+                                <h3>Outils et technologies utilisés :</h3>
+                                <?php
+                                }
+                                ?>
                             <div class="list-box">
                                 <ul>
                                     <?php 
@@ -445,6 +510,9 @@ foreach ($rows as $row) {
                                     ?>
                                 </ul>
                             </div>
+                            <?php
+                            }   
+                            ?>
                         </div>
 
                     </div>
@@ -452,48 +520,13 @@ foreach ($rows as $row) {
                     <hr>
 
                     <div class="fiche-projet-frame-results">
+
                         <div class="fiche-projet-frame-results-header">
-
-                            <div class="fiche-projet-frame-results-header-title">
-                            <!-- Résultats & Impact -->
-                            <h2>Résultats & Impact</h2>
-                            </div>
-
-                            <div class="fiche-projet-frame-results-header-links">
-                                <?php
-                                if ($powerbi_link != ' non disponible') {
-                                    echo '<div class="ctn-icon">
-                                                <a href="' . htmlspecialchars($powerbi_link) . '" target="_blank">
-                                                    <img src="assets/images/icons/icons8-power-bi-2021-48.png" alt="Lien vers Power BI" />
-                                                </a>
-                                            </div>';
-                                }   
-                                if ($github_link != ' non disponible') {
-                                    echo '<div class="ctn-icon">
-                                                <a href="' . htmlspecialchars($github_link) . '" target="_blank">
-                                                    <img src="assets/images/icons/icons8-github-48.png" alt="Lien vers GitHub" />
-                                                </a>
-                                            </div>';
-                                }
-                                if ($streamlit_link != ' non disponible') {
-                                    echo '<div class="ctn-icon">
-                                                <a href="' . htmlspecialchars($streamlit_link) . '" target="_blank">
-                                                    <img src="assets/images/icons/icons8-streamlit-48.png" alt="Lien vers Streamlit" />
-                                                </a>
-                                            </div>';
-                                }
-                                if ($video_link != ' non disponible') {
-                                    echo '<div class="ctn-icon">
-                                                <a href="' . htmlspecialchars($video_link) . '" target="_blank">
-                                                    <img src="assets/images/icons/icons8-video-48.png" alt="Lien vers Vidéo" />
-                                                </a>
-                                            </div>';
-                                }
-                                ?>
-                            </div>
+                            <h2>Résultats</h2>
                         </div>
 
                         <div class="fiche-projet-frame-results-content">
+
                             <div class="fiche-projet-frame-results-list list-puce">
                                 <ul>
                                     <?php 
@@ -507,12 +540,60 @@ foreach ($rows as $row) {
                                     ?>
                                 </ul>
                             </div>
+
+                            <div class="fiche-projet-frame-results-img-container">
+
+                                <div class="fiche-projet-frame-results-img">
+                                    <?php
+                                    if ($img_url_results != 'url image non disponible') {
+                                        ?>
+                                        <img src="assets/images/projets/results/<?php echo htmlspecialchars($img_url_results); ?>" alt="<?php echo htmlspecialchars($alt_img_results); ?>" />
+                                        <?php
+                                    }
+                                    ?>
+                                </div>
+
+                                <div class="fiche-projet-frame-results-links">
+                                    <?php
+                                    if ($powerbi_link != 'lien non disponible') {
+                                        echo '<div class="ctn-icon">
+                                                    <a href="' . htmlspecialchars($powerbi_link) . '" target="_blank">
+                                                        <img src="assets/images/icons/icons8-power-bi-2021-48.png" alt="Lien vers Power BI" />
+                                                    </a>
+                                                </div>';
+                                    }   
+                                    if ($github_link != 'lien non disponible') {
+                                        echo '<div class="ctn-icon">
+                                                    <a href="' . htmlspecialchars($github_link) . '" target="_blank">
+                                                        <img src="assets/images/icons/icons8-github-48.png" alt="Lien vers GitHub" />
+                                                    </a>
+                                                </div>';
+                                    }
+                                    if ($streamlit_link != 'lien non disponible') {
+                                        echo '<div class="ctn-icon">
+                                                    <a href="' . htmlspecialchars($streamlit_link) . '" target="_blank">
+                                                        <img src="assets/images/icons/icons8-streamlit-48.png" alt="Lien vers Streamlit" />
+                                                    </a>
+                                                </div>';
+                                    }
+                                    if ($video_link != 'lien non disponible') {
+                                        echo '<div class="ctn-icon">
+                                                    <a href="assets/videos/' . htmlspecialchars($video_link) . '" target="_blank">
+                                                        <img src="assets/images/icons/icons8-video-48.png" alt="Lien vers Vidéo" />
+                                                    </a>
+                                                </div>';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+                    <hr>
+
                     <div class="fiche-projet-frame-group-dif-improv">
                         <div class="fiche-projet-frame-difficulties-learns">
-                            <h2>Difficultés & Apprentissages</h2>
+                            <h2>Difficultés</h2>
                             <div class="list-puce">
                                 <ul>
                                     <?php 

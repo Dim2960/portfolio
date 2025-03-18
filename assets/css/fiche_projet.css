@@ -42,7 +42,7 @@
 #fiche-projet table {
     width: 95%;
     border-collapse: collapse; /* Supprime les espaces entre les bordures */
-    margin: 20px 0;
+    margin: 5px 0;
     font-size: 0.8rem;
     text-align: center;
     border-radius: 8px;
@@ -188,7 +188,7 @@
     flex-wrap: wrap; /* Permet une bonne adaptation sur mobile */
     flex-direction: row; /* Aligne le texte à gauche et l'image à droite */
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 2rem; /* Ajoute un espacement entre le texte et l’image */
     width: 100%;
     margin-top: 2rem;
@@ -197,7 +197,7 @@
 .fiche-projet-frame-context-content  {
     width: 50%;
     min-width: 300px;
-    flex: 1; /* Permet une adaptation fluide */
+    flex: 1; 
 }
 
 .fiche-projet-frame-context-image {
@@ -265,8 +265,53 @@
     width: 100%;
     min-width: 400px;
     flex: 1.4;
-    text-align: flex-start;
+    justify-content: flex-start; 
+    align-items: flex-start;
 }
+    
+    .fiche-projet-frame-data-methodo-data-title {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .fiche-projet-frame-data-methodo-data-content {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 100%;
+        margin: 0rem;
+        justify-content: flex-start; 
+        align-items: flex-start;
+
+    }
+
+        .fiche-projet-frame-data-methodo-data-table {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            margin: 0;
+            padding: 0;
+        }
+
+        .fiche-projet-frame-data-methodo-data-table-list {
+            display: none;
+        }
+
+        .fiche-projet-frame-data-methodo-data-img {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .fiche-projet-frame-data-methodo-data-img img{
+            width: 85%;               
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            margin-top: 1rem;
+        }
+
 
 .fiche-projet-frame-data-methodo-methodo {
     width: 100%;
@@ -274,14 +319,109 @@
     flex: 1;
 }
 
+
+.fiche-projet-frame-results {
+    width: 100%;
+    min-width: 300px;
+    flex: 1;
+    margin-top: 2rem;
+    justify-content: flex-start; 
+}
+
+.fiche-projet-frame-results-header {
+    justify-content: flex-start;
+    margin: 0;                             /* Annule le margin auto global */
+    padding: 0;
+}
+
+
+.fiche-projet-frame-results-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0; 
+    padding: 0;
+}
+
+    .fiche-projet-frame-results-list {
+        display: flex;
+        flex: 1;
+        justify-content: justify;
+        align-items: flex-start;
+        min-width: 300px;
+        margin: 1rem ;
+        margin-top: 0;
+    }
+
+    .fiche-projet-frame-results-list ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .fiche-projet-frame-results-img-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex : 1;
+        min-width: 300px;
+        position: relative; /* Ajouté pour le positionnement relatif */
+        margin: 1rem ;
+        margin-left: 15px;
+    }
+
+        .fiche-projet-frame-results-img {
+            width: 100%;
+        }
+
+            .fiche-projet-frame-results-img img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+            }
+
+        .fiche-projet-frame-results-links {
+            position: absolute; /* Positionnement absolu dans le conteneur parent */
+            top: -15px;       /* Ajustez cette valeur pour le placement vertical */
+            left: -15px;        /* Ajustez cette valeur pour le placement horizontal */
+            width: 150px;       /* Taille fixe souhaitée */
+            height: 60px;       /* Taille fixe souhaitée */
+            padding: 0.5rem;
+            border: 2px solid var(--btn-bg-color);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.8); /* Fond semi-transparent pour la lisibilité */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;         /* S'assure que le bloc reste au-dessus de l'image */
+    
+            box-shadow: 4px 4px 8px var(--btn-bg-color);
+        }
+
+            .ctn-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                margin-top: 0.3rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .ctn-icon:hover {
+                scale: 1.1;
+            }
+
+
+
 .fiche-projet-frame-group-dif-improv {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 2rem;
     width: 100%;
-    
+    margin-top: 2rem;
 }
 
 
@@ -295,47 +435,4 @@
     width: 100%;
     min-width: 300px;
     flex: 1;
-}
-
-.fiche-projet-frame-results {
-    width: 100%;
-    min-width: 300px;
-    flex: 1;
-    margin-top: 2rem;
-    justify-content: flex-start; 
-}
-
-.fiche-projet-frame-results-header {
-    display: flex !important;              /* On force l'utilisation de flex */
-    flex-direction: row;
-    flex-wrap: nowrap;                     /* Pas de retour à la ligne */
-    justify-content: flex-start !important;/* Alignement à gauche */
-    align-items: center;                   /* Même hauteur pour tous */
-    gap: 1rem;
-    border: 1px solid orange;              /* Pour visualiser le conteneur */
-    margin: 0;                             /* Annule le margin auto global */
-    padding: 0;
-}
-
-/* Pour que chaque bloc prenne juste la place nécessaire et reste sur une ligne */
-.fiche-projet-frame-results-header-title,
-.fiche-projet-frame-results-header-links {
-    display: inline-flex !important;       /* Inline pour prendre la largeur de contenu */
-    flex: 0 0 auto !important;             /* Ni agrandi ni rétréci */
-    white-space: nowrap;                   /* Pas de retour à la ligne */
-    margin: 0;                             /* Annule le margin auto du reset */
-    padding: 0.5rem;                       /* Optionnel : pour un peu d'espace intérieur */
-    border: 1px dashed var(--btn-bg-color); /* Pour visualiser chaque cadre */
-}
-
-
-.ctn-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-
-.ctn-icon:hover {
-    scale: 1.1;
 }

@@ -12,6 +12,7 @@ if (isset($_SESSION['notification'])) {
     $notification = $_SESSION['notification'];
 }
 
+
 // Inclusion de l'autoloader de Composer pour charger PhpSpreadsheet
 require 'vendor/autoload.php';
 
@@ -128,7 +129,7 @@ try {
             
             <div class="nav-right">
                 <button id="themeToggleBtn" class="btn btn-theme-toggle">
-                    <!-- Icône de lune (mode clair par défaut) -->
+                    <!-- Icône de lune (mode sombre ) -->
                     <svg    class="icon icon-moon" 
                             xmlns="http://www.w3.org/2000/svg" 
                             width="24" height="24" 
@@ -137,11 +138,12 @@ try {
                             stroke="currentColor" 
                             stroke-width="2" 
                             stroke-linecap="round" 
-                            stroke-linejoin="round">
+                            stroke-linejoin="round"
+                            <?php if ($_COOKIE['theme'] === 'dark' or !isset($_COOKIE['theme'])) { ?>style="display: none;" <?php } ?>>
                         <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                     </svg>
 
-                    <!-- Icône de soleil (affichée en mode sombre) -->
+                    <!-- Icône de soleil (mode clair) -->
                     <svg    class="icon icon-sun" 
                             xmlns="http://www.w3.org/2000/svg" 
                             width="24" 
@@ -151,7 +153,7 @@ try {
                             stroke-width="2" 
                             stroke-linecap="round" 
                             stroke-linejoin="round" 
-                            style="display: none;">
+                            <?php if ($_COOKIE['theme'] === 'light') { ?>style="display: none;" <?php } ?>>
                         <circle cx="12" cy="12" r="4"></circle>
                         <path d="M12 2v2"></path>
                         <path d="M12 20v2"></path>
@@ -425,14 +427,13 @@ try {
                                 <div class="projet-card-frame">
                                     <div class="projet-card">
 
-                            
-                                    <!-- <img src="assets/images/projets/<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($image_alt); ?>" />    -->
-
+                        
                                         <!-- Zone d'image -->
                                         <div class="card-image">
                                             <form action="fiche_projet.php" method="POST" style="display:inline;">
                                                 <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
-                                                <input type="image" src="assets/images/projets/<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($image_alt); ?>" />
+                                                <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">
+                                                <input type="image" src="assets/images/projets/global/<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($image_alt); ?>" />
                                             </form>
                                         </div>
 

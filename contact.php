@@ -61,6 +61,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Tentative d'envoi de l'email
     if (mail($destinataire, $sujet, $contenu, $headers)) {
         $_SESSION['notification'] = "Message envoyé avec succès";
+        
+        // Envoi d'une réponse automatique à l'expéditeur
+        $autoSujet = "Accusé de réception de votre message";
+        $autoMessage = 
+"Bonjour,
+
+Je vous remercie de m'avoir contacté. J'ai bien reçu votre message et je m'engage à vous répondre dans les plus brefs délais.
+
+Cordialement,
+Dimitri Lefebvre";
+        $autoHeaders = "From: contact@datadriven-dynamix.fr\r\n";
+        $autoHeaders .= "Reply-To: contact@datadriven-dynamix.fr\r\n";
+        $autoHeaders .= "MIME-Version: 1.0\r\n";
+        $autoHeaders .= "Content-Type: text/plain; charset=utf-8\r\n";
+        
+        mail($email, $autoSujet, $autoMessage, $autoHeaders);
+
     } else {
         $_SESSION['notification'] = "Erreur lors de l'envoi du message";
     }

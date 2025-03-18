@@ -392,6 +392,7 @@ try {
     <?php include 'footer.php'; ?>
 
     <!-- Inclusion des scripts JavaScript -->
-    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/global.js"></script>
+    <script src="assets/js/index.js"></script>
 </body>
 </html>

@@ -1,121 +1,7 @@
-// Sélection des éléments
-const openSidebarBtn = document.getElementById('openSidebarBtn');
-const closeSidebarBtn = document.getElementById('closeSidebarBtn');
-const sidebar = document.getElementById('sidebar');
 
-const themeToggleButton = document.getElementById('themeToggleBtn');
-const iconMoon = document.querySelector('.icon-moon');
-const iconSun = document.querySelector('.icon-sun');
-const hiddenTheme = document.querySelector('.hidden-theme');
-
-const body = document.body;
-const header = document.querySelector('header');
-const mainContent = document.querySelector('main');
-const footer = document.querySelector('footer');
-
-// Fonction pour réinitialiser les animations des éléments de la sidebar
-function resetSidebarAnimations() {
-    const animatedElements = sidebar.querySelectorAll('.sidebar-menu a, .sidebar-actions, .sidebar-social');
-    animatedElements.forEach(el => {
-        el.style.animation = 'none';
-        // Forcer le reflow pour que l'animation puisse se relancer
-        void el.offsetWidth;
-        el.style.animation = '';
-    });
-}
-
-// Fonctions pour ouvrir et fermer la sidebar
-function openSidebar() {
-    sidebar.classList.add('sidebar--open');
-    mainContent.classList.add('blur');
-    if (header) {
-        header.classList.add('blur');
-    }
-    if (footer) {
-        footer.classList.add('blur');
-    }
-    
-    // Réinitialise les animations pour qu'elles se rejouent
-    resetSidebarAnimations();
-}
-
-function closeSidebar() {
-    sidebar.classList.remove('sidebar--open');
-    mainContent.classList.remove('blur');
-    if (header) {
-        header.classList.remove('blur');
-    }
-    if (footer) {
-        footer.classList.remove('blur');
-    }
-}
-
-// Ouvrir la sidebar
-openSidebarBtn.addEventListener('click', openSidebar);
-
-// Fermer la sidebar avec le bouton dédié
-closeSidebarBtn.addEventListener('click', closeSidebar);
-
-// Fermer la sidebar lors d'un clic sur un élément cliquable à l'intérieur
-const sidebarClickableItems = document.querySelectorAll('.sidebar a, .sidebar button:not(#closeSidebarBtn)');
-sidebarClickableItems.forEach(item => {
-    item.addEventListener('click', closeSidebar);
-});
-
-// Fermer la sidebar en cliquant en dehors
-document.addEventListener('click', (e) => {
-    if (sidebar.classList.contains('sidebar--open')) {
-        if (!sidebar.contains(e.target) && !openSidebarBtn.contains(e.target)) {
-            closeSidebar();
-        }
-    }
-});
-
-
-function setCookie(name, value, days) {
-    let expires = "";
-    if (days) {
-        const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + value + expires + "; path=/";
-}
-
-function getCookie(name) {
-    const value = "; " + document.cookie;
-    const parts = value.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
-    return null;
-}
-
-
-// Appliquer la classe au body dès que le DOM est chargé
-document.addEventListener("DOMContentLoaded", function() {
-    var theme = getCookie("theme");
-    // On suppose que pour le thème clair, le cookie a la valeur "light"
-    if (theme === "light") {
-        document.body.classList.add("clear-mode");
-    }
-});
-
-// Bascule du mode sombre
-themeToggleButton.addEventListener('click', () => {
-    body.classList.toggle('clear-mode');
-
-    if (body.classList.contains('clear-mode')) {
-        iconMoon.style.display = 'block';
-        iconSun.style.display = 'none';
-        hiddenTheme.value = 'light';
-        setCookie("theme", "light", 30);
-    } else {
-        iconMoon.style.display = 'none';
-        iconSun.style.display = 'block';
-        hiddenTheme.value = 'dark';
-        setCookie("theme", "dark", 30);
-    }
-});
-
+//****************************************************************//
+//************** Défilement de la page ***************************//
+//****************************************************************//
 
 // Flèche pour défiler vers le bas
 const scrollArrowBottom = document.getElementById('scrollArrowBottom');
@@ -171,17 +57,17 @@ scrollArrowTop.addEventListener('click', (e) => {
 });
 
 
-//*************************************************//
+
+// *************************************************//
 //* Carrousel de la page d'accueil  ***************//
 //*************************************************//
-
 
 // Sélection du conteneur du carrousel et des boutons
 const carouselContainer = document.querySelector('.carousel-track');
 const prevButton = document.querySelector('.carousel-btn.prev');
 const nextButton = document.querySelector('.carousel-btn.next');
 
-let nbFrames  = 4; 
+let nbFrames = 4; 
 
 function updateButtonPosition() {
     // Récupère les dimensions du conteneur
@@ -193,36 +79,32 @@ function updateButtonPosition() {
     prevButton.style.top = `${containerCenterY - prevButton.offsetHeight / 2}px`;
     nextButton.style.top = `${containerCenterY - nextButton.offsetHeight / 2}px`;
     
-    // Récupère la largeur de l'écran
+    // Récupère la largeur et hauteur de l'écran
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
+
     
     // Adapte la position horizontale selon la taille de l'écran
-    if (screenHeight <= 480 & screenWidth > 768) {
-        // Pour les écrans de 768px et moins : positionner les boutons plus à l'intérieur
+    if (screenHeight <= 480 && screenWidth > 768) {
         prevButton.style.left = `7vw`;
         nextButton.style.left = `${rect.width + 65}px`;
-        nbFrames  = 2;
+        nbFrames = 2;
     } else if (screenWidth <= 768) {
-        // Pour les écrans de 768px et moins : positionner les boutons plus à l'intérieur
         prevButton.style.left = `5vw`;
         nextButton.style.left = `${rect.width - 45}px`;
-        nbFrames  = 1;
+        nbFrames = 1;
     } else if (screenWidth <= 1024) {
-        // Pour les écrans jusqu'à 1024px (entre 769px et 1024px) : une position intermédiaire
         prevButton.style.left = `-28px`;
         nextButton.style.left = `${rect.width - 15}px`;
-        nbFrames  = 2;
-    }  else if (screenWidth <= 1600) {
-        // Pour les écrans jusqu'à 1024px (entre 769px et 1024px) : une position intermédiaire
+        nbFrames = 2;
+    } else if (screenWidth <= 1600) {
         prevButton.style.left = `-28px`;
         nextButton.style.left = `${rect.width - 15}px`;
-        nbFrames  = 3;
+        nbFrames = 3;
     } else {
-        // Pour les écrans plus larges : positions par défaut
-        prevButton.style.left = `${-28}px`;
+        prevButton.style.left = `-28px`;
         nextButton.style.left = `${rect.width - 15}px`;
-        nbFrames  = 4;
+        nbFrames = 4;
     }
 }
 
@@ -234,13 +116,72 @@ carouselContainer.addEventListener('scroll', updateButtonPosition);
 
 updateButtonPosition();
 
+// --- Nouveaux gestionnaires de clic pour un scroll "snap" sur la première carte visible ---
+
+// Fonction utilitaire pour récupérer toutes les cartes du carrousel
+function getCards() {
+    // Ici, on suppose que chaque carte est un enfant direct de carouselContainer
+    return Array.from(carouselContainer.children);
+}
+
+// Bouton "next" : cherche la première carte dont l'offsetLeft est supérieur à scrollLeft courant
 nextButton.addEventListener('click', () => {
-    carouselContainer.scrollBy({ left: carouselContainer.offsetWidth / nbFrames, behavior: 'smooth' });
+    const cards = getCards();
+    const currentScroll = carouselContainer.scrollLeft;
+    const decalage = window.innerWidth * 0.025;
+
+    // Fonction de comparaison en fonction de nbFrames
+    const isAfterScroll = (cardOffset) => {
+        return nbFrames === 1 
+            ? cardOffset > currentScroll + decalage + 1 
+            : cardOffset > currentScroll + 1;
+    };
+
+    // Recherche de la première carte dont le côté gauche se trouve après la position courante
+    const targetCard = cards.find(card => isAfterScroll(card.offsetLeft));
+
+    if (targetCard) {
+        const newScroll = nbFrames === 1 
+            ? targetCard.offsetLeft - decalage 
+            : targetCard.offsetLeft;
+        carouselContainer.scrollTo({ left: newScroll, behavior: 'smooth' });
+    }
 });
 
+
+// Bouton "prev" : cherche la dernière carte dont l'offsetLeft est inférieur à scrollLeft courant
 prevButton.addEventListener('click', () => {
-    carouselContainer.scrollBy({ left: -carouselContainer.offsetWidth / nbFrames, behavior: 'smooth' });
+    const cards = getCards();
+    const currentScroll = carouselContainer.scrollLeft;
+    const decalage = window.innerWidth * 0.025;
+    
+    let targetCard = null;
+    
+    // Fonction de comparaison selon le mode nbFrames
+    const isBeforeScroll = (cardOffset) => {
+        if (nbFrames === 1) {
+            return cardOffset < currentScroll + decalage - 1;
+        }
+        return cardOffset < currentScroll - 1;
+    };
+    
+    // Recherche de la dernière carte dont l'offsetLeft est inférieur à la position de scroll actuelle (avec décalage si nbFrames === 1)
+    for (let i = cards.length - 1; i >= 0; i--) {
+        if (isBeforeScroll(cards[i].offsetLeft)) {
+            targetCard = cards[i];
+            break;
+        }
+    }
+    
+    // Calcul de la position de scroll à appliquer
+    const newScroll = targetCard
+        ? (nbFrames === 1 ? targetCard.offsetLeft - decalage : targetCard.offsetLeft)
+        : 0;
+    
+    carouselContainer.scrollTo({ left: newScroll, behavior: 'smooth' });
 });
+
+
 
 
 

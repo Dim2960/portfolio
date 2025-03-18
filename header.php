@@ -19,10 +19,10 @@
             </button>
         </div>
         <div class="nav-center">
-            <a href="#accueil">Accueil</a>
-            <a href="#projets">Projets</a>
-            <a href="#a-propos">À propos</a>
-            <a href="#contact">Contact</a>
+            <a href="index.php#accueil">Accueil</a>
+            <a href="index.php#projets">Projets</a>
+            <a href="index.php#a-propos">À propos</a>
+            <a href="index.php#contact">Contact</a>
         </div>
         <span id="sectionTitle"></span>
         

@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+// Inclusion de l'autoloader de Composer pour charger PhpSpreadsheet
+require 'vendor/autoload.php'; // Assurez-vous que PhpSpreadsheet est installé
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
 // recupération de la variable post['id'] pour identifier le projet
 if (isset($_POST['id'])) {
     // Validation : l'entier doit être entre 0 et 100
@@ -20,11 +24,6 @@ if (isset($_POST['id'])) {
     die("Erreur : aucune donnée reçue.");
 }
 
-
-// Inclusion de l'autoloader de Composer pour charger PhpSpreadsheet
-require 'vendor/autoload.php';
-
-use PhpOffice\PhpSpreadsheet\IOFactory;
 
 // Définir le chemin vers le fichier Excel
 $inputFileName = 'assets/data/data.xlsx';

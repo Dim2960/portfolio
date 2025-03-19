@@ -118,7 +118,7 @@ foreach ($rows as $row) {
     <!-- Feuille de style pour l'adaptation responsive -->
     <link rel="stylesheet" href="assets/css/responsive_portrait.css">
     <link rel="stylesheet" href="assets/css/responsive_landscape.css">
-    <link rel="stylesheet" href="assets/css/fiche_projets.css">
+    <link rel="stylesheet" href="assets/css/fiche_projet_landscape.css">
     
     <!-- Données structurées (JSON-LD) -->
     <script type="application/ld+json">
@@ -187,13 +187,23 @@ foreach ($rows as $row) {
                     </div>
 
                     <div class="fiche-projet-frame-issueTarget">
+                        <?php 
+                        if ($Probleme_resolu != 'Information non disponible') { 
+                        ?>
                         <div class="fiche-projet-frame-issue">
                             <h4>🗨️ Problématique : </h4><?php echo htmlspecialchars($Probleme_resolu); ?>
                         </div>
+                        <?php 
+                        } 
 
+                        if ($objectif != 'Information non disponible') { 
+                        ?>
                         <div class="fiche-projet-frame-target">
                             <h4>🎯 Objectif : </h4><?php echo htmlspecialchars($objectif); ?>
                         </div>
+                        <?php 
+                        } 
+                        ?>
                     </div>
 
                     <hr>
@@ -395,6 +405,7 @@ foreach ($rows as $row) {
 
                     <div class="fiche-projet-frame-group-dif-improv">
 
+                        <?php if ($difficulties_learns != 'Information non disponible') { ?>    
                         <div class="fiche-projet-frame-difficulties-learns">
                             <h2>Difficultés</h2>
                             <div class="list-puce">
@@ -411,7 +422,9 @@ foreach ($rows as $row) {
                                 </ul>
                             </div>
                         </div>
+                        <?php } ?>
 
+                        <?php if ($potential_improvements != 'Information non disponible') { ?>
                         <div class="fiche-projet-frame-improvements">
                             <h2>Perspectives d'amélioration</h2>
                             <div class="list-puce">
@@ -428,6 +441,7 @@ foreach ($rows as $row) {
                                 </ul>
                             </div>
                         </div>
+                        <?php } ?>
                     </div>
 
                 </div>

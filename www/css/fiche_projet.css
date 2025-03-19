@@ -322,6 +322,30 @@
     min-width: 300px;
     flex: 1;
 }
+    
+    .on-going {
+        background-color: var(--btn-bg-color);       /* Fond du tag (placeholder) */
+        color: var(--btn-ft-color);
+        border-color: var(--btn-border);
+        padding: 0.1rem 0.1rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        display: inline-block;
+        width : 5rem;
+        text-align: center;
+    }
+    
+    .done {
+        background-color: #c1f1ad;
+        border-color: #d6e9c6;
+        color: #3c763d;
+        padding: 0.1rem 0.1rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        display: inline-block;
+        width : 3rem;
+        text-align: center;
+    }
 
 
 .fiche-projet-frame-results {

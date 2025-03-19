@@ -75,6 +75,7 @@ foreach ($rows as $row) {
         $video_link = isset($row[23]) ? $row[23] : 'lien non disponible';
         $difficulties_learns = isset($row[24]) ? $row[24] : 'Information non disponible';
         $potential_improvements = isset($row[25]) ? $row[25] : 'Information non disponible';
+        $project_status = isset($row[26]) ? $row[26] : 'Done';
 
 
 
@@ -104,7 +105,7 @@ foreach ($rows as $row) {
     <!-- Open Graph / Réseaux Sociaux -->
     <meta property="og:title" content="Portfolio – Dimitri Lefebvre">
     <meta property="og:description" content="Data Analyst certifié RNCP, certifié PL300, spécialisé en dataviz, computer vision et SQL. Découvrez mes projets et mon parcours professionnel.">
-    <meta property="og:image" content="https://www.portfolio-dimitri-lefebvre.fr/assets/images/og-image.jpg">
+    <meta property="og:image" content="https://www.portfolio-dimitri-lefebvre.fr/images/og-image.jpg">
     <meta property="og:url" content="https://www.portfolio-dimitri-lefebvre.fr/">
     <meta property="og:type" content="website">
     
@@ -292,7 +293,14 @@ foreach ($rows as $row) {
 
                                     // Parcourir chaque tag et l'afficher dans une balise <span>
                                     foreach($project_stepsArray as $project_step) {
-                                        echo '<li>' . trim(htmlspecialchars($project_step)) . '</li>';
+                                        $project_step = trim($project_step);
+                                        
+                                        // Remplacement de ##on-going## par une image HTML
+                                        $project_step = htmlspecialchars($project_step);
+                                        $project_step = str_replace('##on-going##', '<div class="on-going">On going</div>', $project_step);
+                                        $project_step = str_replace('##done##', '<div class="done">Done</div>', $project_step);
+                                        
+                                        echo '<li>' . $project_step . '</li>';
                                     }
                                     ?>
                                 </ol>

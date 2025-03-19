@@ -52,7 +52,7 @@ include '../src/send_message.php';
     <!-- Open Graph / Réseaux Sociaux -->
     <meta property="og:title" content="Portfolio – Dimitri Lefebvre">
     <meta property="og:description" content="Data Analyst certifié RNCP, certifié PL300, spécialisé en dataviz, computer vision et SQL. Découvrez mes projets et mon parcours professionnel.">
-    <meta property="og:image" content="https://www.portfolio-dimitri-lefebvre.fr/assets/images/og-image.jpg">
+    <meta property="og:image" content="https://www.portfolio-dimitri-lefebvre.fr/images/og-image.jpg">
     <meta property="og:url" content="https://www.portfolio-dimitri-lefebvre.fr/">
     <meta property="og:type" content="website">
     

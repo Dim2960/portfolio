@@ -40,7 +40,7 @@ foreach ($sheet->getRowIterator() as $row) {
     
     <!-- Menu du sidebar -->
     <div class="sidebar-menu">
-        <a href="index.php#accueil" class="sidebar-link">
+        <a href="index#accueil" class="sidebar-link">
             <svg    xmlns="http://www.w3.org/2000/svg" 
                     width="24" 
                     height="24" 
@@ -55,7 +55,7 @@ foreach ($sheet->getRowIterator() as $row) {
             </svg>
             Accueil
         </a>
-        <a href="index.php#projets" class="sidebar-link">
+        <a href="index#projets" class="sidebar-link">
             <svg    xmlns="http://www.w3.org/2000/svg" 
                     width="24" 
                     height="24" 
@@ -70,7 +70,7 @@ foreach ($sheet->getRowIterator() as $row) {
             </svg>
             Projets
         </a>
-        <a href="index.php#a-propos" class="sidebar-link">
+        <a href="index#a-propos" class="sidebar-link">
             <svg    xmlns="http://www.w3.org/2000/svg" 
                     width="24" 
                     height="24" 
@@ -85,7 +85,7 @@ foreach ($sheet->getRowIterator() as $row) {
             </svg>
             À propos
         </a>
-        <a href="index.php#contact" class="sidebar-link">
+        <a href="index#contact" class="sidebar-link">
             <svg    xmlns="http://www.w3.org/2000/svg" 
                     width="24" 
                     height="24" 

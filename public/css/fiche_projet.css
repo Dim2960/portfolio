@@ -1,0 +1,442 @@
+.wrapper-fiche-projet {
+    max-width: 1024px; /* largeur de référence */
+    margin: 0 auto; /* pour centrer */
+    width: 100%;
+}
+
+#fiche-projet {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 6rem; /* pour éviter que le contenu passe sous le header */
+    min-height: 85vh ;
+
+    width: 100%;
+}
+
+#fiche-projet h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--h1-color);
+    margin-bottom: 0.5rem;
+    padding-top:0rem;
+    text-align: center;
+}
+
+#fiche-projet h2 {
+    text-align: left;
+}
+
+#fiche-projet h4 {
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+
+}
+
+/****************************************************
+ *  Tableau des données
+ ****************************************************/
+#fiche-projet table {
+    width: 95%;
+    border-collapse: collapse; /* Supprime les espaces entre les bordures */
+    margin: 5px 0;
+    font-size: 0.8rem;
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden; /* Assure que le border-radius s’applique */
+    box-shadow: 0 8px 20px var(--box-shadow-accent);
+}
+
+#fiche-projet table:hover {
+    scale: 1.02;
+    box-shadow: 4px 4px 8px var(--box-shadow);
+}
+
+#fiche-projet thead {
+    background-color: var(--table-thead-bg);
+    color: var(--table-thead-color);
+}
+
+#fiche-projet th, #fiche-projet td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--soft-color); /* Séparation des lignes */
+}
+
+#fiche-projet tbody tr {
+    background-color: var(--table-tbody-bg); 
+}
+
+#fiche-projet table:hover tbody tr {
+    background-color: var(--table-tbody-hover-bg); /* Changement de couleur au survol */
+}
+
+#fiche-projet th {
+    font-weight: bold;
+}
+
+#fiche-projet td {
+    color: var(--table-td-color); /* Couleur du texte */
+}
+
+#fiche-projet td:hover {
+    color: var(--table-td-hover-color); /* Couleur du texte */
+}
+
+.fiche-projet-frame {
+    width: 100%;
+}
+
+
+.list-box ul {
+    list-style: none; /* Supprime les puces par défaut */
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.list-box li {
+    background: var(--sidebar-bg-gradient);
+    border-left: 4px solid var(--btn-bg-color);
+    padding: 10px 15px;
+    margin: 8px 0;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--soft-color);
+    border-radius: 5px;
+    transition: all 0.1s ease-in-out;
+}
+
+.list-box li:hover {
+    border-left: 6px solid var(--btn-bg-color-hover);
+}
+
+
+.list-steps ol {
+    counter-reset: list-counter; /* Initialise un compteur pour personnaliser la numérotation */
+    list-style: none; /* Supprime les numéros par défaut */
+    padding: 0;
+    margin: 1rem 0;
+    padding-left: 15px;
+}
+
+.list-steps ol li {
+    counter-increment: list-counter; /* Incrémente le compteur */ 
+    padding: 8px 0;
+    margin: 6px 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--soft-color);
+    position: relative;
+}
+
+/* Ajout des numéros stylisés */
+.list-steps ol li::before {
+    content: counter(list-counter) "."; /* Affiche le compteur */
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-right: 8px; /* Espacement entre le numéro et le texte */
+}
+
+.list-puce ul {
+    list-style: none; /* Supprime les puces par défaut */
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.list-puce ul li {
+    display: flex; /* Aligne la puce et le texte */
+    align-items: flex-start; /* Aligne la puce avec la première ligne */
+    gap: 8px; /* Espacement entre la puce et le texte */
+    padding: 8px 0;
+    margin: 6px 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--soft-color);
+    width: 100%; /* Prend toute la largeur disponible */
+}
+
+/* Style des puces */
+.list-puce ul li::before {
+    content: "•"; /* Ajoute une puce */
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    flex-shrink: 0; /* Empêche la puce de bouger */
+    line-height: 1.2;
+}
+
+/* Ajustement du texte */
+.list-puce ul li p {
+    flex: 1; /* Permet au texte de s'étendre */
+    text-align: left; /* Aligne le texte à droite */
+    text-justify: inter-word; /* Ajuste les mots pour une meilleure lisibilité */
+}
+
+
+
+
+.fiche-projet-frame-title  {
+    width: 100%;
+    height: auto;
+}
+
+.fiche-projet-frame-context  {
+    display: flex;
+    flex-wrap: wrap; /* Permet une bonne adaptation sur mobile */
+    flex-direction: row; /* Aligne le texte à gauche et l'image à droite */
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem; /* Ajoute un espacement entre le texte et l’image */
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.fiche-projet-frame-context-content  {
+    width: 50%;
+    min-width: 300px;
+    flex: 1; 
+}
+
+.fiche-projet-frame-context-image {
+    width: 50%;
+    min-width: 300px;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* Aligne l’image à droite */
+}
+
+.fiche-projet-frame-context-image  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Ajoute un léger arrondi pour un design plus doux */
+}
+
+.fiche-projet-frame-issueTarget {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.fiche-projet-frame-issue,
+.fiche-projet-frame-target,
+.fiche-projet-frame-results-header-links,
+.fiche-projet-frame-difficulties-learns,
+.fiche-projet-frame-improvements{
+    background: var(--sidebar-bg-gradient);
+    border-left: 4px solid var(--btn-bg-color);
+    padding: 10px 15px;
+    margin: 8px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--soft-color);
+    border-radius: 5px;
+    transition: all 0.1s ease-in-out;
+    width: 85%;
+}
+
+.fiche-projet-frame-issue:hover,
+.fiche-projet-frame-target:hover {
+    border-left: 6px solid var(--btn-bg-color-hover);
+    scale: 1.02;
+    box-shadow: 4px 4px 8px var(--box-shadow);
+}
+
+
+.fiche-projet-frame-data-methodo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+
+.fiche-projet-frame-data-methodo-data {
+    width: 100%;
+    min-width: 400px;
+    flex: 1.4;
+    justify-content: flex-start; 
+    align-items: flex-start;
+}
+    
+    .fiche-projet-frame-data-methodo-data-title {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .fiche-projet-frame-data-methodo-data-content {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 100%;
+        margin: 0rem;
+        justify-content: flex-start; 
+        align-items: flex-start;
+
+    }
+
+        .fiche-projet-frame-data-methodo-data-table {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .fiche-projet-frame-data-methodo-data-table-list {
+            display: none;
+        }
+
+        .fiche-projet-frame-data-methodo-data-img {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: center;
+        }
+
+        .fiche-projet-frame-data-methodo-data-img img{
+            width: 85%;               
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            margin-top: 1.5rem;
+        }
+
+
+.fiche-projet-frame-data-methodo-methodo {
+    width: 100%;
+    min-width: 300px;
+    flex: 1;
+}
+
+
+.fiche-projet-frame-results {
+    width: 100%;
+    min-width: 300px;
+    flex: 1;
+    margin-top: 2rem;
+    justify-content: flex-start; 
+}
+
+.fiche-projet-frame-results-header {
+    justify-content: flex-start;
+    margin: 0;                             /* Annule le margin auto global */
+    padding: 0;
+}
+
+
+.fiche-projet-frame-results-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0; 
+    padding: 0;
+}
+
+    .fiche-projet-frame-results-list {
+        display: flex;
+        flex: 1;
+        justify-content: justify;
+        align-items: flex-start;
+        min-width: 300px;
+        margin: 1rem ;
+        margin-top: 0;
+    }
+
+    .fiche-projet-frame-results-list ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .fiche-projet-frame-results-img-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex : 1;
+        min-width: 300px;
+        position: relative; /* Ajouté pour le positionnement relatif */
+        margin: 1rem ;
+        margin-left: 15px;
+    }
+
+        .fiche-projet-frame-results-img {
+            width: 100%;
+        }
+
+            .fiche-projet-frame-results-img img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+            }
+
+        .fiche-projet-frame-results-links {
+            position: absolute; /* Positionnement absolu dans le conteneur parent */
+            top: -15px;       /* Ajustez cette valeur pour le placement vertical */
+            left: -15px;        /* Ajustez cette valeur pour le placement horizontal */
+            width: 150px;       /* Taille fixe souhaitée */
+            height: 60px;       /* Taille fixe souhaitée */
+            padding: 0.5rem;
+            border: 2px solid var(--btn-bg-color);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.8); /* Fond semi-transparent pour la lisibilité */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;         /* S'assure que le bloc reste au-dessus de l'image */
+    
+            box-shadow: 4px 4px 8px var(--btn-bg-color);
+        }
+
+            .ctn-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                margin-top: 0.3rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .ctn-icon:hover {
+                scale: 1.1;
+            }
+
+
+
+.fiche-projet-frame-group-dif-improv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+
+.fiche-projet-frame-difficulties-learns {
+    width: 100%;
+    min-width: 300px;
+    flex: 1;
+}
+
+.fiche-projet-frame-improvements {
+    width: 100%;
+    min-width: 300px;
+    flex: 1;
+}

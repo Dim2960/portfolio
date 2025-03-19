@@ -29,7 +29,7 @@
                     $tags = isset($row[5]) ? $row[5] : 'tags image non disponible';
                     ?>
                     <div class="projet-card-frame">
-                        <form action="fiche_projet.php" method="POST" style="display:inline;">
+                        <form action="fiche_projet" method="POST" style="display:inline;">
                             <div class="projet-card" onclick="this.closest('form').submit();" style="cursor: pointer;">
                                 <!-- Zone d'image -->
                                 <div class="card-image">

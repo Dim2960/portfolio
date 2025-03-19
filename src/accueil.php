@@ -20,6 +20,8 @@ foreach ($sheet->getRowIterator() as $row) {
         $data[$values[0]] = $values[1];
     }
 }
+$_SESSION['dataEmail'] = $data['email de communication'];
+
 ?>
 
     <section id="accueil">

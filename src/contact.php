@@ -1,7 +1,4 @@
 
-
-
-
 <section id="contact">  
     <div class="container-contact">
         
@@ -10,7 +7,7 @@
         </div>
         <div class="form-container">
             <h2>Contactez-moi</h2>
-            <form action="send_message.php" method="post">
+            <form action="index.php#contact" method="post">
                 <select id="titre" name="titre" required>
                     <option value="">Sélectionnez votre titre *</option>
                     <option value="monsieur">Monsieur</option>
@@ -34,7 +31,10 @@
             </form>
             <?php  if (!empty($notification)): ?>
                 <div class="notification <?php echo (strpos($notification, 'succès') !== false) ? 'success' : 'error'; ?>">
-                <?php echo htmlspecialchars($notification); ?>
+                <?php 
+                    echo htmlspecialchars($notification); 
+                    unset($_SESSION['notification']); // Supprimer la notification après l'avoir affichée
+                ?>
                 </div>
             <?php endif; ?>
         </div>

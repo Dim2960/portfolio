@@ -29,6 +29,7 @@ try {
     die('Erreur lors de la lecture du fichier Excel : ' . $e->getMessage());
 }
 
+include '../src/send_message.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +47,7 @@ try {
     <link rel="canonical" href="https://www.portfolio-dimitri-lefebvre.fr/">
     
     <!-- Favicon -->
-    <link rel="icon" href="public/images/icones/favicon.ico">
+    <link rel="icon" href="images/icones/favicon.ico">
     
     <!-- Open Graph / Réseaux Sociaux -->
     <meta property="og:title" content="Portfolio – Dimitri Lefebvre">

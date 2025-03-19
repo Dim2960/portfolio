@@ -1,3 +1,27 @@
+<?php
+// Inclusion de l'autoloader de Composer pour charger PhpSpreadsheet
+require '../vendor/autoload.php'; // Assurez-vous que PhpSpreadsheet est installé
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
+// Charger le fichier Excel
+$spreadsheet = IOFactory::load('../data/data_accueil.xlsx');
+$sheet = $spreadsheet->getActiveSheet();
+$data = [];
+
+// Lire les données du fichier Excel
+foreach ($sheet->getRowIterator() as $row) {
+    $cells = $row->getCellIterator();
+    $cells->setIterateOnlyExistingCells(true);
+    $values = [];
+    foreach ($cells as $cell) {
+        $values[] = $cell->getValue();
+    }
+    if (!empty($values[0]) && !empty($values[1])) {
+        $data[$values[0]] = $values[1];
+    }
+}
+
+?>
 
 <!-- SIDEBAR (panneau latéral) -->
 <aside class="sidebar" id="sidebar">
@@ -10,8 +34,8 @@
         <img src="images/portraits/DL_gris.png" alt="Photo de Dimitri Lefebvre" class="profile-picture" />
         
         <!-- Informations de profil -->
-        <h2 class="profile-name">Dimitri Lefebvre</h2>
-        <p class="profile-title">Data Analyst</p>
+        <h2 class="profile-name"><?php echo htmlspecialchars($data['Prénom'] . ' '. $data['Nom']); ?></h2>
+        <p class="profile-title"><?php echo htmlspecialchars($data['Fonction']); ?></p>
     </div>
     
     <!-- Menu du sidebar -->
@@ -79,7 +103,7 @@
     </div>
     <div class="sidebar-social">
         <div class="social-links">
-            <a href="https://github.com/Dim2960" target="_blank">
+            <a href="<?php echo htmlspecialchars($data['GitHub']); ?>" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" 
                         width="24" 
                         height="24" 
@@ -94,7 +118,7 @@
                 </svg>
             </a>
             
-            <a href="https://www.linkedin.com/in/dim-lefebvre60" target="_blank">
+            <a href="<?php echo htmlspecialchars($data['LinkedIn']); ?>" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" 
                     width="24" 
                     height="24" 

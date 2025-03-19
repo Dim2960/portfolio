@@ -20,13 +20,12 @@ foreach ($sheet->getRowIterator() as $row) {
         $data[$values[0]] = $values[1];
     }
 }
-$_SESSION['dataEmail'] = $data['email de communication'];
 
 ?>
 
     <section id="accueil">
         <h1>
-            <?php foreach (str_split($data['Nom'] . ' ' . $data['Prénom']) as $char): ?>
+            <?php foreach (str_split($data['Prénom'] . ' ' . $data['Nom']) as $char): ?>
                 <span class="animate-once"><?php echo htmlspecialchars($char); ?></span>
             <?php endforeach; ?>
         </h1>

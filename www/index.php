@@ -16,6 +16,8 @@ if (isset($_SESSION['notification'])) {
     $notification = $_SESSION['notification'];
 }
 
+
+//Chargement des donnees de projet
 // Définir le chemin vers le fichier Excel
 $inputFileName = '../data/data_projets.xlsx';
 
@@ -29,6 +31,26 @@ try {
     die('Erreur lors de la lecture du fichier Excel : ' . $e->getMessage());
 }
 
+
+//Chargement des données pour les meta données
+// Charger le fichier Excel
+$spreadsheet = IOFactory::load('../data/data_meta.xlsx');
+$sheet = $spreadsheet->getActiveSheet();
+$dataMeta = [];
+
+// Lire les données du fichier Excel
+foreach ($sheet->getRowIterator() as $row) {
+    $cells = $row->getCellIterator();
+    $cells->setIterateOnlyExistingCells(true);
+    $values = [];
+    foreach ($cells as $cell) {
+        $values[] = $cell->getValue();
+    }
+    if (!empty($values[0]) && !empty($values[1])) {
+        $dataMeta[$values[0]] = $values[1];
+    }
+}
+
 include '../src/send_message.php'; 
 ?>
 
@@ -39,21 +61,21 @@ include '../src/send_message.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Titre et Meta Description pour le SEO -->
-    <title>Portfolio – Dimitri Lefebvre</title>
-    <meta name="description" content="Portfolio de Dimitri Lefebvre, Data Analyst certifié PL300 en Power BI, expert en data visualisation, computer vision, Python, SQL et HTML/CSS. 17 ans d'expérience dans l'industrie chimique appliquée aux industries de process (chimie, agroalimentaire, pharma).">
-    <meta name="keywords" content="Data Analyst, dataviz, Power BI, PL300, Computer Vision, Python, HTML, CSS, SQL, Industrie Chimique, Agroalimentaire, Pharma">
+    <title><?php echo htmlspecialchars($dataMeta['title']); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($dataMeta['description']); ?>">
+    <meta name="keywords" content="<?php echo htmlspecialchars($dataMeta['keywords']); ?>">
     
     <!-- URL canonique -->
-    <link rel="canonical" href="https://www.portfolio-dimitri-lefebvre.fr/">
+    <link rel="canonical" href="<?php echo htmlspecialchars($dataMeta['canonical url']); ?>">
     
     <!-- Favicon -->
-    <link rel="icon" href="images/icones/favicon.ico">
+    <link rel="icon" href="<?php echo htmlspecialchars($dataMeta['icon']); ?>">
     
     <!-- Open Graph / Réseaux Sociaux -->
-    <meta property="og:title" content="Portfolio – Dimitri Lefebvre">
-    <meta property="og:description" content="Data Analyst certifié RNCP, certifié PL300, spécialisé en dataviz, computer vision et SQL. Découvrez mes projets et mon parcours professionnel.">
-    <meta property="og:image" content="https://www.portfolio-dimitri-lefebvre.fr/images/og-image.jpg">
-    <meta property="og:url" content="https://www.portfolio-dimitri-lefebvre.fr/">
+    <meta property="og:title" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:title']); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:description']); ?>">
+    <meta property="og:image" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:image']); ?>">
+    <meta property="og:url" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:url']); ?>">
     <meta property="og:type" content="website">
     
     
@@ -67,31 +89,7 @@ include '../src/send_message.php';
     
     <!-- Données structurées (JSON-LD) -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Lefebvre Dimitri",
-        "jobTitle": "Data Analyst",
-        "url": "https://www.portfolio-dimitri-lefebvre.fr",
-        "description": "Data Analyst certifié PL300, spécialisé en dataviz, computer vision, Python, SQL, HTML et CSS avec 17 ans d'expérience dans l'industrie chimique appliquée aux industries de process.",
-        "knowsAbout": [
-            "Data Visualisation",
-            "Power BI",
-            "Computer Vision",
-            "Python",
-            "SQL",
-            "HTML",
-            "CSS",
-            "Industrie Chimique",
-            "Agroalimentaire",
-            "Pharma",
-            "Industrie de process"
-        ],
-        "certifications": "PL300",
-        "sameAs": [
-            "https://www.linkedin.com/in/dim-lefebvre60"
-        ]
-    }
+        <?php echo ($dataMeta['applicationldjson']); ?>
     </script>
 </head>
 
@@ -104,7 +102,7 @@ include '../src/send_message.php';
 
     <main>
         
-        <div class="wrapper-accueil">
+        <div class="wrapper-accueil"><?php echo ('rr' . $data['title']); ?>
             <?php  include '../src/accueil.php'; ?>
         </div>
         

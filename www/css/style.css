@@ -585,6 +585,10 @@ footer a:hover svg {
     margin-top: 30px;
 }
 
+    .sidebar-profile h2 {
+        display: flex !important;
+    }
+
     .profile-picture {
         width: 80px;
         height: 80px;

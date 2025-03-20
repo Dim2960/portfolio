@@ -1,4 +1,6 @@
 
+
+
 /* 9. Responsivité */
 @media (orientation: landscape) and (max-width: 768px) {
     header nav a {
@@ -37,6 +39,10 @@
 
     .sidebar-profile img {
         display: none;
+    }
+
+    .sidebar-profile h2 {
+        display: flex !important;
     }
 
     .profile-email {
@@ -187,6 +193,10 @@
 
     p {
         font-size: 1rem;
+    }
+
+    .sidebar-profile h2 {
+        display: flex !important;
     }
 
     .sidebar-profile img {

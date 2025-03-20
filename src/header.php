@@ -38,7 +38,7 @@
                         stroke-width="2" 
                         stroke-linecap="round" 
                         stroke-linejoin="round"
-                        <?php if ($_COOKIE['theme'] === 'dark' or !isset($_COOKIE['theme'])) { ?>style="display: none;" <?php } ?>>
+                        <?php if ($_COOKIE['theme'] === 'dark' or !isset($_COOKIE['theme'])) { ?>style="display: none;" <?php } else { ?>style="display: block;" <?php } ?>>
                     <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                 </svg>
                 <!-- Icône de soleil (mode clair) -->
@@ -51,7 +51,7 @@
                         stroke-width="2" 
                         stroke-linecap="round" 
                         stroke-linejoin="round" 
-                        <?php if ($_COOKIE['theme'] === 'light') { ?>style="display: none;" <?php } ?>>
+                        <?php if ($_COOKIE['theme'] === 'light') { ?>style="display: none;" <?php }  else { ?>style="display: block;" <?php } ?>>
                     <circle cx="12" cy="12" r="4"></circle>
                     <path d="M12 2v2"></path>
                     <path d="M12 20v2"></path>

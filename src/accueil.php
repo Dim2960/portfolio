@@ -1,27 +1,3 @@
-<?php
-// Inclusion de l'autoloader de Composer pour charger PhpSpreadsheet
-require '../vendor/autoload.php'; // Assurez-vous que PhpSpreadsheet est installé
-use PhpOffice\PhpSpreadsheet\IOFactory;
-
-// Charger le fichier Excel
-$spreadsheet = IOFactory::load('../data/data_accueil.xlsx');
-$sheet = $spreadsheet->getActiveSheet();
-$data = [];
-
-// Lire les données du fichier Excel
-foreach ($sheet->getRowIterator() as $row) {
-    $cells = $row->getCellIterator();
-    $cells->setIterateOnlyExistingCells(true);
-    $values = [];
-    foreach ($cells as $cell) {
-        $values[] = $cell->getValue();
-    }
-    if (!empty($values[0]) && !empty($values[1])) {
-        $data[$values[0]] = $values[1];
-    }
-}
-
-?>
 
     <section id="accueil">
         <h1>

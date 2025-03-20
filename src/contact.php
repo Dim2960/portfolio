@@ -7,7 +7,7 @@
         </div>
         <div class="form-container">
             <h2>Contactez-moi</h2>
-            <form action="index.php#contact" method="post">
+            <form action="index" method="post">
                 <select id="titre" name="titre" required>
                     <option value="">Sélectionnez votre titre *</option>
                     <option value="monsieur">Monsieur</option>

@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-// Inclusion de l'autoloader de Composer pour charger PhpSpreadsheet
-require '../vendor/autoload.php'; // Assurez-vous que PhpSpreadsheet est installé
-use PhpOffice\PhpSpreadsheet\IOFactory;
 
-// recupération de la variable post['id'] pour identifier le projet
-if (isset($_POST['id'])) {
+include '../src/function.php';
+
+
+// recupération de la variable post['fileName'] pour identifier le projet
+if (isset($_POST['fileName']) and isset($_POST['id'])) {
     // Validation : l'entier doit être entre 0 et 100
     $id = filter_var(
         $_POST['id'],
@@ -14,93 +14,50 @@ if (isset($_POST['id'])) {
         array("options" => array("min_range" => 0, "max_range" => 100))
     );
 
-    if ($id !== false) {
-        $_SESSION['id'] = $id;
-    } else {
+    if ($id === false) {
         echo "Erreur : la valeur doit être un entier compris entre 0 et 100.";
     }
+    $fileName = $_POST['fileName'];
 
 } else {
     die("Erreur : aucune donnée reçue.");
 }
 
+$filePath = '../data/projets/' . $fileName;
+$dataprojet = readExcelData($filePath);
 
-// Définir le chemin vers le fichier Excel
-$inputFileName = '../data/data_projets.xlsx';
-
-try {
-    // Charger le fichier Excel
-    $spreadsheet = IOFactory::load($inputFileName);
-    $worksheet = $spreadsheet->getActiveSheet();
-    // Conversion de la feuille en tableau PHP
-    $rows = $worksheet->toArray();
-} catch(Exception $e) {
-    die('Erreur lors de la lecture du fichier Excel : ' . $e->getMessage());
-}
-
-// On considère que la première ligne contient les en-têtes, on la saute
-$firstRow = true;
-foreach ($rows as $row) {
-    if ($firstRow) {
-        $firstRow = false;
-        continue;
-    }
-    
-
-    if ($row[0] == $_SESSION['id']) {
-
-        // Adapter les indices en fonction de votre fichier Excel
-        $titre       = isset($row[1]) ? $row[1] : 'Titre non défini';
-        $description = isset($row[2]) ? $row[2] : 'Description non disponible';
-        $image_url = isset($row[3]) ? $row[3] : 'url image non disponible';
-        $image_alt = isset($row[4]) ? $row[4] : 'alt image non disponible';
-        $tags = isset($row[5]) ? $row[5] : 'tags non disponible';
-        $description_detail = isset($row[6]) ? $row[6] : 'Information non disponible';
-        $objectif = isset($row[7]) ? $row[7] : 'Information non disponible';
-        $Probleme_resolu = isset($row[8]) ? $row[8] : 'Information non disponible';
-        $data_source = isset($row[9]) ? $row[9] : 'Information non disponible';
-        $data_size = isset($row[10]) ? $row[10] : 'Information non disponible';
-        $data_type = isset($row[11]) ? $row[11] : 'Information non disponible';
-        $data_remark = isset($row[12]) ? $row[12] : 'Information non disponible';
-        $url_img_data = isset($row[13]) ? $row[13] : 'url image non disponible';
-        $alt_img_data = isset($row[14]) ? $row[14] : 'url image non disponible';
-        $project_steps = isset($row[15]) ? $row[15] : 'Information non disponible';
-        $technos = isset($row[16]) ? $row[16] : 'Information non disponible';
-        $results = isset($row[17]) ? $row[17] : 'Information non disponible';
-        $img_url_results = isset($row[18]) ? $row[18] : 'url image non disponible';
-        $alt_img_results = isset($row[19]) ? $row[19] : 'alt image non disponible';
-        $powerbi_link = isset($row[20]) ? $row[20] : 'lien non disponible';
-        $github_link = isset($row[21]) ? $row[21] : 'lien non disponible';
-        $streamlit_link = isset($row[22]) ? $row[22] : 'lien non disponible';
-        $video_link = isset($row[23]) ? $row[23] : 'lien non disponible';
-        $difficulties_learns = isset($row[24]) ? $row[24] : 'Information non disponible';
-        $potential_improvements = isset($row[25]) ? $row[25] : 'Information non disponible';
-        $project_status = isset($row[26]) ? $row[26] : 'Done';
+// récupération des variables du projet
+$titre                  = isset($dataprojet['title']) ? $dataprojet['title'] : 'Titre non défini';
+$description            = isset($dataprojet['description']) ? $dataprojet['description'] : 'Description non disponible';
+$image_url              = isset($dataprojet['image_url']) ? $dataprojet['image_url'] : 'url image non disponible';
+$image_alt              = isset($dataprojet['image_alt']) ? $dataprojet['image_alt'] : 'alt image non disponible';
+$tags                   = isset($dataprojet['tags']) ? $dataprojet['tags'] : 'tags non disponible';
+$description_detail     = isset($dataprojet['description_detail']) ? $dataprojet['description_detail'] : 'Information non disponible';
+$objectif               = isset($dataprojet['objectif_projet']) ? $dataprojet['objectif_projet'] : 'Information non disponible';
+$Probleme_resolu        = isset($dataprojet['Probleme_resolu']) ? $dataprojet['Probleme_resolu'] : 'Information non disponible';
+$data_source            = isset($dataprojet['data_source']) ? $dataprojet['data_source'] : 'Information non disponible';
+$data_size              = isset($dataprojet['data_size']) ? $dataprojet['data_size'] : 'Information non disponible';
+$data_type              = isset($dataprojet['data_type']) ? $dataprojet['data_type'] : 'Information non disponible';
+$data_remark            = isset($dataprojet['data_remark']) ? $dataprojet['data_remark'] : 'Information non disponible';
+$url_img_data           = isset($dataprojet['url_img_data']) ? $dataprojet['url_img_data'] : 'url image non disponible';
+$alt_img_data           = isset($dataprojet['alt_img_data']) ? $dataprojet['alt_img_data'] : 'url image non disponible';
+$project_steps          = isset($dataprojet['project_steps']) ? $dataprojet['project_steps'] : 'Information non disponible';
+$technos                = isset($dataprojet['techno']) ? $dataprojet['techno'] : 'Information non disponible';
+$results                = isset($dataprojet['result']) ? $dataprojet['result'] : 'Information non disponible';
+$img_url_results        = isset($dataprojet['img_results']) ? $dataprojet['img_results'] : 'url image non disponible';
+$alt_img_results        = isset($dataprojet['alt_img_results']) ? $dataprojet['alt_img_results'] : 'alt image non disponible';
+$powerbi_link           = isset($dataprojet['powerbi_link']) ? $dataprojet['powerbi_link'] : 'lien non disponible';
+$github_link            = isset($dataprojet['github_link']) ? $dataprojet['github_link'] : 'lien non disponible';
+$streamlit_link         = isset($dataprojet['streamlit_link']) ? $dataprojet['streamlit_link'] : 'lien non disponible';
+$video_link             = isset($dataprojet['video_link']) ? $dataprojet['video_link'] : 'lien non disponible';
+$difficulties_learns    = isset($dataprojet['difficulties_learns']) ? $dataprojet['difficulties_learns'] : 'Information non disponible';
+$potential_improvements = isset($dataprojet['potential_improvement']) ? $dataprojet['potential_improvement'] : 'Information non disponible';
+$project_status         = isset($dataprojet['Etat_projet']) ? $dataprojet['Etat_projet'] : 'Done';
 
 
-
-        break;
-    }
-}
-
-//Chargement des données pour les meta données
-// Charger le fichier Excel
-$spreadsheet = IOFactory::load('../data/data_meta.xlsx');
-$sheet = $spreadsheet->getActiveSheet();
-$dataMeta = [];
-
-// Lire les données du fichier Excel
-foreach ($sheet->getRowIterator() as $row) {
-    $cells = $row->getCellIterator();
-    $cells->setIterateOnlyExistingCells(true);
-    $values = [];
-    foreach ($cells as $cell) {
-        $values[] = $cell->getValue();
-    }
-    if (!empty($values[0]) && !empty($values[1])) {
-        $dataMeta[$values[0]] = $values[1];
-    }
-}
+//récupération des données pour les balises meta
+$filePathDataMeta = '../data/data_meta.xlsx';
+$dataMeta = readExcelData($filePathDataMeta);
 
 ?>
 

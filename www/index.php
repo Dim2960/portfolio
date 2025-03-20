@@ -1,57 +1,33 @@
 <?php
 session_start();
 
-// Inclusion de l'autoloader de Composer pour charger PhpSpreadsheet
-require '../vendor/autoload.php'; // Assurez-vous que PhpSpreadsheet est installé
-use PhpOffice\PhpSpreadsheet\IOFactory;
-
 // Génération d'un token CSRF unique s'il n'existe pas déjà
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
-// Vérifier si une notification a été définie et la récupérer
+include '../src/function.php';
+
+
+//récupération des données pour les balises meta
+$filePathDataMeta = '../data/data_meta.xlsx';
+$dataMeta = readExcelData($filePathDataMeta);
+
+// récupération des données générales 
+$filePathDataAccueil = '../data/data_accueil.xlsx';
+$data = readExcelData($filePathDataAccueil);
+
+$folderPathDataProjets = '../data/projets/';
+$allDataProject = readAllExcelFilesInFolder($folderPathDataProjets);
+
+
+include '../src/send_message.php'; 
+
+// Vérifier si une notification suite envoie contact a été définie et la récupérer
 $notification = '';
 if (isset($_SESSION['notification'])) {
     $notification = $_SESSION['notification'];
 }
-
-
-//Chargement des donnees de projet
-// Définir le chemin vers le fichier Excel
-$inputFileName = '../data/data_projets.xlsx';
-
-try {
-    // Charger le fichier Excel
-    $spreadsheet = IOFactory::load($inputFileName);
-    $worksheet = $spreadsheet->getActiveSheet();
-    // Conversion de la feuille en tableau PHP
-    $rows = $worksheet->toArray();
-} catch(Exception $e) {
-    die('Erreur lors de la lecture du fichier Excel : ' . $e->getMessage());
-}
-
-
-//Chargement des données pour les meta données
-// Charger le fichier Excel
-$spreadsheet = IOFactory::load('../data/data_meta.xlsx');
-$sheet = $spreadsheet->getActiveSheet();
-$dataMeta = [];
-
-// Lire les données du fichier Excel
-foreach ($sheet->getRowIterator() as $row) {
-    $cells = $row->getCellIterator();
-    $cells->setIterateOnlyExistingCells(true);
-    $values = [];
-    foreach ($cells as $cell) {
-        $values[] = $cell->getValue();
-    }
-    if (!empty($values[0]) && !empty($values[1])) {
-        $dataMeta[$values[0]] = $values[1];
-    }
-}
-
-include '../src/send_message.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +78,7 @@ include '../src/send_message.php';
 
     <main>
         
-        <div class="wrapper-accueil"><?php echo ('rr' . $data['title']); ?>
+        <div class="wrapper-accueil">
             <?php  include '../src/accueil.php'; ?>
         </div>
         

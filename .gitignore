@@ -22,7 +22,7 @@ build/
 
 
 # personal
-/videos/*
+/www/videos/*
 
 /www/images/projets/data/*
 /www/images/projets/global/*

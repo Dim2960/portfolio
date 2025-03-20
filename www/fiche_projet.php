@@ -351,7 +351,7 @@ $dataMeta = readExcelData($filePathDataMeta);
                                     }
                                     if ($video_link != 'lien non disponible') {
                                         echo '<div class="ctn-icon">
-                                                    <a href="assets/videos/' . htmlspecialchars($video_link) . '" target="_blank">
+                                                    <a href="videos/' . htmlspecialchars($video_link) . '" target="_blank">
                                                         <img src="images/icons/icons8-video-48.png" alt="Lien vers Vidéo" />
                                                     </a>
                                                 </div>';

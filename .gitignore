@@ -22,10 +22,16 @@ build/
 
 
 # personal
-/assets/videos/*
-/assets/images/projets/
-/assets/images/portraits/
+/videos/*
+
+/images/projets/data/*
+/images/projets/global/*
+/images/projets/results/*
+
+/images/portraits/*
+
 /vendor/
+
 composer.json
 composer.lock
 .env

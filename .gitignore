@@ -24,11 +24,11 @@ build/
 # personal
 /videos/*
 
-/images/projets/data/*
-/images/projets/global/*
-/images/projets/results/*
+/www/images/projets/data/*
+/www/images/projets/global/*
+/www/images/projets/results/*
 
-/images/portraits/*
+/www/images/portraits/*
 
 /vendor/
 

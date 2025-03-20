@@ -1,4 +1,4 @@
-#  Portfolio numérique interactif
+#  Portfolio interactif
 
 ## 🌟 Description du Projet
 Projet de portfolio numérique interactif conçu pour présenter efficacement des projets réalisés en analyse de données, visualisation interactive et automatisation des processus. Ce portfolio permet de valoriser les compétences et faciliter les interactions professionnelles. La mise à jour du contenu est simplifiée grâce à l'intégration directe de données provenant de fichiers aux formats .xlsx et .docx.
@@ -58,13 +58,13 @@ portfolio
 - PHP 8.1 ou supérieur
 - Navigateur web moderne (Chrome, Firefox, Safari, etc.)
 
-### 🛠 Installation rapide avec Composer (PHP)
+### Installation rapide avec Composer (PHP)
 
 Copiez-collez les commandes suivantes directement dans votre terminal :
 
 ```bash
 # Se mettre dans le dossier souhaité
-cd chemin_de_clone
+cd `chemin_de_clone`
 
 # Cloner le dépôt et entrer dans le dossier
 git clone https://github.com/Dim2960/portfolio && cd portfolio

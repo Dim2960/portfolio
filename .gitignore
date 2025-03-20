@@ -31,3 +31,5 @@ composer.lock
 .env
 python3-minimal_3.10.6-1~22.04.1_amd64.deb
 structure.txt
+
+/data/projets/*

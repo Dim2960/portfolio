@@ -50,6 +50,7 @@ $powerbi_link           = isset($dataprojet['powerbi_link']) ? $dataprojet['powe
 $github_link            = isset($dataprojet['github_link']) ? $dataprojet['github_link'] : 'lien non disponible';
 $streamlit_link         = isset($dataprojet['streamlit_link']) ? $dataprojet['streamlit_link'] : 'lien non disponible';
 $video_link             = isset($dataprojet['video_link']) ? $dataprojet['video_link'] : 'lien non disponible';
+$webApp_link            = isset($dataprojet['webApp_link']) ? $dataprojet['webApp_link'] : 'lien non disponible';
 $difficulties_learns    = isset($dataprojet['difficulties_learns']) ? $dataprojet['difficulties_learns'] : 'Information non disponible';
 $potential_improvements = isset($dataprojet['potential_improvement']) ? $dataprojet['potential_improvement'] : 'Information non disponible';
 $project_status         = isset($dataprojet['Etat_projet']) ? $dataprojet['Etat_projet'] : 'Done';
@@ -353,6 +354,13 @@ $dataMeta = readExcelData($filePathDataMeta);
                                         echo '<div class="ctn-icon">
                                                     <a href="videos/' . htmlspecialchars($video_link) . '" target="_blank">
                                                         <img src="images/icons/icons8-video-48.png" alt="Lien vers Vidéo" />
+                                                    </a>
+                                                </div>';
+                                    }
+                                    if ($webApp_link != 'lien non disponible') {
+                                        echo '<div class="ctn-icon">
+                                                    <a href="' . htmlspecialchars($webApp_link) . '" target="_blank">
+                                                        <img src="images/icons/icons8-weblink-48.png" alt="Lien vers Vidéo" />
                                                     </a>
                                                 </div>';
                                     }

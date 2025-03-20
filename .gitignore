@@ -25,8 +25,13 @@ build/
 /www/videos/*
 
 /www/images/projets/data/*
+!www/images/projets/data/pwBI_taxi_data.webp
+
 /www/images/projets/global/*
+!www/images/projets/global/Taxi_NYC.webp
+
 /www/images/projets/results/*
+!www/images/projets/results/pwBI_taxi_results.webp
 
 /www/images/portraits/*
 
@@ -39,3 +44,4 @@ python3-minimal_3.10.6-1~22.04.1_amd64.deb
 structure.txt
 
 /data/projets/*
+!data/projets/7_analyse_NYC_Taxi.xlsx

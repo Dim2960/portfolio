@@ -29,7 +29,7 @@ header {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 99999;
+    z-index: 999;
 }
 
 header nav {
@@ -246,17 +246,39 @@ section p {
 }
 
 /* Icônes (GitHub, LinkedIn, etc.) */
-#accueil a svg {
+/* #accueil a svg {
     width: 24px;
     height: 24px;
     stroke: var(--primary-text);
     transition: stroke 0.2s ease;
 
+} */
+
+.github-svg{
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary-text);
+    transition: stroke 0.2s ease;
+}
+.github-svg:hover{
+    stroke: var(--link-hover);
 }
 
-#accueil a:hover svg {
-    stroke: var(--accent-color);
+.linkedIn-svg{
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary-text);
+    fill : var(--primary-text);
+    transition: stroke 0.2s ease;
+    stroke-width: 0.3;
 }
+
+.linkedIn-svg:hover {
+    stroke: var(--link-hover);
+    fill: var(--link-hover);
+}
+
+
 
 .wrapper-a-propos {
     max-width: 1024px; /* largeur de référence */

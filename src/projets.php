@@ -24,7 +24,7 @@
                     $tags = $dataprojet['tags'];
                     ?>
                     <div class="projet-card-frame">
-                        <form action="fiche_projet.php" method="POST" style="display:inline;"> <!-- en local mettre fiche_projet.php -- cause .htaccess -->
+                        <form action="fiche_projet" method="POST" style="display:inline;"> <!-- en local mettre fiche_projet.php -- cause .htaccess -->
                             <div class="projet-card" onclick="this.closest('form').submit();" style="cursor: pointer;">
                                 <!-- Zone d'image -->
                                 <div class="card-image">

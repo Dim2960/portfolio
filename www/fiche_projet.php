@@ -155,7 +155,7 @@ $dataMeta = readExcelData($filePathDataMeta);
                     <div class="fiche-projet-frame-header">
 
                         <div class="fiche-projet-frame-btn-prev">
-                            <form action="fiche_projet.php" method="POST">
+                            <form action="fiche_projet" method="POST"><!-- en local mettre fiche_projet.php -- cause .htaccess -->
                                 <input type="hidden" name="id" value="99">
                                 <input type="hidden" name="fileName" value="<?php echo htmlspecialchars($fileNamePrev); ?>">
                                 <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">
@@ -171,7 +171,7 @@ $dataMeta = readExcelData($filePathDataMeta);
                         </div>
 
                         <div class="fiche-projet-frame-btn-next">
-                            <form action="fiche_projet.php" method="POST">
+                            <form action="fiche_projet" method="POST"><!-- en local mettre fiche_projet.php -- cause .htaccess -->
                                 <input type="hidden" name="id" value="99">
                                 <input type="hidden" name="fileName" value="<?php echo htmlspecialchars($fileNameNext); ?>">
                                 <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">
@@ -215,8 +215,6 @@ $dataMeta = readExcelData($filePathDataMeta);
                         } 
                         ?>
                     </div>
-
-                    <hr>
 
                     <div class="fiche-projet-frame-data-methodo">
                         
@@ -346,8 +344,6 @@ $dataMeta = readExcelData($filePathDataMeta);
 
                     </div>
 
-                    <hr>
-
                     <div class="fiche-projet-frame-results">
 
                         <div class="fiche-projet-frame-results-header">
@@ -424,8 +420,6 @@ $dataMeta = readExcelData($filePathDataMeta);
                             </div>
                         </div>
                     </div>
-
-                    <hr>
 
                     <div class="fiche-projet-frame-group-dif-improv">
 

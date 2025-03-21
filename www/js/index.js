@@ -124,37 +124,45 @@ function getCards() {
     return Array.from(carouselContainer.children);
 }
 
-// Bouton "next" : cherche la première carte dont l'offsetLeft est supérieur à scrollLeft courant
+// Bouton "prev" : cherche la dernière carte dont l'offsetLeft est inférieur à scrollLeft courant
 nextButton.addEventListener('click', () => {
     const cards = getCards();
-    const currentScroll = carouselContainer.scrollLeft;
+    const currentScroll = carouselContainer.scrollLeft ;
     const decalage = window.innerWidth * 0.025;
 
-    // Fonction de comparaison en fonction de nbFrames
+    let targetCard = null;
+    
+    // Fonction de comparaison selon le mode nbFrames
     const isAfterScroll = (cardOffset) => {
-        return nbFrames === 1 
-            ? cardOffset > currentScroll + decalage + 1 
-            : cardOffset > currentScroll + 1;
+        if (nbFrames === 1) {
+            return cardOffset > currentScroll + decalage + 1;
+        }
+        return cardOffset > currentScroll + 1;
     };
-
-    // Recherche de la première carte dont le côté gauche se trouve après la position courante
-    const targetCard = cards.find(card => isAfterScroll(card.offsetLeft));
-
-    if (targetCard) {
-        const newScroll = nbFrames === 1 
-            ? targetCard.offsetLeft - decalage 
-            : targetCard.offsetLeft;
-        carouselContainer.scrollTo({ left: newScroll, behavior: 'smooth' });
+    
+    // Recherche de la dernière carte dont l'offsetLeft est inférieur à la position de scroll actuelle (avec décalage si nbFrames === 1)
+    for (let i = 0; i< cards.length ; i++) {
+        if (isAfterScroll(cards[i].offsetLeft)) {
+            targetCard = cards[i+nbFrames-1];
+            break;
+        }
     }
+    
+    // Calcul de la position de scroll à appliquer
+    const newScroll = targetCard 
+        ? (nbFrames === 1 ? targetCard.offsetLeft - decalage : targetCard.offsetLeft)
+        : carouselContainer.scrollWidth;
+
+    carouselContainer.scrollTo({ left: newScroll, behavior: 'smooth' });
 });
 
 
 // Bouton "prev" : cherche la dernière carte dont l'offsetLeft est inférieur à scrollLeft courant
 prevButton.addEventListener('click', () => {
     const cards = getCards();
-    const currentScroll = carouselContainer.scrollLeft;
+    const currentScroll = carouselContainer.scrollLeft ;
     const decalage = window.innerWidth * 0.025;
-    
+
     let targetCard = null;
     
     // Fonction de comparaison selon le mode nbFrames
@@ -162,24 +170,25 @@ prevButton.addEventListener('click', () => {
         if (nbFrames === 1) {
             return cardOffset < currentScroll + decalage - 1;
         }
-        return cardOffset < currentScroll - 1;
+        return cardOffset < currentScroll ;
     };
     
     // Recherche de la dernière carte dont l'offsetLeft est inférieur à la position de scroll actuelle (avec décalage si nbFrames === 1)
     for (let i = cards.length - 1; i >= 0; i--) {
         if (isBeforeScroll(cards[i].offsetLeft)) {
-            targetCard = cards[i];
+            targetCard = cards[i-nbFrames+1];
             break;
         }
     }
     
     // Calcul de la position de scroll à appliquer
-    const newScroll = targetCard
+    const newScroll = targetCard 
         ? (nbFrames === 1 ? targetCard.offsetLeft - decalage : targetCard.offsetLeft)
         : 0;
-    
-    carouselContainer.scrollTo({ left: newScroll, behavior: 'smooth' });
+
+    carouselContainer.scrollTo({ left: (newScroll), behavior: 'smooth' });
 });
+
 
 
 

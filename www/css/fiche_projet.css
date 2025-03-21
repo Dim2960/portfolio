@@ -50,11 +50,6 @@
     box-shadow: 0 8px 20px var(--box-shadow-accent);
 }
 
-#fiche-projet table:hover {
-    scale: 1.02;
-    box-shadow: 4px 4px 8px var(--box-shadow);
-}
-
 #fiche-projet thead {
     background-color: var(--table-thead-bg);
     color: var(--table-thead-color);
@@ -69,20 +64,12 @@
     background-color: var(--table-tbody-bg); 
 }
 
-#fiche-projet table:hover tbody tr {
-    background-color: var(--table-tbody-hover-bg); /* Changement de couleur au survol */
-}
-
 #fiche-projet th {
     font-weight: bold;
 }
 
 #fiche-projet td {
     color: var(--table-td-color); /* Couleur du texte */
-}
-
-#fiche-projet td:hover {
-    color: var(--table-td-hover-color); /* Couleur du texte */
 }
 
 .fiche-projet-frame {
@@ -108,9 +95,6 @@
     transition: all 0.1s ease-in-out;
 }
 
-.list-box li:hover {
-    border-left: 6px solid var(--btn-bg-color-hover);
-}
 
 
 .list-steps ol {
@@ -242,12 +226,6 @@
     width: 85%;
 }
 
-.fiche-projet-frame-issue:hover,
-.fiche-projet-frame-target:hover {
-    border-left: 6px solid var(--btn-bg-color-hover);
-    scale: 1.02;
-    box-shadow: 4px 4px 8px var(--box-shadow);
-}
 
 
 .fiche-projet-frame-data-methodo {
@@ -427,6 +405,11 @@
             box-shadow: 4px 4px 8px var(--btn-bg-color);
         }
 
+        .fiche-projet-frame-results-links:hover {
+            scale: 1.1;
+            transition: all 0.2s ease-in-out;
+        }
+
             .ctn-icon {
                 display: flex;
                 justify-content: center;
@@ -437,7 +420,9 @@
             }
 
             .ctn-icon:hover {
-                scale: 1.1;
+                scale: 1.1; 
+                transition: all 0.2s ease-in-out;
+                cursor: pointer;
             }
 
 

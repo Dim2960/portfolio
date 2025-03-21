@@ -102,7 +102,7 @@ header {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 999;
+    z-index: 99999;
 }
 
 header nav {
@@ -825,3 +825,24 @@ footer a:hover svg {
     }
 }
 
+/***********************************
+/* Animation des elements cliquables
+************************************/
+
+
+.button-scale {
+    display: inline-block; /* Pour que le transform s'applique correctement */
+    animation: scaleAnimation 3s infinite;
+}
+
+@keyframes scaleAnimation {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1);
+    }
+}

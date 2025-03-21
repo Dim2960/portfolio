@@ -23,6 +23,38 @@ if (isset($_POST['fileName']) and isset($_POST['id'])) {
     die("Erreur : aucune donnée reçue.");
 }
 
+
+$folderPathDataProjets = '../data/projets/';
+$allDataProject = readAllExcelFilesInFolder($folderPathDataProjets);
+
+// fetch du nombre de nom de projet
+$nbFile = count($allDataProject);
+// on recupere le nom de chaque projet
+// et on les met dans un tableau associatif
+// avec un index du projet comme clé et le nom du fichier comme valeur
+$fileNameCount = 0;
+$assoCountName = [];
+
+foreach ($allDataProject as $fileNameArray => $rows) {
+    $assoCountName[$fileNameCount] = $fileNameArray;
+    $fileNameCount = $fileNameCount+ 1;
+}
+
+// on recupere les informations pour le bouton du projet précédent projet
+$numeroProjet = $fileName[0];
+
+if ($numeroProjet == 0) {
+    $fileNamePrev = $assoCountName[$nbFile-1];
+} else {
+    $fileNamePrev = $assoCountName[$numeroProjet - 1];
+}
+
+if ($numeroProjet == $nbFile-1) {
+    $fileNameNext = $assoCountName[0];
+} else {
+    $fileNameNext = $assoCountName[$numeroProjet + 1];
+}
+
 $filePath = '../data/projets/' . $fileName;
 $dataprojet = readExcelData($filePath);
 
@@ -119,11 +151,33 @@ $dataMeta = readExcelData($filePathDataMeta);
             <section id="fiche-projet">
                 <div class="fiche-projet-frame">
 
-                    <div class="fiche-projet-frame-title">
-                        <div class="fiche-projet-title">
-                            <h1><?php echo htmlspecialchars($titre); ?></h1>
-                            <!-- <h3>Sous-titre précisant le domaine </h3> -->
+                    <div class="fiche-projet-frame-header">
+
+                        <div class="fiche-projet-frame-btn-prev">
+                            <form action="fiche_projet.php" method="POST">
+                                <input type="hidden" name="id" value="99">
+                                <input type="hidden" name="fileName" value="<?php echo htmlspecialchars($fileNamePrev); ?>">
+                                <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">
+                                <input type="submit" class="button-prev-next button-scale" name="prev" value="<" />
+                            </form>
                         </div>
+
+                        <div class="fiche-projet-frame-title">
+                            <div class="fiche-projet-title">
+                                <h1><?php echo htmlspecialchars($titre); ?></h1>
+                                <!-- <h3>Sous-titre précisant le domaine </h3> -->
+                            </div>
+                        </div>
+
+                        <div class="fiche-projet-frame-btn-next">
+                            <form action="fiche_projet.php" method="POST">
+                                <input type="hidden" name="id" value="99">
+                                <input type="hidden" name="fileName" value="<?php echo htmlspecialchars($fileNameNext); ?>">
+                                <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">
+                                <input type="submit" class="button-prev-next button-scale" name="next" value=">" />
+                            </form>
+                        </div>
+
                     </div>
 
                     <div class="fiche-projet-frame-context">
@@ -330,35 +384,35 @@ $dataMeta = readExcelData($filePathDataMeta);
                                 <div class="fiche-projet-frame-results-links">
                                     <?php
                                     if ($powerbi_link != 'lien non disponible') {
-                                        echo '<div class="ctn-icon">
+                                        echo '<div class="ctn-icon button-scale">
                                                     <a href="' . htmlspecialchars($powerbi_link) . '" target="_blank">
                                                         <img src="images/icons/icons8-power-bi-2021-48.png" alt="Lien vers Power BI" />
                                                     </a>
                                                 </div>';
                                     }   
                                     if ($github_link != 'lien non disponible') {
-                                        echo '<div class="ctn-icon">
+                                        echo '<div class="ctn-icon button-scale">
                                                     <a href="' . htmlspecialchars($github_link) . '" target="_blank">
                                                         <img src="images/icons/icons8-github-48.png" alt="Lien vers GitHub" />
                                                     </a>
                                                 </div>';
                                     }
                                     if ($streamlit_link != 'lien non disponible') {
-                                        echo '<div class="ctn-icon">
+                                        echo '<div class="ctn-icon button-scale">
                                                     <a href="' . htmlspecialchars($streamlit_link) . '" target="_blank">
                                                         <img src="images/icons/icons8-streamlit-48.png" alt="Lien vers Streamlit" />
                                                     </a>
                                                 </div>';
                                     }
                                     if ($video_link != 'lien non disponible') {
-                                        echo '<div class="ctn-icon">
+                                        echo '<div class="ctn-icon button-scale">
                                                     <a href="videos/' . htmlspecialchars($video_link) . '" target="_blank">
                                                         <img src="images/icons/icons8-video-48.png" alt="Lien vers Vidéo" />
                                                     </a>
                                                 </div>';
                                     }
                                     if ($webApp_link != 'lien non disponible') {
-                                        echo '<div class="ctn-icon">
+                                        echo '<div class="ctn-icon button-scale">
                                                     <a href="' . htmlspecialchars($webApp_link) . '" target="_blank">
                                                         <img src="images/icons/icons8-weblink-48.png" alt="Lien vers Vidéo" />
                                                     </a>

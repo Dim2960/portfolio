@@ -5,14 +5,13 @@
         
             <div class="carousel-track">  
                 <div class="carousel-controls">
-                    <button class="carousel-btn prev">‹</button>
-                    <button class="carousel-btn next">›</button>
+                    <button class="carousel-btn prev button-scale">‹</button>
+                    <button class="carousel-btn next button-scale">›</button>
                 </div>
 
                 <?php
+                // on recupere les informations de chaque projet
                 foreach ($allDataProject as $fileName => $rows) {
-                    // On affiche le nom du fichier pour le débogage
-
                     $filePath = '../data/projets/' . $fileName;
                     $dataprojet = readExcelData($filePath);
 

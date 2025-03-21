@@ -121,6 +121,7 @@ $dataMeta = readExcelData($filePathDataMeta);
     
     
     <!-- Feuille de style principale -->
+    <link rel="stylesheet" href="css/color.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fiche_projet.css">
     <!-- Feuille de style carousel des projets -->

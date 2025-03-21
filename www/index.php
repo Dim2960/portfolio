@@ -56,6 +56,7 @@ if (isset($_SESSION['notification'])) {
     
     
     <!-- Feuille de style principale -->
+    <link rel="stylesheet" href="css/color.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- Feuille de style carousel des projets -->
     <link rel="stylesheet" href="css/carousel-projets.css">

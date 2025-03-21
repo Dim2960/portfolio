@@ -1,0 +1,74 @@
+:root {
+    --bg-gradient: linear-gradient(180deg, #042433 0%, #003366 100%);
+    --header-bg-gradient: linear-gradient(90deg, #003366, #042433);
+    --section-bg-gradient: linear-gradient(180deg, #003366, #042433);
+    --sidebar-bg-gradient: linear-gradient(180deg, #003366, #042433);
+    --footer-bg-gradient: linear-gradient(90deg, #003366, #042433);
+
+    --btn-bg-theme-toggle: rgb(236, 236, 236);
+
+    --btn-bg-color: #BD7203;
+    --btn-bg-color-hover: #FBAA01;
+    --btn-ft-color: #F2F2F2;
+
+    --link: #FFC000;
+    --link-hover: #FFCC33;
+
+    --primary-text: #F2F2F2;
+    --primary-text-oposite: #042433;
+    --accent-color: #FFC000;
+    --soft-color: #CCCCCC;
+    
+    --h1-color: #FFCC33;
+    --paragraph-color: #E8E8E8;
+
+    --border: #6C7277;
+    --box-shadow: rgba(255, 255, 255, 0.2);
+    --box-shadow-accent: rgba(0, 0, 0, 0.1);
+
+    --table-thead-bg: #003366;
+    --table-thead-color: #F2F2F2;
+    --table-tbody-bg: #E8E8E8;
+    --table-td-color: #003366;
+    --table-thead-hover-bg: #123e69;
+    --table-tbody-hover-bg: #CCCCCC;
+    --table-td-hover-color: #003366; 
+
+}
+
+body.clear-mode  {
+    --bg-gradient: linear-gradient(180deg, #F2F2F2 0%, #E8E8E8 100%);
+    --header-bg-gradient: linear-gradient(90deg, #FFFFFF, #CCCCCC);
+    --section-bg-gradient: linear-gradient(180deg, #FFFFFF, #E8E8E8);
+    --sidebar-bg-gradient: linear-gradient(180deg, #FFFFFF, #CCCCCC);
+    --footer-bg-gradient: linear-gradient(90deg, #FFFFFF, #CCCCCC);
+
+    --btn-bg-theme-toggle: rgb(56, 56, 56);
+
+    --btn-bg-color: #003366;
+    --btn-bg-color-hover: #042433;
+    --btn-ft-color: #FFFFFF;
+
+    --link: #4178AF;
+    --link-hover: #003366;
+
+    --primary-text: #042433;
+    --primary-text-oposite: #F2F2F2;
+    --accent-color: #4178AF;
+    --soft-color: #6C7277;
+    
+    --h1-color: #003366;
+    --paragraph-color: #6C7277;
+
+    --border: #CCCCCC;
+    --box-shadow: rgba(0, 0, 0, 0.2);
+    --box-shadow-accent: rgba(255, 255, 255, 0.1);
+
+    --table-thead-bg: #003366;
+    --table-thead-color: #F2F2F2;
+    --table-tbody-bg: #E8E8E8;
+    --table-td-color: #003366;
+    --table-thead-hover-bg: #123e69;
+    --table-tbody-hover-bg: #CCCCCC;
+    --table-td-hover-color: #003366; 
+}

@@ -312,3 +312,43 @@
         resize: vertical;
     }
 }
+
+
+@media (max-height: 780px) {
+    .card-image input[type="image"] {
+        height: 20vh;
+    }
+
+    .projet-card-frame {
+        margin-top:0;
+        height : auto;
+        min-height: 70vh;
+        max-height: 500px; 
+    }
+}
+
+@media (max-height: 600px) {
+    .card-image input[type="image"] {
+        height: 15vh;
+    }
+
+    .projet-card-frame {
+        margin-top:0;
+        height : auto;
+        min-height: 60vh;
+        max-height: 500px; 
+    }
+}
+
+@media (max-height: 500px) {
+    .card-image input[type="image"] {
+        height: 8vh;
+    }
+
+    .projet-card-frame {
+        margin-top:0;
+        height : auto;
+        min-height: 50vh;
+        max-height: 500px; 
+    }
+}

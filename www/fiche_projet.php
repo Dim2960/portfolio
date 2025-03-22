@@ -6,21 +6,21 @@ include '../src/function.php';
 
 
 // recupération de la variable post['fileName'] pour identifier le projet
-if (isset($_POST['fileName']) and isset($_POST['id'])) {
-    // Validation : l'entier doit être entre 0 et 100
-    $id = filter_var(
-        $_POST['id'],
-        FILTER_VALIDATE_INT,
-        array("options" => array("min_range" => 0, "max_range" => 100))
-    );
+if (isset($_POST['fileName'])) {
 
-    if ($id === false) {
-        echo "Erreur : la valeur doit être un entier compris entre 0 et 100.";
-    }
-    $fileName = $_POST['fileName'];
+    $_SESSION['fileName'] = $_POST['fileName'];
+
+    header('Location: fiche_projet.php');
+
+
+} 
+elseif (isset($_SESSION['fileName'])) {
+    $fileName = $_SESSION['fileName'];  
+    unset($_SESSION['fileName']);
 
 } else {
-    die("Erreur : aucune donnée reçue.");
+    header('Location: index.php');
+    // die("Erreur : aucune donnée reçue.");
 }
 
 
@@ -155,7 +155,7 @@ $dataMeta = readExcelData($filePathDataMeta);
                     <div class="fiche-projet-frame-header">
 
                         <div class="fiche-projet-frame-btn-prev">
-                            <form action="fiche_projet" method="POST"><!-- en local mettre fiche_projet.php -- cause .htaccess -->
+                            <form action="fiche_projet.php" method="POST"><!-- en local mettre fiche_projet.php -- cause .htaccess -->
                                 <input type="hidden" name="id" value="99">
                                 <input type="hidden" name="fileName" value="<?php echo htmlspecialchars($fileNamePrev); ?>">
                                 <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">
@@ -171,7 +171,7 @@ $dataMeta = readExcelData($filePathDataMeta);
                         </div>
 
                         <div class="fiche-projet-frame-btn-next">
-                            <form action="fiche_projet" method="POST"><!-- en local mettre fiche_projet.php -- cause .htaccess -->
+                            <form action="fiche_projet.php" method="POST"><!-- en local mettre fiche_projet.php -- cause .htaccess -->
                                 <input type="hidden" name="id" value="99">
                                 <input type="hidden" name="fileName" value="<?php echo htmlspecialchars($fileNameNext); ?>">
                                 <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">

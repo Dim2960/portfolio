@@ -1,27 +1,4 @@
 <?php
-session_start();
-
-// recupération de la variable post['fileName'] pour identifier le projet
-if (isset($_POST['fileName'])) {
-
-    $_SESSION['fileName'] = $_POST['fileName'];
-
-    header('Location: fiche_projet.php');
-exit;
-
-} 
-elseif (isset($_SESSION['fileName'])) {
-    $fileName = $_SESSION['fileName'];  
-    unset($_SESSION['fileName']);
-
-} else {
-    header('Location: index#projets');
-    exit;
-}
-
-
-include '../src/function.php';
-
 
 $folderPathDataProjets = '../data/projets/';
 $allDataProject = readAllExcelFilesInFolder($folderPathDataProjets);
@@ -93,58 +70,6 @@ $dataMeta = readExcelData($filePathDataMeta);
 
 ?>
 
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Titre et Meta Description pour le SEO -->
-    <title><?php echo htmlspecialchars($dataMeta['title']); ?></title>
-    <meta name="description" content="<?php echo htmlspecialchars($dataMeta['description']); ?>">
-    <meta name="keywords" content="<?php echo htmlspecialchars($dataMeta['keywords']); ?>">
-    
-    <!-- URL canonique -->
-    <link rel="canonical" href="<?php echo htmlspecialchars($dataMeta['canonical url']); ?>">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="<?php echo htmlspecialchars($dataMeta['icon']); ?>">
-    
-    <!-- Open Graph / Réseaux Sociaux -->
-    <meta property="og:title" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:title']); ?>">
-    <meta property="og:description" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:description']); ?>">
-    <meta property="og:image" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:image']); ?>">
-    <meta property="og:url" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:url']); ?>">
-    <meta property="og:type" content="website">
-    
-    
-    <!-- Feuille de style principale -->
-    <link rel="stylesheet" href="css/color.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/fiche_projet.css">
-    <!-- Feuille de style carousel des projets -->
-    <link rel="stylesheet" href="css/carousel-projets.css">
-    <!-- Feuille de style pour l'adaptation responsive -->
-    <link rel="stylesheet" href="css/responsive_portrait.css">
-    <link rel="stylesheet" href="css/responsive_landscape.css">
-    <link rel="stylesheet" href="css/fiche_projet_landscape.css">
-    
-    
-    <!-- Données structurées (JSON-LD) -->
-    <script type="application/ld+json">
-        <?php echo ($dataMeta['applicationldjson']); ?>
-    </script>
-</head>
-
-<body>
-
-    <?php 
-        include '../src/header.php'; 
-
-        include '../src/menu_hamburger.php'; 
-    ?>
-
     <main>
 
         <div class="wrapper-fiche-projet">
@@ -154,7 +79,7 @@ $dataMeta = readExcelData($filePathDataMeta);
                     <div class="fiche-projet-frame-header">
 
                         <div class="fiche-projet-frame-btn-prev">
-                            <form action="fiche_projet" method="POST"><!-- en local mettre fiche_projet.php -- cause .htaccess -->
+                            <form action="index" method="POST"><!-- en local mettre fiche_projet.php -- cause .htaccess -->
                                 <input type="hidden" name="id" value="99">
                                 <input type="hidden" name="fileName" value="<?php echo htmlspecialchars($fileNamePrev); ?>">
                                 <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">
@@ -170,7 +95,7 @@ $dataMeta = readExcelData($filePathDataMeta);
                         </div>
 
                         <div class="fiche-projet-frame-btn-next">
-                            <form action="fiche_projet" method="POST"><!-- en local mettre fiche_projet.php -- cause .htaccess -->
+                            <form action="index" method="POST"><!-- en local mettre fiche_projet.php -- cause .htaccess -->
                                 <input type="hidden" name="id" value="99">
                                 <input type="hidden" name="fileName" value="<?php echo htmlspecialchars($fileNameNext); ?>">
                                 <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">
@@ -467,11 +392,3 @@ $dataMeta = readExcelData($filePathDataMeta);
         </div>
 
     </main>
-
-    <?php include '../src/footer.php'; ?>
-
-<!-- Inclusion des scripts JavaScript -->
-<script src="js/global.js"></script>
-
-</body>
-</html>

@@ -1,6 +1,25 @@
 <?php
 session_start();
 
+
+// recupération de la variable post['fileName'] pour identifier le projet
+if (isset($_POST['fileName'])) {
+
+    $_SESSION['fileName'] = $_POST['fileName'];
+
+    header('Location: index.php');
+exit;
+
+} 
+elseif (isset($_SESSION['fileName'])) {
+    $fileName = $_SESSION['fileName'];  
+    unset($_SESSION['fileName']);
+
+}
+
+
+
+
 // Génération d'un token CSRF unique s'il n'existe pas déjà
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -58,11 +77,13 @@ if (isset($_SESSION['notification'])) {
     <!-- Feuille de style principale -->
     <link rel="stylesheet" href="css/color.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fiche_projet.css">
     <!-- Feuille de style carousel des projets -->
     <link rel="stylesheet" href="css/carousel-projets.css">
     <!-- Feuille de style pour l'adaptation responsive -->
     <link rel="stylesheet" href="css/responsive_portrait.css">
     <link rel="stylesheet" href="css/responsive_landscape.css">
+    <link rel="stylesheet" href="css/fiche_projet_landscape.css">
     
     <!-- Données structurées (JSON-LD) -->
     <script type="application/ld+json">
@@ -75,63 +96,15 @@ if (isset($_SESSION['notification'])) {
     <?php 
         include '../src/header.php'; 
         include '../src/menu_hamburger.php'; 
-    ?>
 
-    <main>
-        
-        <div class="wrapper-accueil">
-            <?php  include '../src/accueil.php'; ?>
-        </div>
-        
+        if (isset($fileName)) {
+            include '../src/main_fiche_projet.php';
 
-        <!-- Section Projets -->
-        <div class="wrapper-projets">
-            <?php include '../src/projets.php'; ?>
-        </div>
-        
-        <!-- Section À propos -->
-        <div class="wrapper-a-propos">
-            <?php include '../src/a_propos.php'; ?>
-        </div>
-                
-        <!-- Section Contact -->
-        <div class="wrapper-contact">
-            <?php include '../src/contact.php'; ?>
-        </div>
+        } else {
+            include '../src/main_index.php';
+        }
 
-        <a href="#" id="scrollArrowTop" class="scroll-arrow scroll-arrow-top">
-            <svg    xmlns="http://www.w3.org/2000/svg" 
-                    width="24" 
-                    height="24" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    stroke-width="2" 
-                    stroke-linecap="round" 
-                    stroke-linejoin="round">
-                <polyline points="6 15 12 9 18 15"></polyline>
-            </svg>
-        </a>
-
-        <a href="#" id="scrollArrowBottom" class="scroll-arrow scroll-arrow-bottom">
-            <svg    xmlns="http://www.w3.org/2000/svg" 
-                    width="24" 
-                    height="24" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    stroke-width="2" 
-                    stroke-linecap="round" 
-                    stroke-linejoin="round">
-                    <polyline points="6 11 12 17 18 11"></polyline>
-            </svg>
-        </a>
-
-
-        
-    </main>
-
-    <?php include '../src/footer.php'; ?>
+        include '../src/footer.php'; ?>
 
     <!-- Inclusion des scripts JavaScript -->
     <script src="js/global.js"></script>

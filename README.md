@@ -42,7 +42,6 @@ portfolio
 │   │ 
 │   ├── js                                   # Scripts JavaScript
 │   ├── videos                               # Vidéos intégrées pour illustrer les projets ou présenter le portfolio
-│   ├── fiche_projet.php                     # Afficher les détails d’un projet
 │   └── index.php                            # Page d'accueil du portfolio
 │ 
 ├── LICENSE                                
@@ -144,6 +143,9 @@ Après avoir modifié les fichiers `.xlsx` et `.docx` :
 
 **Remarque importante :**  
 Toujours effectuer une sauvegarde des anciens fichiers avant de procéder à des modifications majeures, afin de pouvoir restaurer rapidement en cas de problème.
+
+### 🎨 Personnalisation des Couleurs
+Pour adapter l'apparence de votre portfolio à vos goûts ou à votre identité visuelle, il vous suffit de modifier les variables définies dans le fichier color.css situé dans le dossier www/css. Ce fichier gère l'ensemble de la palette de couleurs du site, incluant l'arrière-plan, les textes, les boutons et autres éléments graphiques, pour les thèmes par défaut et le mode clair (clear-mode). Il vous offre une flexibilité totale pour personnaliser l'esthétique du portfolio.
 
 ## 🔍 Utilisation
 1. Accédez au site 

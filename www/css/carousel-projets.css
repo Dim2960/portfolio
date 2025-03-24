@@ -256,6 +256,113 @@
 }
 
 
+
+.projet-card {
+  position: relative;
+  overflow: hidden; /* Permet de masquer l'image lorsqu'elle sort du conteneur */
+}
+
+.first{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  z-index: 9; 
+}
+
+.projet-card-frame.animate .click-here .first {
+  /* Animation continue sur 9,5 secondes */
+  animation: imageMotion 10s infinite;
+  /* Utilisation d'une courbe d'accélération/décélération pour un mouvement naturel */
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.projet-card-frame.animate {
+  /* Animation continue sur 9,5 secondes */
+  animation: frameMotion 10s infinite;
+  /* Utilisation d'une courbe d'accélération/décélération pour un mouvement naturel */
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes imageMotion {
+  /* Départ : l'image est hors de la vue à droite, avec une légère décalage vertical */
+  10% {
+    transform: translateX(0%) translateY(0%) scale(1);
+    /* opacity: 0; */
+  }
+  /* Approche rapide avec apparition progressive */
+  20% {
+    transform: translateX(-350%) translateY(-120%) scale(1);
+
+  }
+
+  21% {
+    transform: translateX(-350%) translateY(-120%) scale(0.9);
+  }
+
+  22% {
+    transform: translateX(-350%) translateY(-120%) scale(1);
+  }
+
+  23% {
+    transform: translateX(-350%) translateY(-120%) scale(0.9);
+  }
+
+  24% {
+    transform: translateX(-350%) translateY(-120%) scale(1);
+  }
+
+  34% {
+    transform: translateX(-350%) translateY(-120%) scale(1);
+  }
+
+  48% {
+    transform: translateX(0%) translateY(0%) scale(1);
+  }
+
+}
+
+@keyframes frameMotion {
+  /* Départ : l'image est hors de la vue à droite, avec une légère décalage vertical */
+  10% {
+    transform: translateX(0%) translateY(0%) scale(1);
+    /* opacity: 0; */
+  }
+  /* Approche rapide avec apparition progressive */
+  20% {
+    transform: translateX(0%) translateY(0%) scale(1);
+
+  }
+
+  21% {
+    transform: translateX(0%) translateY(0%) scale(0.988);
+  }
+
+  22% {
+    transform: translateX(0%) translateY(0%) scale(1);
+  }
+
+  23% {
+    transform: translateX(0%) translateY(0%) scale(0.988);
+  }
+
+  24% {
+    transform: translateX(0%) translateY(0%) scale(1);
+  }
+
+  34% {
+    transform: translateX(0%) translateY(0%) scale(1);
+  }
+
+  48% {
+    transform: translateX(0%) translateY(0%) scale(1);
+  }
+
+}
+
+
+
+
 /**************************************************/
 /* 6) Boutons (facultatifs si pas de JS)          */
 /**************************************************/

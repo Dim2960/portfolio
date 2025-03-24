@@ -25,13 +25,21 @@
                     ?>
                     <div class="projet-card-frame">
                         <form action="index" method="POST" style="display:inline;"> <!-- en local mettre fiche_projet.php -- cause .htaccess -->
+
                             <div class="projet-card" onclick="this.closest('form').submit();" style="cursor: pointer;">
+
+                                
                                 <!-- Zone d'image -->
                                 <div class="card-image">
-                                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
-                                        <input type="hidden" name="fileName" value="<?php echo htmlspecialchars($fileName); ?>">
-                                        <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">
-                                        <input type="image" src="images/projets/global/<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($image_alt); ?>" />
+
+                                    <div class="click-here">
+                                        <img src="images/illustrations/pointer.png" class="first"/>
+                                    </div>
+
+                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+                                    <input type="hidden" name="fileName" value="<?php echo htmlspecialchars($fileName); ?>">
+                                    <input type="hidden" name="theme" class="hidden-theme" value="<?php echo $_COOKIE['theme']; ?>">
+                                    <input type="image" src="images/projets/global/<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($image_alt); ?>" />
                                 </div>
                                 <!-- Zone de contenu texte -->
                                 <div class="card-content">

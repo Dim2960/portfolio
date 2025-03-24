@@ -64,6 +64,7 @@ scrollArrowTop.addEventListener('click', (e) => {
 
 // Sélection du conteneur du carrousel et des boutons
 const carouselContainer = document.querySelector('.carousel-track');
+const imgCarouselContainer = document.querySelector('.carousel-track img');
 const prevButton = document.querySelector('.carousel-btn.prev');
 const nextButton = document.querySelector('.carousel-btn.next');
 
@@ -72,40 +73,86 @@ let nbFrames = 4;
 function updateButtonPosition() {
     // Récupère les dimensions du conteneur
     const rect = carouselContainer.getBoundingClientRect();
-    // Calcule le centre vertical du conteneur
-    const containerCenterY = rect.height / 2;
-    
-    // Centre verticalement les boutons en soustrayant la moitié de leur hauteur
-    prevButton.style.top = `${containerCenterY - prevButton.offsetHeight / 2}px`;
-    nextButton.style.top = `${containerCenterY - nextButton.offsetHeight / 2}px`;
+    const containerCenterY = rect.height;
     
     // Récupère la largeur et hauteur de l'écran
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-
+    let containerCenterYAjust = containerCenterY / 2;
     
-    // Adapte la position horizontale selon la taille de l'écran
+
+    // Adapte la position horizontale et vertical selon la taille de l'écran
     if (screenHeight <= 480 && screenWidth > 768) {
         prevButton.style.left = `7vw`;
         nextButton.style.left = `${rect.width + 65}px`;
         nbFrames = 2;
+
+        // Centre verticalement les boutons en soustrayant la moitié de leur hauteur
+        prevButton.style.top = `${containerCenterYAjust - prevButton.offsetHeight / 2}px`;
+        nextButton.style.top = `${containerCenterYAjust - nextButton.offsetHeight / 2}px`;
+
     } else if (screenWidth <= 768) {
-        prevButton.style.left = `5vw`;
-        nextButton.style.left = `${rect.width - 45}px`;
+        prevButton.style.left = `2.5vw`;
+        nextButton.style.left = `${rect.width - 28}px`;
         nbFrames = 1;
+
+        if (screenHeight <= 500) {
+            containerCenterYAjust = 37;
+            
+            // Centre verticalement les boutons en soustrayant la moitié de leur hauteur
+            prevButton.style.top = `${containerCenterYAjust - prevButton.offsetHeight / 2}px`;
+            nextButton.style.top = `${containerCenterYAjust - nextButton.offsetHeight / 2}px`;
+        }
+        else if (screenHeight <= 600) {
+            containerCenterYAjust = 10;
+            
+            // Centre verticalement les boutons en soustrayant la moitié de leur hauteur
+            prevButton.style.top = `${containerCenterYAjust}vh`;
+            nextButton.style.top = `${containerCenterYAjust}vh`;
+        }
+        else if (screenHeight <= 780) {
+            containerCenterYAjust = 18;
+            
+            // Centre verticalement les boutons en soustrayant la moitié de leur hauteur
+            prevButton.style.top = `${containerCenterYAjust}vh`;
+            nextButton.style.top = `${containerCenterYAjust}vh`;
+        }
+        else  {
+            containerCenterYAjust = 20;
+            
+            // Centre verticalement les boutons en soustrayant la moitié de leur hauteur
+            prevButton.style.top = `${containerCenterYAjust}vh`;
+            nextButton.style.top = `${containerCenterYAjust}vh`;
+        }
+    
     } else if (screenWidth <= 1024) {
         prevButton.style.left = `-28px`;
         nextButton.style.left = `${rect.width - 15}px`;
         nbFrames = 2;
+
+        // Centre verticalement les boutons en soustrayant la moitié de leur hauteur
+        prevButton.style.top = `${containerCenterYAjust - prevButton.offsetHeight / 2}px`;
+        nextButton.style.top = `${containerCenterYAjust - nextButton.offsetHeight / 2}px`;
     } else if (screenWidth <= 1600) {
         prevButton.style.left = `-28px`;
         nextButton.style.left = `${rect.width - 15}px`;
         nbFrames = 3;
+
+        // Centre verticalement les boutons en soustrayant la moitié de leur hauteur
+        prevButton.style.top = `${containerCenterYAjust - prevButton.offsetHeight / 2}px`;
+        nextButton.style.top = `${containerCenterYAjust - nextButton.offsetHeight / 2}px`;
     } else {
         prevButton.style.left = `-28px`;
         nextButton.style.left = `${rect.width - 15}px`;
         nbFrames = 4;
+
+        // Centre verticalement les boutons en soustrayant la moitié de leur hauteur
+        prevButton.style.top = `${containerCenterYAjust - prevButton.offsetHeight / 2}px`;
+        nextButton.style.top = `${containerCenterYAjust - nextButton.offsetHeight / 2}px`;
     }
+
+
+    
 }
 
 // Met à jour la position au chargement, au défilement, au redimensionnement et au clic
@@ -256,3 +303,48 @@ mediaQuery.addEventListener('change', (e) => {
 
 
 
+
+
+
+
+// ************************************************-***************************//
+// *****recup de la carte active pour animationdu cliquez-ici ****************//
+// ***************************************************************************//
+function updateAnimatedCard() {
+    // Récupère toutes les cartes du carrousel
+    const cards = Array.from(carouselContainer.querySelectorAll('.projet-card-frame'));
+    // Récupère la position et la taille du conteneur du carrousel
+    const containerRect = carouselContainer.getBoundingClientRect();
+    // Calcule la position horizontale du centre du conteneur
+    const containerCenter = containerRect.left + containerRect.width / 2;
+    
+    let activeCard = null;
+    let minDistance = Infinity;
+    
+    // Parcourt chaque carte et calcule la distance entre le centre de la carte et le centre du conteneur
+    cards.forEach(card => {
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.left + cardRect.width / 2;
+        const distance = Math.abs(cardCenter - containerCenter);
+        if (distance < minDistance) {
+            minDistance = distance;
+            activeCard = card;
+        }
+    });
+
+    // Retire la classe 'animate' de toutes les cartes
+    cards.forEach(card => card.classList.remove('animate'));
+    // Ajoute la classe 'animate' à la carte dont le centre est le plus proche du centre du conteneur
+    if (activeCard) {
+        activeCard.classList.add('animate');
+    }
+}
+
+// Met à jour la carte active lors du scroll du carrousel
+carouselContainer.addEventListener('scroll', updateAnimatedCard);
+// Met à jour lors du chargement et du redimensionnement
+window.addEventListener('load', updateAnimatedCard);
+window.addEventListener('resize', updateAnimatedCard);
+// Pour les clics sur les boutons, utilisation d'un délai pour laisser le scroll se terminer
+prevButton.addEventListener('click', () => setTimeout(updateAnimatedCard, 500));
+nextButton.addEventListener('click', () => setTimeout(updateAnimatedCard, 500));

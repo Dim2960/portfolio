@@ -277,7 +277,7 @@
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.projet-card-frame.animate {
+.projet-card-frame.animate .projet-card{
   /* Animation continue sur 9,5 secondes */
   animation: frameMotion 10s infinite;
   /* Utilisation d'une courbe d'accélération/décélération pour un mouvement naturel */

@@ -57,20 +57,20 @@ if (isset($_SESSION['notification'])) {
     
     <!-- Titre et Meta Description pour le SEO -->
     <title><?php echo htmlspecialchars($dataMeta['title']); ?></title>
-    <meta name="description" content="<?php echo htmlspecialchars($dataMeta['description']); ?>">
-    <meta name="keywords" content="<?php echo htmlspecialchars($dataMeta['keywords']); ?>">
+    <meta name="description" content="<?php echo htmlspecialchars($dataMeta['description']); ?>" />
+    <meta name="keywords" content="<?php echo htmlspecialchars($dataMeta['keywords']); ?>" />
     
     <!-- URL canonique -->
-    <link rel="canonical" href="<?php echo htmlspecialchars($dataMeta['canonical url']); ?>">
+    <link rel="canonical" href="<?php echo htmlspecialchars($dataMeta['canonical url']); ?>" />
     
     <!-- Favicon -->
-    <link rel="icon" href="<?php echo htmlspecialchars($dataMeta['icon']); ?>">
+    <link rel="icon" href="<?php echo htmlspecialchars($dataMeta['icon']); ?>" />
     
     <!-- Open Graph / Réseaux Sociaux -->
-    <meta property="og:title" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:title']); ?>">
-    <meta property="og:description" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:description']); ?>">
-    <meta property="og:image" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:image']); ?>">
-    <meta property="og:url" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:url']); ?>">
+    <meta property="og:title" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:title']); ?>" />
+    <meta property="og:description" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:description']); ?>" />
+    <meta property="og:image" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:image']); ?>" />
+    <meta property="og:url" content="<?php echo htmlspecialchars($dataMeta['open Graph Réseaux Sociaux og:url']); ?>" />
     <meta property="og:type" content="website">
     
     

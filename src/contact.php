@@ -24,10 +24,17 @@
                 <input type="email" id="email" name="email" placeholder="Votre email *" required>
                 <textarea id="message" name="message" placeholder="Votre message *" required></textarea>
                 
+                <!-- Champ piège pour les robots : invisible, il doit rester vide -->
+                <div style="position:absolute;left:-10000px;" aria-hidden="true">
+                    <label for="reference_interne">Ne pas remplir ce champ</label>
+                    <input type="text" id="reference_interne" name="reference_interne" tabindex="-1" autocomplete="off">
+                </div>
+
                 <div style ="text-align: left;">* champs obligatoires</div>
                 <br/>
                 <button type="submit">Envoyer</button>
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                <?php $_SESSION['contact_affiche_a'] = time(); ?>
             </form>
             <?php  if (!empty($notification)): ?>
                 <div class="notification <?php echo (strpos($notification, 'succès') !== false) ? 'success' : 'error'; ?>">

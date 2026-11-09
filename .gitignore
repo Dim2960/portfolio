@@ -77,3 +77,6 @@ deploy.local.*
 # Anciens projets déplacés : même règle que /data/projets/*
 /data/archives/*
 !data/archives/7_analyse_NYC_Taxi.xlsx
+
+# Compteurs anti-abus du formulaire de contact (générés sur le serveur)
+/var/

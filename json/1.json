@@ -1,0 +1,8 @@
+{
+  "videos": [
+    { "url": "https://portfolio-dimitri-lefebvre.fr/videos/Video_stream_02.mp4" },
+    { "url": "https://portfolio-dimitri-lefebvre.fr/videos/Video_stream_03.mp4" },
+    { "url": "https://portfolio-dimitri-lefebvre.fr/videos/Video_stream_04.mp4" }
+  ],
+  "nextPage": 2
+}

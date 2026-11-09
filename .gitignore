@@ -45,3 +45,35 @@ structure.txt
 
 /data/projets/*
 !data/projets/7_analyse_NYC_Taxi.xlsx
+
+# --- Sécurité : ne jamais publier de secret (dépôt public) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+.htpasswd
+*.secret.php
+*.local.php
+/config/
+sftp-config.json
+.ftpconfig
+.ftpquota
+deploy.local.*
+*.sql
+*.sql.gz
+*.dump
+*.bak
+*.old
+*.zip
+*.tar
+*.tar.gz
+*Zone.Identifier
+
+# Anciens projets déplacés : même règle que /data/projets/*
+/data/archives/*
+!data/archives/7_analyse_NYC_Taxi.xlsx

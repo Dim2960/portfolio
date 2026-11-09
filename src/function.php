@@ -60,6 +60,7 @@ function readAllExcelFilesInFolder($folderPath) {
 
     // Scanner les fichiers du dossier
     $files = scandir($folderPath);
+    natsort($files); // tri naturel : 7, 8, 9, 10, 11 (et non 10, 11, 7…)
     
     foreach ($files as $file) {
         $filePath = $folderPath . DIRECTORY_SEPARATOR . $file;
